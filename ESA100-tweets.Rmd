@@ -23,13 +23,14 @@ library(wesanderson)
 
 ## About this document
 
-The code generating this document was originally developed by [Fran√ßois Michonneau](https://github.com/fmichonneau) ([fmic_](https://twitter.com/fmic_) on Twitter) for the 2015 Evolution meeting and can be found [here](https://github.com/fmichonneau/evol2015-tweets). 
+The code generating this document was originally developed by [FranÁois Michonneau](https://github.com/fmichonneau) ([fmic_](https://twitter.com/fmic_) on Twitter) for the 2015 Evolution meeting and can be found [here](https://github.com/fmichonneau/evol2015-tweets). 
 
-It has since been [adapted](https://github.com/jlehtoma/iccb2015-tweets/blob/gh-pages/index.Rmd) for ICCB-ECCB 2015 by Joona Lehtom√§ki ([jlehtoma](https://twitter.com/jlehtoma) on Twitter).  
+It has since been [adapted](https://github.com/jlehtoma/iccb2015-tweets/blob/gh-pages/index.Rmd) for ICCB-ECCB 2015 by Joona Lehtom‰ki ([jlehtoma](https://twitter.com/jlehtoma) on Twitter).
 
 Thanks also to Emily Sessa ([ebsessa](http://twitter.com/ebsessa) on Twitter) for reproducing this code for the 2015 Botany meeting, bringing it to my attention.
 
-Here, the code is adapted for the 2015 Ecological Society of America Meeting (ESA100) in Baltimore, MD, by Emily J. Rollinson ([katteken](https://twitter.com/katteken) on Twitter). 
+Here, the code is adapted for the 2015 Ecological Society of America Meeting (ESA100) in Baltimore, MD, by Emily J. Rollinson ([ejrollinson](https://twitter.com/ejrollinson) on Twitter). 
+ 
 
 Tweets using the hashtag #ESA100 were aggregated from Twitter using the R package [twitteR](https://cran.r-project.org/web/packages/twitteR/index.html) and the Twitter API.  The aggregated tweets are [available on Figshare](http://dx.doi.org/10.6084/m9.figshare.1512350).
 
