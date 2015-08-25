@@ -1,7 +1,7 @@
 ---
 title: A summary of the tweets generated at the 2015 Ecological Society of America
   meeting (#ESA100)
-author: "EJ Rollinson"
+author: "E.J. Rollinson"
 output:
   html_document:
     theme: flatly
