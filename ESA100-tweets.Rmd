@@ -29,7 +29,7 @@ It has since been [adapted](https://github.com/jlehtoma/iccb2015-tweets/blob/gh-
 
 Thanks also to Emily Sessa ([ebsessa](http://twitter.com/ebsessa) on Twitter) for reproducing this code for the 2015 Botany meeting, bringing it to my attention.
 
-Here, the code is adapted for the 2015 Ecological Society of America Meeting (ESA100) in Baltimore, MD, by Emily J. Rollinson ([ejrollinson](https://twitter.com/ejrollinson) on Twitter). 
+Here, the code is adapted for the 2015 Ecological Society of America Meeting (ESA100) in Baltimore, MD, by Emily J. Rollinson ([ejrollinson](https://twitter.com/ejrollinson), prev. katteken, on Twitter). 
  
 
 Tweets using the hashtag #ESA100 were aggregated from Twitter using the R package [twitteR](https://cran.r-project.org/web/packages/twitteR/index.html) and the Twitter API.  The aggregated tweets are [available on Figshare](http://dx.doi.org/10.6084/m9.figshare.1512350).
