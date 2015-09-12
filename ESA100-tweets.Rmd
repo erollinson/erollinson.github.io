@@ -4,7 +4,6 @@ title: A summary of the tweets generated at the 2015 Ecological Society of Ameri
 author: "E.J. Rollinson"
 output:
   html_document:
-    theme: flatly
     toc: yes
   pdf_document:
     toc: yes
@@ -48,6 +47,7 @@ Of the most recent 10k tweets tagged #ESA100 (As of 9:00 PM 8/15/2015):
 |Total of original tweets (no retweets): | `r sum(!dt_tweets$isRetweet)`|
 |Number of users who tweeted: | `r length(unique(dt_tweets$screenName))`|
 
+| ---
 ## The 5 most favorited tweets
 
 ```{r top-fav, echo=FALSE, results='asis'}
