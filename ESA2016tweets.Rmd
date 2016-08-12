@@ -10,7 +10,7 @@ output:
 ---  
 
 ```{r, echo=FALSE, results='hide', message=FALSE}
-dt_tweets <- read.csv("ESA2016tweets_8_12.csv", stringsAsFactors = FALSE)
+dt_tweets <- read.csv("ESA2016tweets_8_12b.csv", stringsAsFactors = FALSE)
 dt_tweets$created <- as.Date(dt_tweets$created)
 
 library(dplyr)
@@ -33,14 +33,14 @@ I originally adapted this code for the 2015 Ecological Society of America Meetin
  
 Tweets using the hashtag #ESA2016 were aggregated from Twitter using the R package [twitteR](https://cran.r-project.org/web/packages/twitteR/index.html) and the Twitter API.  The aggregated tweets are [available on Figshare](https://figshare.com/authors/Emily_Rollinson/781925).
 
-This document was generated using RMarkdown, and the source is [available on GitHub](https://github.com/erollinson/ESA100-tweets).
+This document was generated using RMarkdown, and the source is [available on GitHub](https://github.com/erollinson/erollinson.github.io).
 
 This document (and associated code) is released under a CC0 licence.
 
 
 ## Basic summary
 
-Of the most recent 10k tweets tagged #ESA2016 (As of 12:00 PM 8/12/2016):
+Of the most recent 12k tweets tagged #ESA2016 (As of 3:00 PM 8/12/2016):
 
 |Description | n |
 |------------|---|
@@ -89,6 +89,7 @@ for (i in seq_len(nrow(top_fav))) {
 ```{r top-rt, echo=FALSE, results='asis'}
 top_rt <- dt_tweets %>%
   filter(!isRetweet) %>%
+  filter(!screenName %in% c('meeting_goer')) %>%
   arrange(desc(retweetCount)) %>%
   slice(1:5)
 
@@ -104,6 +105,7 @@ All generated tweets (including retweets)
 
 ```{r top-users-all, echo=FALSE, fig.height=10}
 top_users <- dt_tweets %>% group_by(screenName) %>%
+  filter(!screenName %in% c('meeting_goer')) %>%
   summarize(total_tweets = n(),
             Retweet = sum(isRetweet),
             Original = sum(!isRetweet)) %>%
@@ -128,6 +130,7 @@ Only for original tweets (retweets excluded)
 
 ```{r, top-users-orig, echo=FALSE, fig.height=10}
 top_orig_users <- dt_tweets %>% group_by(screenName) %>%
+  filter(!screenName %in% c('meeting_goer')) %>%
   summarize(total_tweets = n(),
             Retweet = sum(isRetweet),
             Original = sum(!isRetweet)) %>%
@@ -279,13 +282,13 @@ dt_tweets %>%
   <br />
   To the extent possible under law,
   <a rel="dct:publisher"
-     href="https://github.com/erollinson/ESA100-tweets">
+     href="https://github.com/erollinson/erollinson.github.io">
     <span property="dct:title">Emily J. Rollinson</span></a>
   has waived all copyright and related or neighboring rights to
   <span property="dct:title">Summary of tweets at the 2016 Ecological Society of America conference</span>.
 This work is published from:
 <span property="vcard:Country" datatype="dct:ISO3166"
-      content="US" about="https://github.com/erollinson/ESA100-tweets">
+      content="US" about="https://github.com/erollinson/erollinson.github.io">
   United States</span>.
 </p>
 

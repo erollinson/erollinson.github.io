@@ -21,9 +21,9 @@ access_token_secret <- "6fwyFMmLjZohE2f1ZyLnTuUjEQC9oVzCHiHXbQ0EIdIJC"
 setup_twitter_oauth(api_key,api_secret,access_token,access_token_secret)
 
 require(base64enc)
-tweets<-searchTwitter("#ESA2016", n=10000)
+tweets<-searchTwitter("#ESA2016", n=50000)
 dftweets<-twListToDF(tweets)
 #saveRDS(tweets, "raw_tweets.rds")
-write.csv(dftweets, "ESA2016tweets_8_12.csv", row.names=FALSE)
+write.csv(dftweets, "ESA2016tweets_8_12b.csv", row.names=FALSE)
 
 ```
