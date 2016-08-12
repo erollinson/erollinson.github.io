@@ -21,7 +21,7 @@ library(wesanderson)
 ```
 
 ## About this document
-This document was produced by Emily J. Rollinson ([ejrollinson](https://twitter.com/ejrollinson) on Twitter). 
+This document was produced by [Emily J. Rollinson](http://rollinsonecology.com) ([ejrollinson](https://twitter.com/ejrollinson) on Twitter). 
 
 The code generating this document was originally developed by [Francois Michonneau](https://github.com/fmichonneau) ([fmic_](https://twitter.com/fmic_) on Twitter) for the 2015 Evolution meeting and can be found [here](https://github.com/fmichonneau/evol2015-tweets). 
 
