@@ -10,7 +10,7 @@ output:
 ---  
 
 ```{r, echo=FALSE, results='hide', message=FALSE}
-dt_tweets <- read.csv("ESA2016tweets_8_12b.csv", stringsAsFactors = FALSE)
+dt_tweets <- read.csv("ESA2016tweets_8_13.csv", stringsAsFactors = FALSE)
 dt_tweets$created <- as.Date(dt_tweets$created)
 
 library(dplyr)
@@ -29,7 +29,7 @@ It has since been [adapted](https://github.com/jlehtoma/iccb2015-tweets/blob/gh-
 
 Thanks also to Emily Sessa ([ebsessa](http://twitter.com/ebsessa) on Twitter) for reproducing this code for the 2015 Botany meeting, bringing it to my attention.
 
-I originally adapted this code for the 2015 Ecological Society of America Meeting (ESA100) in Baltimore, MD, and have reproduced it here for the 2016 Ecological Society of America Meeting (ESA2016) in Fort Lauderdale, FL.
+I originally adapted this code for the 2015 Ecological Society of America Meeting (#ESA100) in Baltimore, MD, and have reproduced it here for the 2016 Ecological Society of America Meeting (#ESA2016) in Fort Lauderdale, FL.
  
 Tweets using the hashtag #ESA2016 were aggregated from Twitter using the R package [twitteR](https://cran.r-project.org/web/packages/twitteR/index.html) and the Twitter API.  The aggregated tweets are [available on Figshare](https://figshare.com/authors/Emily_Rollinson/781925).
 
@@ -40,14 +40,15 @@ This document (and associated code) is released under a CC0 licence.
 
 ## Basic summary
 
-Of the most recent 12k tweets tagged #ESA2016 (As of 3:00 PM 8/12/2016):
+Of the most recent 12k tweets tagged #ESA2016 (As of 4:30 PM 8/13/2016):
 
 |Description | n |
 |------------|---|
 |Total of original tweets (no retweets): | `r sum(!dt_tweets$isRetweet)`|
 |Number of users who tweeted: | `r length(unique(dt_tweets$screenName))`|
 
-| ---
+
+
 ## The 5 most favorited tweets
 
 ```{r top-fav, echo=FALSE, results='asis'}

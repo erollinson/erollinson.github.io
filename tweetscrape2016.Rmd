@@ -24,6 +24,6 @@ require(base64enc)
 tweets<-searchTwitter("#ESA2016", n=50000)
 dftweets<-twListToDF(tweets)
 #saveRDS(tweets, "raw_tweets.rds")
-write.csv(dftweets, "ESA2016tweets_8_12b.csv", row.names=FALSE)
+write.csv(dftweets, "ESA2016tweets_8_13.csv", row.names=FALSE)
 
 ```
