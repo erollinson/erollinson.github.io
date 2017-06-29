@@ -1,0 +1,29 @@
+---
+title: "tweetscrape"
+author: "Emily J. Rollinson"
+date: "August 15, 2015"
+output: html_document
+---
+```{r, echo=FALSE}
+## This is the code I used to retrieve the tweets.
+
+#install.packages(c("devtools", "rjson", "bit64", "httr"))
+#install_github("twitteR", username="geoffjentry")
+
+#RESTART R session!
+ 
+library(devtools)
+library(twitteR)
+api_key <- "KH8C5Fl0UrgEXO0OHHCHuj0rn"
+api_secret <- "Vg3Y8TZ4C6OLkDvhtQByzIgrLMvm19T4EE0cPM92RfqYoMEDaA"
+access_token <- "2724477037-xDm5VDJrwcoxQEFdRbjXmGxbZkTPS6QxxuKsrcf"
+access_token_secret <- "6fwyFMmLjZohE2f1ZyLnTuUjEQC9oVzCHiHXbQ0EIdIJC"
+setup_twitter_oauth(api_key,api_secret,access_token,access_token_secret)
+
+require(base64enc)
+tweets<-searchTwitter("#Botany2017", n=10000)
+dftweets<-twListToDF(tweets)
+#saveRDS(tweets, "raw_tweets.rds")
+write.csv(dftweets, "Botany2017_tweets_6_29.csv", row.names=FALSE)
+
+```

@@ -1,0 +1,295 @@
+---
+title: "A summary of the tweets generated at Botany 2017 (#Botany2017)"
+author: "E.J. Rollinson"
+output:
+  html_document:
+    toc: yes
+  pdf_document:
+    toc: yes
+---  
+
+```{r, echo=FALSE, results='hide', message=FALSE}
+dt_tweets <- read.csv("Botany2017_tweets_6_29.csv", stringsAsFactors = FALSE)
+dt_tweets$created <- as.Date(dt_tweets$created)
+
+library(dplyr)
+library(ggplot2)
+library(knitr)
+library(tidyr)
+library(wesanderson)
+```
+
+## About this document
+This document was produced by [Emily J. Rollinson](http://rollinsonecology.com) ([ejrollinson](https://twitter.com/ejrollinson) on Twitter). 
+
+The code generating this document was originally developed by [Francois Michonneau](https://github.com/fmichonneau) ([fmic_](https://twitter.com/fmic_) on Twitter) for the 2015 Evolution meeting and can be found [here](https://github.com/fmichonneau/evol2015-tweets). 
+
+It has since been [adapted](https://github.com/jlehtoma/iccb2015-tweets/blob/gh-pages/index.Rmd) for ICCB-ECCB 2015 by Joona Lehtomaki ([jlehtoma](https://twitter.com/jlehtoma) on Twitter).
+
+Thanks also to Emily Sessa ([ebsessa](http://twitter.com/ebsessa) on Twitter) for reproducing this code for the 2015 Botany meeting, bringing it to my attention.
+
+I originally adapted this code for the 2015 Ecological Society of America meeting (#ESA100) in Baltimore, MD, and have since reproduced it for the 2016 ESA meeting (#ESA2016) in Fort Lauderdale, FL, and here for the 2017 Botany meeting (#Botany2017) in Fort Worth, Tx.
+ 
+Tweets using the hashtag #Botany2017 were aggregated from Twitter using the R package [twitteR](https://cran.r-project.org/web/packages/twitteR/index.html) and the Twitter API. The aggregated tweets are [available on Figshare](https://figshare.com/articles/Tweets_using_Botany2017_hashtag/5160730).
+
+This document was generated using RMarkdown, and the source is [available on GitHub](https://github.com/erollinson/erollinson.github.io).
+
+This document (and associated code) is released under a CC0 licence.
+
+
+## Basic summary
+
+Of the 1714 tweets tagged #Botany2017 as of 6:30 PM EST 6/29/2017:
+
+|Description | n |
+|------------|---|
+|Total of original tweets (no retweets): | `r sum(!dt_tweets$isRetweet)`|
+|Number of users who tweeted: | `r length(unique(dt_tweets$screenName))`|
+
+
+
+## The 5 most favorited tweets
+
+```{r top-fav, echo=FALSE, results='asis'}
+top_fav <- dt_tweets %>%
+  filter(!isRetweet) %>%
+  arrange(desc(favoriteCount)) %>%
+  slice(1:5)
+b<-as.data.frame(top_fav)
+
+render_tweet <- function(dt, row) {
+    screen_name <- dt[i, "screenName"]
+    id <- format(dt[i, "id"], scientific = FALSE)
+    txt <- dt[i, "text"]
+    created <- format(dt[i, "created"], "%Y-%m-%d")
+    n_fav <- dt[i, "favoriteCount"]
+    n_retweets <- dt[i, "retweetCount"]
+        cat("<blockquote class=\"twitter-tweet\" data-lang=\"en\"> \n",
+        "<p lang=\"en\" dir=\"ltr\">",
+        txt,
+        "</p>&mdash; ",
+        "<a href=\"https://twitter.com/", screen_name, "\">", screen_name, "</a>", "&nbsp;|&nbsp;",
+        "<a href=\"https://twitter.com/",
+        screen_name, "/status/", id, "\"> ", created, "</a> &nbsp;|&nbsp;",
+        n_retweets, " retweets, ",  n_fav, " favorites. </blockquote>",
+        "\n \n",
+        sep = "")
+
+}
+
+for (i in seq_len(nrow(b))) {
+    render_tweet(b, i)
+}
+
+
+```
+
+
+## The 5 most retweeted tweets
+
+```{r top-rt, echo=FALSE, results='asis'}
+top_rt <- dt_tweets %>%
+  filter(!isRetweet) %>%
+  arrange(desc(retweetCount)) %>%
+  slice(1:5)
+c<-as.data.frame(top_rt)
+
+for (i in seq_len(nrow(b))) {
+    render_tweet(c, i)
+}
+
+```
+
+## Top tweeters
+
+All generated tweets (including retweets)
+
+```{r top-users-all, echo=FALSE, fig.height=10}
+top_users <- dt_tweets %>% group_by(screenName) %>%
+  filter(!screenName %in% c('meeting_goer')) %>%
+  summarize(total_tweets = n(),
+            Retweet = sum(isRetweet),
+            Original = sum(!isRetweet)) %>%
+  arrange(desc(total_tweets)) %>%
+  slice(1:50) %>%
+  gather(type, n_tweets, -screenName, -total_tweets)
+
+top_users$screenName <- reorder(top_users$screenName,
+                                top_users$total_tweets,
+                                function(x) sum(x))
+
+ggplot(top_users) + geom_bar(aes(x = screenName, y = n_tweets, fill = type),
+                             stat = "identity") +
+  ylab("Number of tweets") + xlab("User") +
+  coord_flip() +
+  scale_fill_manual(values = wes_palette("Zissou")[c(1, 3)]) +
+  theme(axis.text = element_text(size = 12),
+        legend.text = element_text(size = 12))
+```
+
+Only for original tweets (retweets excluded)
+
+```{r, top-users-orig, echo=FALSE, fig.height=10}
+top_orig_users <- dt_tweets %>% group_by(screenName) %>%
+  summarize(total_tweets = n(),
+            Retweet = sum(isRetweet),
+            Original = sum(!isRetweet)) %>%
+  arrange(desc(Original)) %>%
+  slice(1:50)
+
+top_orig_users$screenName <- reorder(top_orig_users$screenName,
+                                     top_orig_users$Original,
+                                     function(x) sum(x))
+
+## png(file = "top_users2.png", width = 800, height = 800)
+ggplot(top_orig_users) + geom_bar(aes(x = screenName, y = Original), stat = "identity",
+                                  fill = wes_palette("Zissou", 1)) +
+  ylab("Number of tweets") + xlab("User") +
+  coord_flip() +
+  theme(axis.text = element_text(size = 12),
+        legend.text = element_text(size = 12))
+## dev.off()
+
+```
+
+
+## Most favorited/retweeted users
+
+The figures below only include users who tweeted 5+ times, and don't include retweets.
+
+### Number of favorites received by users
+
+```{r, fig.height=10, echo=FALSE}
+impact <- dt_tweets %>% filter(!isRetweet) %>%
+  group_by(screenName) %>%
+  summarize(n_tweets = n(),
+            n_fav = sum(favoriteCount),
+            n_rt =  sum(retweetCount),
+            mean_fav = mean(favoriteCount),
+            mean_rt = mean(retweetCount)) %>%
+  filter(n_tweets >=  5)
+
+### Most favorited
+most_fav <- impact %>%
+  arrange(desc(n_fav)) %>%
+  slice(1:50)
+
+most_fav$screenName <- reorder(most_fav$screenName,
+                               most_fav$n_fav,
+                               sort)
+
+ggplot(most_fav) + geom_bar(aes(x = screenName, y = n_fav),
+                            stat = "identity", fill = wes_palette("Zissou")[2]) +
+  coord_flip() + xlab("User") + ylab("Total number of favorites") +
+  theme(axis.text = element_text(size = 12),
+        legend.text = element_text(size = 12))
+```
+
+### Number of retweets received by users
+
+```{r, fig.height=10, echo=FALSE}
+## Most retweeted
+
+most_rt <- impact %>%
+  arrange(desc(n_rt)) %>%
+  slice(1:50)
+
+most_rt$screenName <- reorder(most_rt$screenName,
+                              most_rt$n_rt,
+                              sort)
+
+ggplot(most_rt) + geom_bar(aes(x = screenName, y = n_rt),
+                           stat = "identity", fill = wes_palette("Zissou")[5]) +
+  coord_flip() + xlab("User") + ylab("Total number of retweets") +
+  theme(axis.text = element_text(size = 12),
+        legend.text = element_text(size = 12))
+```
+
+### Mean numbers of favorites received
+
+```{r, fig.height=10, echo=FALSE}
+
+### Mean favorites
+
+hi_mean_fav <- impact %>%
+  arrange(desc(mean_fav)) %>%
+  slice(1:50)
+
+hi_mean_fav$screenName <- reorder(hi_mean_fav$screenName,
+                                  hi_mean_fav$mean_fav,
+                                  sort)
+
+ggplot(hi_mean_fav) + geom_bar(aes(x = screenName, y = mean_fav),
+                           stat = "identity", fill = wes_palette("Zissou")[2]) +
+  coord_flip() + xlab("User") + ylab("Number of favorites / tweets") +
+  theme(axis.text = element_text(size = 12),
+        legend.text = element_text(size = 12))
+
+```
+
+### Mean numbers of retweets received
+
+```{r, fig.height=10, echo=FALSE}
+
+### Mean retweets
+
+hi_mean_rt <- impact %>%
+  arrange(desc(mean_rt)) %>%
+  slice(1:50)
+
+hi_mean_rt$screenName <- reorder(hi_mean_rt$screenName,
+                                 hi_mean_rt$mean_rt,
+                                 sort)
+
+ggplot(hi_mean_rt) + geom_bar(aes(x = screenName, y = mean_rt),
+                           stat = "identity", fill = wes_palette("Zissou")[5]) +
+  coord_flip() + xlab("User") + ylab("Number of retweets / tweets") +
+  theme(axis.text = element_text(size = 12),
+        legend.text = element_text(size = 12))
+
+
+```
+
+## Word cloud
+
+The top 100 words among the original tweets.
+
+```{r word-cloud, echo=FALSE, message=FALSE}
+library(wordcloud)
+library(tm)
+
+pal <- wes_palette("Darjeeling", 8, type = "continuous") #brewer.pal(8, "Dark2")
+
+dt_tweets %>%
+  filter(!isRetweet) %>%
+  .$text %>% paste(collapse = "") %>%
+  gsub("(@|\\#)\\w+", "", .) %>%  ## remove mentions/hashtags
+  gsub("https?\\:\\/\\/\\w+\\.\\w+(\\/\\w+)*", "", .) %>% ## remove urls
+  gsub("\\bthe\\b", "", .) %>% ## remove the
+  gsub("amp", "", .) %>%  ## remove &
+  gsub("\\bspp\\b", "species", .) %>% ## replace spp by species
+  iconv(., from = "latin1", to = "UTF-8", sub = "") %>% ## remove emojis
+  wordcloud(max.words = 100, colors = pal, random.order = FALSE, scale = c(3, .7))
+
+```
+
+-----
+
+<p xmlns:dct="http://purl.org/dc/terms/" xmlns:vcard="http://www.w3.org/2001/vcard-rdf/3.0#">
+  <a rel="license"
+     href="http://creativecommons.org/publicdomain/zero/1.0/">
+    <img src="http://i.creativecommons.org/p/zero/1.0/88x31.png" style="border-style: none;" alt="CC0" />
+  </a>
+  <br />
+  To the extent possible under law,
+  <a rel="dct:publisher"
+     href="https://github.com/erollinson/erollinson.github.io">
+    <span property="dct:title">Emily J. Rollinson</span></a>
+  has waived all copyright and related or neighboring rights to
+  <span property="dct:title">Summary of tweets at Botany 2017</span>.
+This work is published from:
+<span property="vcard:Country" datatype="dct:ISO3166"
+      content="US" about="https://github.com/erollinson/erollinson.github.io">
+  United States</span>.
+</p>
+
