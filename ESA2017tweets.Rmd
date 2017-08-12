@@ -9,6 +9,7 @@ output:
 ---  
 
 ```{r, echo=FALSE, results='hide', message=FALSE}
+#read in the csv of scraped tweets here; in the tweetscrape_template.Rmd on EJR's GitHub, this is saved as scrapedtweets.csv
 dt_tweets <- read.csv("ESA2017_tweetscrape_8_12.csv", stringsAsFactors = FALSE)
 dt_tweets$created <- as.Date(dt_tweets$created)
 

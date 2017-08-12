@@ -1,0 +1,29 @@
+---
+title: "Template Code for Scraping Tweets"
+author: "Emily J. Rollinson"
+date: "August 7, 2017"
+output: html_document
+---
+```{r, echo=FALSE}
+
+#this is only slightly modified from Francois Michonneau's code found here https://github.com/fmichonneau/evol2015-tweets
+
+library(devtools)
+library(twitteR)
+#add your twitter API authorization info here
+#see https://cran.r-project.org/web/packages/twitteR/README.html
+#you will need to create an app at https://dev.twitter.com/ to get Twitter API OAuth values
+
+api_key <- "your api_key here"
+api_secret <- "your api_secret here"
+access_token <- "your access_token here"
+access_token_secret <- "your access_token_secret here"
+setup_twitter_oauth(api_key,api_secret,access_token,access_token_secret)
+
+require(base64enc)
+tweets<-searchTwitter("#yourhashtag", n=10000)
+dftweets<-twListToDF(tweets)
+#saveRDS(tweets, "raw_tweets.rds")
+write.csv(dftweets, "scrapedtweets.csv", row.names=FALSE)
+
+```
