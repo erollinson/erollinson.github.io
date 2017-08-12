@@ -106,7 +106,7 @@ All generated tweets (including retweets)
 
 ```{r top-users-all, echo=FALSE, fig.height=10}
 top_users <- dt_tweets %>% group_by(screenName) %>%
-  filter(!screenName %in% c('meeting_goer')) %>%
+  filter(!screenName %in% c('GSM_Serpong')) %>%
   summarize(total_tweets = n(),
             Retweet = sum(isRetweet),
             Original = sum(!isRetweet)) %>%
@@ -131,6 +131,7 @@ Only for original tweets (retweets excluded)
 
 ```{r, top-users-orig, echo=FALSE, fig.height=10}
 top_orig_users <- dt_tweets %>% group_by(screenName) %>%
+  filter(!screenName %in% c('GSM_Serpong')) %>%
   summarize(total_tweets = n(),
             Retweet = sum(isRetweet),
             Original = sum(!isRetweet)) %>%
@@ -161,6 +162,7 @@ The figures below only include users who tweeted 5+ times, and don't include ret
 
 ```{r, fig.height=10, echo=FALSE}
 impact <- dt_tweets %>% filter(!isRetweet) %>%
+  filter(!screenName %in% c('GSM_Serpong')) %>%
   group_by(screenName) %>%
   summarize(n_tweets = n(),
             n_fav = sum(favoriteCount),
