@@ -1,5 +1,5 @@
 ---
-title: "A summary of the tweets generated at ESA 2017 (#ESA2017)"
+title: "A summary of EngageESA tweets at ESA 2017 (#EngageESA)"
 author: "E.J. Rollinson"
 output:
   html_document:
@@ -8,9 +8,9 @@ output:
     toc: yes
 ---  
 
-```{r, echo=FALSE, results='hide', message=FALSE}
+```{r, echo=FALSE, results='hide', message=FALSE, warning=FALSE}
 #read in the csv of scraped tweets here; in the tweetscrape_template.Rmd on EJR's GitHub, this is saved as scrapedtweets.csv
-dt_tweets <- read.csv("ESA2017_tweetscrape_8_12.csv", stringsAsFactors = FALSE)
+dt_tweets <- read.csv("EngageESA_8_13.csv", stringsAsFactors = FALSE)
 dt_tweets$created <- as.Date(dt_tweets$created)
 
 library(dplyr)
@@ -31,7 +31,7 @@ Thanks also to Emily Sessa ([ebsessa](http://twitter.com/ebsessa) on Twitter) fo
 
 I originally adapted this code for the 2015 Ecological Society of America meeting (#ESA100) in Baltimore, MD, and have since reproduced it for [subsequent ESA and Botany meetings](https://erollinson.github.io/).
  
-Tweets using the hashtag #ESA2017 were aggregated from Twitter using the R package [twitteR](https://cran.r-project.org/web/packages/twitteR/index.html) and the Twitter API. The aggregated tweets are [available on Figshare](https://figshare.com/articles/Tweets_using_ESA2017_hashtag/5306302).
+Tweets using the hashtag #EngageESA were aggregated from Twitter using the R package [twitteR](https://cran.r-project.org/web/packages/twitteR/index.html) and the Twitter API. The aggregated tweets are [available on Figshare](https://figshare.com/articles/Tweets_using_ESA2017_hashtag/5306302).
 
 This document was generated using RMarkdown, and the source is [available on GitHub](https://github.com/erollinson/erollinson.github.io).
 
@@ -40,7 +40,7 @@ This document (and associated code) is released under a CC0 licence.
 
 ## Basic summary
 
-Of the 16995 tweets tagged #ESA2017 as of 2:30 PM EST 8/12/2017:
+Of the 142 tweets tagged #EngageESA as of 12:30 PM EST 8/13/2017:
 
 |Description | n |
 |------------|---|
@@ -107,7 +107,6 @@ All generated tweets (including retweets)
 
 ```{r top-users-all, echo=FALSE, fig.height=10}
 top_users <- dt_tweets %>% group_by(screenName) %>%
-  filter(!screenName %in% c('GSM_Serpong')) %>%
   summarize(total_tweets = n(),
             Retweet = sum(isRetweet),
             Original = sum(!isRetweet)) %>%
@@ -132,12 +131,11 @@ Only for original tweets (retweets excluded)
 
 ```{r, top-users-orig, echo=FALSE, fig.height=10}
 top_orig_users <- dt_tweets %>% group_by(screenName) %>%
-  filter(!screenName %in% c('GSM_Serpong')) %>%
   summarize(total_tweets = n(),
             Retweet = sum(isRetweet),
             Original = sum(!isRetweet)) %>%
   arrange(desc(Original)) %>%
-  slice(1:50)
+  slice(1:16)
 
 top_orig_users$screenName <- reorder(top_orig_users$screenName,
                                      top_orig_users$Original,
@@ -290,7 +288,7 @@ dt_tweets %>%
      href="https://github.com/erollinson/erollinson.github.io">
     <span property="dct:title">Emily J. Rollinson</span></a>
   has waived all copyright and related or neighboring rights to
-  <span property="dct:title">Summary of tweets at ESA 2017</span>.
+  <span property="dct:title">Summary of EngageESA tweets 2017</span>.
 This work is published from:
 <span property="vcard:Country" datatype="dct:ISO3166"
       content="US" about="https://github.com/erollinson/erollinson.github.io">
