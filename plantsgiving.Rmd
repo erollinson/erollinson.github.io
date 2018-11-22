@@ -67,14 +67,6 @@ str(species2)
 species2$phylomatsp <- as.character(species2$phylomatsp)
 species2$Plant <- as.character(species2$Plant)
 ```
-  
-Plot trees
-
-```{r}
-fig1 <- ggtree(tree, layout="circular") %<+% species2 + geom_tiplab(size=3, aes(angle=angle)) + theme(legend.position="right")
-fig1
-```
-
 
 A very clunky way to replace the tip labels with cleaner text
 
@@ -82,11 +74,12 @@ A very clunky way to replace the tip labels with cleaner text
 tree2<-tree
 tree2$tip.label<- species2$Plant[match(tree2$tip.label, species2$phylomatsp)]
 tree2$tip.label<-as.character(tree2$tip.label)
-                              
-                              
+```
+
+```{r}
 round<- ggtree(tree2, layout="circular") %<+% species2 + geom_tiplab(size=3, aes(angle=angle, color=Family)) + theme(legend.position="right")
 round
 
-ggsave(round, file="plantsgiving_color_round_family.pdf", width=30, height=30)
+ggsave(round, file="plantsgiving_color_round_family2.pdf", width=30, height=30)
 
 ```
