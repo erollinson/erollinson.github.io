@@ -58,11 +58,11 @@ tree <- read.tree("plantsgivingtree.new")
 # Plotting
 ========
 
-Filter original species list to names and category
+Filter original species list to names and family
 
 ```{r}
 species2 <- species %>%
-  select(Plant, Type, phylomatsp)
+  select(Plant, Family, phylomatsp)
 str(species2)
 species2$phylomatsp <- as.character(species2$phylomatsp)
 species2$Plant <- as.character(species2$Plant)
@@ -84,9 +84,9 @@ tree2$tip.label<- species2$Plant[match(tree2$tip.label, species2$phylomatsp)]
 tree2$tip.label<-as.character(tree2$tip.label)
                               
                               
-round<- ggtree(tree2, layout="circular") %<+% species2 + geom_tiplab(size=3, aes(angle=angle, color=Type)) + theme(legend.position="right")
+round<- ggtree(tree2, layout="circular") %<+% species2 + geom_tiplab(size=3, aes(angle=angle, color=Family)) + theme(legend.position="right")
 round
 
-ggsave(round, file="plantsgiving_color_round.pdf", width=30, height=30)
+ggsave(round, file="plantsgiving_color_round_family.pdf", width=30, height=30)
 
 ```
