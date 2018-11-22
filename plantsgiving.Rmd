@@ -1,0 +1,172 @@
+---
+title: "Plantsgiving"
+author: "Emily Rollinson"
+date: "November 22, 2018"
+output: html_document
+---
+
+============
+# Libraries
+============
+
+The code below checks to see if you already have the package installed. If you have it, it loads it up; if you don't have it, it installs it and then loads it up. 
+
+```{r}
+
+#this chunk of code defines the function that checks for missing packages, installs them, and then loads everything
+#no edits needed to this part
+
+autopack <- function(pkg){
+  new.pkg <- pkg[!(pkg %in% installed.packages()[, "Package"])]
+  if(length(new.pkg))
+    install.packages(new.pkg, dependencies = TRUE)
+  sapply(pkg, require, character.only = TRUE)
+}
+
+#this chunk actually runs the function we defined above
+#if you need more packages, just add them to the list in c() below
+
+packageslist <- c("ape", "ggplot2", "ggtree", "picante", "brranching", "tidyverse")
+autopack(packageslist)
+
+```
+
+ggtree isn't hosted on CRAN, so needs to be installed separately:
+
+```{r}
+#uncomment these lines if you need to install ggtree
+# source("https://bioconductor.org/biocLite.R")
+# biocLite("ggtree")
+library("ggtree")
+```
+
+=========================
+##Data cleaning notes
+=========================
+
+Checked spelling of the original data file against the iPlant Taxonomic Name Resolution Service (http://tnrs.iplantcollaborative.org/TNRSapp.html). Anything with less than a match score of 1 (100%) was edited by hand in the csv.
+
+After this check, there were 9 taxa not matched. Listed here are the taxa and the edits made.
+
+*Species to exclude from analysis*
+
+These four were listed as Adiantaceae and moved to Pteridaceae, but will not work in Phylomatic regardless - master tree only has seed plants. We will likely need to drop ferns from the analysis.
+
+NA/cheilanthes/cheilanthes_wootonii
+NA/cheilanthes/cheilanthes_wrightii
+NA/notholaena/notholaena_standleyi
+NA/pellaea/pellaea_truncata
+
+*Spelling changes*
+
+NA/hoffmanseggia/hoffmanseggia_glauc* --> Hoffmannseggia. Phylomatic works with this spelling. 
+NA/molucella/molucella_laevis --> Moluccella (spelling as per Kew Plant List, although the single-c spelling is correct in TNRS); Phylomatic works with this spelling.
+NA/trichachne/trichachne_californica*--> Digitaria californica
+
+*Species synonyms*
+
+NA/cynodon/cynodon_dactylon --> no errors in TNRS; might not be in master tree. Changed to synonym Vilfa stellata as per Kew Plant List. Phylomatic works with this synonym. 
+NA/tetraclea/tetraclea_coulteri --> Lamiaceae. no species name errors in TNRS; might not be in master tree. Changed to synonym Clerodendrum coulteri as per Kew Plant List. Phylomatic works with this synonym. 
+
+==================
+# Building the tree
+==================
+
+*Importing data*
+
+```{r} 
+#load flora
+flora <- read.csv("TumamocFlora.csv")
+taxa <- flora$species
+taxa <- as.character(taxa)
+```
+
+*Create the tree*
+
+```{r}
+tree <- phylomatic(taxa, get="POST", storedtree = "R20120829")
+write.tree(tree, file="tucsontreeR20120829.nwk")
+```
+
+*Adjust branch lengths*
+
+The code below should adjust the branch lengths, but accessing bladj via R is very buggy - there have been mixed results in running the same code multiple times. It is safer to run the tree from above through bladj in the command line, and then re-import the output. 
+
+The ages file we are using in bladj is *agesexp* from Gastauer & Miera-Neto 2016.
+
+```{r}
+# path<-getwd()
+# rbladj(tree=tree, path=path)
+```
+
+The tree from above, exported as tucsontreeR20120829.nwk, was used in command prompt phylocom to adjust the branch lengths using the ages from Gastauer and Miera-Neto 2016 (agesexp).
+
+1) Phylocom downloaded  http://phylodiversity.net/phylocom/phylocom-4.2.zip
+2) In the w32 folder, the tree from above was copied in, and the name changed to phylo with no file extension.
+3) From Gastauer & Miera-Neto supplemental materials, agesexp.txt was copied into w32, and named ages with no file extension.
+4) Open phylocom.bat
+5) run the following code: phylocom bladj > output.new
+6) this produces a new Newick file with branch lengths which can be imported back into R. This was copied back into the directory and named tucsontreeR20120829bladj.nwk.
+
+Reimporting the branch length adjusted tree
+
+```{r}
+tree.adj<-read.tree("tucsontreeR20120829bladj.nwk")
+```
+
+========
+# Plotting
+========
+
+Filter original species list to names and origin
+
+```{r}
+origin <- flora %>%
+  select(species_mergevar, designation_2018)
+origin$species_mergevar<-as.character(origin$species_mergevar)
+```
+  
+Plot trees
+
+```{r}
+fig1 <- ggtree(tree.adj, layout="circular") %<+% origin + geom_tiplab(size=3, aes(angle=angle, color=designation_2018)) + theme(legend.position="right")
+fig1
+```
+
+
+A very clunky way to replace the tip labels with cleaner text
+
+```{r}
+origin2 <- flora %>%
+  select(species, species_mergevar, designation_2018)
+origin2$species_mergevar<-as.character(origin2$species_mergevar)
+
+tree3<-tree.adj
+tree3$tip.label<- origin2$species[match(tree3$tip.label, origin2$species_mergevar)]
+tree3$tip.label<-as.character(tree3$tip.label)
+
+origin3 <- flora %>%
+  select(species, designation_2018)
+origin3$species<-as.character(origin3$species)
+                              
+                              
+round<- ggtree(tree3, layout="circular") %<+% origin3 + geom_tiplab(size=3, aes(angle=angle, color=designation_2018)) + theme(legend.position="right")
+round
+
+ggsave(round, file="TPhylo_color_round.pdf", width=30, height=30)
+
+#rectangular tree
+
+rect<- ggtree(tree3) %<+% origin3 + geom_tiplab(size=2, aes(color=designation_2018)) + theme(legend.position="right") +ggplot2::xlim(-500,350) + theme_tree2() + theme(legend.position="right")
+
+scale<-revts(rect)
+scale
+#ggsave(scale, file="TPhylo_color_square_scale.pdf", width=30, height=30)
+
+```
+
+Interspecific distances
+```{r}
+phydist <- cophenetic.phylo(tree.adj)
+write.csv(phydist, file="Tucson_phydist.csv")
+```
