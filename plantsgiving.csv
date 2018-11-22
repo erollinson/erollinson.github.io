@@ -1,0 +1,33 @@
+Plant,Family,Latin,genus,specific,phylomatsp,phylomat,Category,Dish,Type,Name
+cranberry,Ericaceae,Vaccinium macrocarpon,Vaccinium,macrocarpon,Vaccinium_macrocarpon,ericaceae/vaccinium/Vaccinium_macrocarpon,side,cranberry sauce,primary,cranberry : Vaccinium macrocarpon
+celery,Apiaceae,Apium graveolens,Apium,graveolens,Apium_graveolens,apiaceae/apium/Apium_graveolens,side,dressing,ingredient,celery : Apium graveolens
+apple (Baldwin),Rosaceae,Malus x domestica 'Baldwin',Malus,domestica1,Malus_domestica1,rosaceae/malus/Malus_domestica1,multiple,pie; dressing,primary,apple (Baldwin) : Malus x domestica 'Baldwin'
+apple (Granny Smith),Rosaceae,"Malus x domestica 'Granny Smith""",Malus,domestica2,Malus_domestica2,rosaceae/malus/Malus_domestica2,multiple,pie; dressing,primary,"apple (Granny Smith) : Malus x domestica 'Granny Smith"""
+allspice,Myrtaceae,Pimenta dioica,Pimenta,dioica,Pimenta_dioica,myrtaceae/pimenta/Pimenta_dioica,dessert,pie,spice,allspice : Pimenta dioica
+onion,Amaryllidaceae,Allium cepa,Allium,cepa,Allium_cepa,amaryllidaceae/allium/Allium_cepa,side,dressing,ingredient,onion : Allium cepa
+wheat,Poaceae,Triticum aestivum,Triticum,aestivum,Triticum_aestivum,poaceae/triticum/Triticum_aestivum,multiple,pie; dressing; gravy,ingredient,wheat : Triticum aestivum
+rosemary,Lamiaceae,Rosmarinus officinalis,Rosmarinus,officinalis,Rosmarinus_officinalis,lamiaceae/rosmarinus/Rosmarinus_officinalis,multiple,dressing; turkey,herb,rosemary : Rosmarinus officinalis
+parsley,Apiaceae,Petroselinum crispum,Petroselinum,crispum,Petroselinum_crispum,apiaceae/petroselinum/Petroselinum_crispum,side,dressing,herb,parsley : Petroselinum crispum
+sage,Lamiaceae,Salvia officinalis,Salvia,officinalis,Salvia_officinalis,lamiaceae/salvia/Salvia_officinalis,side,dressing,herb,sage : Salvia officinalis
+sugar,Poaceae,Saccharium officinarum,Saccharium,officinarum,Saccharium_officinarum,poaceae/saccharium/Saccharium_officinarum,multiple,dressing; cranberry sauce; pie,ingredient,sugar : Saccharium officinarum
+soy,Fabaceae,Glycine max,Glycine,max,Glycine_max,fabaceae/glycine/Glycine_max,side,dressing,ingredient,soy : Glycine max
+canola,Brassicaceae,Brassica napus,Brassica,napus,Brassica_napus,brassicaceae/brassica/Brassica_napus,multiple,all cookware,ingredient,canola : Brassica napus
+cinnamon,Lauraceae,Cinnamomum verum,Cinnamomum,verum,Cinnamomum_verum,lauraceae/cinnamomum/Cinnamomum_verum,dessert,pie,spice,cinnamon : Cinnamomum verum
+cassia,Lauraceae,Cinnamomum cassia,Cinnamomum,cassia,Cinnamomum_cassia,lauraceae/cinnamomum/Cinnamomum_cassia,dessert,pie,spice,cassia : Cinnamomum cassia
+cassava,Euphorbiaceae,Manihot esculenta,Manihot,esculenta,Manihot_esculenta,euphorbiaceae/manihot/Manihot_esculenta,dessert,pie,ingredient,cassava : Manihot esculenta
+blueberry,Ericaceae,Vaccinium corymbosum,Vaccinium,corymbosum,Vaccinium_corymbosum,ericaceae/vaccinium/Vaccinium_corymbosum,dessert,pie,primary,blueberry : Vaccinium corymbosum
+lemon,Rutaceae,Citrus limon,Citrus,limon,Citrus_limon,rutaceae/citrus/Citrus_limon,dessert,pie,ingredient,lemon : Citrus limon
+potato,Solanaceae,Solanum tuberosum,Solanum,tuberosum,Solanum_tuberosum,solanaceae/solanum/Solanum_tuberosum,side,mashed potatoes; potato rolls,primary,potato : Solanum tuberosum
+butternut squash,Cucurbitaceae,Cucurbita moschata,Cucurbita,moschata,Cucurbita_moschata,cucurbitaceae/cucurbita/Cucurbita_moschata,side,roasted squash,primary,butternut squash : Cucurbita moschata
+peas,Fabaceae,Pisum sativum,Pisum,sativum,Pisum_sativum,fabaceae/pisum/Pisum_sativum,side,peas,primary,peas : Pisum sativum
+cucumber,Cucurbitaceae,Cucumis sativus,Cucumis,sativus,Cucumis_sativus,cucurbitaceae/cucumis/Cucumis_sativus,side,sweet pickles,primary,cucumber : Cucumis sativus
+olives,Oleaceae,Olea europaea,Olea,europaea,Olea_europaea,oleaceae/olea/Olea_europaea,side,olives,primary,olives : Olea europaea
+nutmeg,Myristicaceae,Myristica fragrans,Myristica,fragrans,Myristica_fragrans,myristicaceae/myristica/Myristica_fragrans,dessert,pie,spice,nutmeg : Myristica fragrans
+cloves,Myrtaceae,Syzygium aromaticum,Syzygium,aromaticum,Syzygium_aromaticum,myrtaceae/syzygium/Syzygium_aromaticum,dessert,pie,spice,cloves : Syzygium aromaticum
+coffee,Rubiaceae,Coffea arabica,Coffea,arabica,Coffea_arabica,rubiaceae/coffea/Coffea_arabica,beverage,beverage,primary,coffee : Coffea arabica
+tea,Theaceae,Camelia sinensis,Camelia,sinensis,Camelia_sinensis,theaceae/camelia/Camelia_sinensis,beverage,beverage,primary,tea : Camelia sinensis
+corn,Poaceae,Zea mays,Zea,mays,Zea_mays,poaceae/zea/Zea_mays,side,potato rolls,ingredient,corn : Zea mays
+maple,Sapindaceae,Acer saccharum,Acer,saccharum,Acer_saccharum,sapindaceae/acer/Acer_saccharum,side,roasted squash,ingredient,maple : Acer saccharum
+pepper,Piperaceae,Piper nigrum,Piper,nigrum,Piper_nigrum,piperaceae/piper/Piper_nigrum,multiple,stuffing; turkey,spice,pepper : Piper nigrum
+thyme,Lamiaceae,Thymus vulgaris,Thymus,vulgaris,Thymus_vulgaris,lamiaceae/thymus/Thymus_vulgaris,multiple,stuffing; turkey,herb,thyme : Thymus vulgaris
+marjoram,Lamiaceae,Origanum majorana,Origanum,majorana,Origanum_majorana,lamiaceae/origanum/Origanum_majorana,multiple,stuffing; turkey,herb,marjoram : Origanum majorana
