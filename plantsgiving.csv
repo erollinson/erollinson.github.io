@@ -1,8 +1,8 @@
 Plant,Family,Latin,genus,specific,phylomatsp,phylomat,Category,Dish,Type,Name
 cranberry,Ericaceae,Vaccinium macrocarpon,Vaccinium,macrocarpon,Vaccinium_macrocarpon,ericaceae/vaccinium/Vaccinium_macrocarpon,side,cranberry sauce,primary,cranberry : Vaccinium macrocarpon
 celery,Apiaceae,Apium graveolens,Apium,graveolens,Apium_graveolens,apiaceae/apium/Apium_graveolens,side,dressing,ingredient,celery : Apium graveolens
-apple (Baldwin),Rosaceae,Malus x domestica 'Baldwin',Malus,domestica1,Malus_domestica1,rosaceae/malus/Malus_domestica1,multiple,pie; dressing,primary,apple (Baldwin) : Malus x domestica 'Baldwin'
-apple (Granny Smith),Rosaceae,"Malus x domestica 'Granny Smith""",Malus,domestica2,Malus_domestica2,rosaceae/malus/Malus_domestica2,multiple,pie; dressing,primary,"apple (Granny Smith) : Malus x domestica 'Granny Smith"""
+Baldwin,Rosaceae,Malus x domestica 'Baldwin',Malus,domestica1,Malus_domestica1,rosaceae/malus/Malus_domestica1,multiple,pie; dressing,primary,apple (Baldwin) : Malus x domestica 'Baldwin'
+Granny Smith,Rosaceae,"Malus x domestica 'Granny Smith""",Malus,domestica2,Malus_domestica2,rosaceae/malus/Malus_domestica2,multiple,pie; dressing,primary,"apple (Granny Smith) : Malus x domestica 'Granny Smith"""
 allspice,Myrtaceae,Pimenta dioica,Pimenta,dioica,Pimenta_dioica,myrtaceae/pimenta/Pimenta_dioica,dessert,pie,spice,allspice : Pimenta dioica
 onion,Amaryllidaceae,Allium cepa,Allium,cepa,Allium_cepa,amaryllidaceae/allium/Allium_cepa,side,dressing,ingredient,onion : Allium cepa
 wheat,Poaceae,Triticum aestivum,Triticum,aestivum,Triticum_aestivum,poaceae/triticum/Triticum_aestivum,multiple,pie; dressing; gravy,ingredient,wheat : Triticum aestivum
@@ -32,3 +32,4 @@ pepper,Piperaceae,Piper nigrum,Piper,nigrum,Piper_nigrum,piperaceae/piper/Piper_
 thyme,Lamiaceae,Thymus vulgaris,Thymus,vulgaris,Thymus_vulgaris,lamiaceae/thymus/Thymus_vulgaris,multiple,stuffing; turkey,herb,thyme : Thymus vulgaris
 marjoram,Lamiaceae,Origanum majorana,Origanum,majorana,Origanum_majorana,lamiaceae/origanum/Origanum_majorana,multiple,stuffing; turkey,herb,marjoram : Origanum majorana
 carrot,Apiaceae,Daucus carota,Daucus,carota,Daucus_carota,apiaceae/daucus/Daucus_carota,side,roasted carrots,primary,carrot : Daucus carota
+vanilla,Orchidaceae,Vanilla planifolia,Vanilla,planifolia,Vanilla_planifolia,orchidaceae/vanilla/Vanilla_planifolia,dessert,ice cream,ingredient,vanilla: Vanilla planifolia
