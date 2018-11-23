@@ -51,7 +51,7 @@ Tree was created with web version of Phylomatic.
 ```{r} 
 #load flora
 species <- read.csv("plantsgiving.csv")
-tree <- read.tree("plantsgivingtree.new")
+tree <- read.tree("plantsgiving2adj.new")
 ```
 
 ========
@@ -77,9 +77,9 @@ tree2$tip.label<-as.character(tree2$tip.label)
 ```
 
 ```{r}
-round<- ggtree(tree2, layout="circular") %<+% species2 + geom_tiplab(size=3, aes(angle=angle, color=Family)) + theme(legend.position="right")
+round<- ggtree(tree2, layout="circular") %<+% species2 + geom_tiplab2(size=3, aes(angle=angle, color=Family)) + theme(legend.position="right")
 round
 
-ggsave(round, file="plantsgiving_color_round_family2.pdf", width=30, height=30)
+ggsave(round, file="plantsgiving_color_round_family_adj2.pdf", width=30, height=30)
 
 ```

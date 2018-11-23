@@ -4,7 +4,7 @@ celery,Apiaceae,Apium graveolens,Apium,graveolens,Apium_graveolens,apiaceae/apiu
 Baldwin,Rosaceae,Malus x domestica 'Baldwin',Malus,domestica1,Malus_domestica1,rosaceae/malus/Malus_domestica1,multiple,pie; dressing,primary,apple (Baldwin) : Malus x domestica 'Baldwin'
 Granny Smith,Rosaceae,"Malus x domestica 'Granny Smith""",Malus,domestica2,Malus_domestica2,rosaceae/malus/Malus_domestica2,multiple,pie; dressing,primary,"apple (Granny Smith) : Malus x domestica 'Granny Smith"""
 allspice,Myrtaceae,Pimenta dioica,Pimenta,dioica,Pimenta_dioica,myrtaceae/pimenta/Pimenta_dioica,dessert,pie,spice,allspice : Pimenta dioica
-onion,Amaryllidaceae,Allium cepa,Allium,cepa,Allium_cepa,amaryllidaceae/allium/Allium_cepa,side,dressing,ingredient,onion : Allium cepa
+onion,Alliaceae,Allium cepa,Allium,cepa,Allium_cepa,amaryllidaceae/allium/Allium_cepa,side,dressing,ingredient,onion : Allium cepa
 wheat,Poaceae,Triticum aestivum,Triticum,aestivum,Triticum_aestivum,poaceae/triticum/Triticum_aestivum,multiple,pie; dressing; gravy,ingredient,wheat : Triticum aestivum
 rosemary,Lamiaceae,Rosmarinus officinalis,Rosmarinus,officinalis,Rosmarinus_officinalis,lamiaceae/rosmarinus/Rosmarinus_officinalis,multiple,dressing; turkey,herb,rosemary : Rosmarinus officinalis
 parsley,Apiaceae,Petroselinum crispum,Petroselinum,crispum,Petroselinum_crispum,apiaceae/petroselinum/Petroselinum_crispum,side,dressing,herb,parsley : Petroselinum crispum
@@ -32,4 +32,10 @@ pepper,Piperaceae,Piper nigrum,Piper,nigrum,Piper_nigrum,piperaceae/piper/Piper_
 thyme,Lamiaceae,Thymus vulgaris,Thymus,vulgaris,Thymus_vulgaris,lamiaceae/thymus/Thymus_vulgaris,multiple,stuffing; turkey,herb,thyme : Thymus vulgaris
 marjoram,Lamiaceae,Origanum majorana,Origanum,majorana,Origanum_majorana,lamiaceae/origanum/Origanum_majorana,multiple,stuffing; turkey,herb,marjoram : Origanum majorana
 carrot,Apiaceae,Daucus carota,Daucus,carota,Daucus_carota,apiaceae/daucus/Daucus_carota,side,roasted carrots,primary,carrot : Daucus carota
-vanilla,Orchidaceae,Vanilla planifolia,Vanilla,planifolia,Vanilla_planifolia,orchidaceae/vanilla/Vanilla_planifolia,dessert,ice cream,ingredient,vanilla: Vanilla planifolia
+vanilla,Orchidaceae,Vanilla planifolia,Vanilla,planifolia,Vanilla_planifolia,orchidaceae/vanilla/Vanilla_planifolia,dessert,ice cream,ingredient,vanilla : Vanilla planifolia
+beets,Amaranthaceae,Beta vulgaris,Beta,vulgaris,Beta_vulgaris,amaranthaceae/beta/Beta_vulgaris,beverage,vegetable juice,primary,beets : Beta vulgaris
+lettuce,Asteraceae,Lactuca sativa,Lactuca,sativa,Lactuca_sativa,asteraceae/lactuca/Lactuca_sativa,beverage,vegetable juice,primary,lettuce : Lactuca sativa
+watercress,Brassicaceae,Nasturtium officinale,Nasturtium,officinale,Nasturtium_officinale,brassicaceae/nasturtium/Nasturtium_officinale,beverage,vegetable juice,primary,watercress : Nasturtium officinale
+barley,Poaceae,Hordeum vulgare,Hordeum,vulgare,Hordeum_vulgare,poaceae/hordeum/Hordeum_vulgare,side,stuffing,ingredient,barley : Hordeum vulgare
+pimiento,Solanaceae,Capsicum annuum,Capsicum,annuum,Capsicum_annuum,solanaceae/capsicum/Capsicum_annuum,side,olives,ingredient,pimiento: Capsicum annuum
+tomato,Solanaceae,Solanum lycopersicum,Solanum,lycopersicum,Solanum_lycopersicum,solanaceae/solanum/Solanum_lycopersicum,beverage,vegetable juice,primary,tomato : Solanum lycopersicum
