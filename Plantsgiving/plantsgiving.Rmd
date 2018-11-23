@@ -26,17 +26,17 @@ autopack <- function(pkg){
 #this chunk actually runs the function we defined above
 #if you need more packages, just add them to the list in c() below
 
-packageslist <- c("ape", "ggplot2", "ggtree", "picante", "brranching", "tidyverse")
+packageslist <- c("ape", "ggplot2", "tidyr", "dplyr")
 autopack(packageslist)
 
 ```
 
-ggtree isn't hosted on CRAN, so needs to be installed separately:
+ggtree needs to be installed from Bioconductor:
 
 ```{r}
 #uncomment these lines if you need to install ggtree
-# source("https://bioconductor.org/biocLite.R")
-# biocLite("ggtree")
+# source("https://bioconductor.org/biocLite.R") ## installs & loads BiocInstaller
+# biocLite("ggtree") ## installs ggtree from Bioconductor
 library("ggtree")
 ```
 
@@ -44,19 +44,19 @@ library("ggtree")
 # Building the tree
 ==================
 
-Tree was created with web version of Phylomatic.
+Tree was created with web version of Phylomatic (http://phylodiversity.net/phylomatic/) using the R20120829 megatree. Branch lengths were adjusted with the Bladj function in Phylocom http://phylodiversity.net/phylocom/ using node age estimates from Gastauer and Miera-Neto 2016 Braz J Biol https://www.ncbi.nlm.nih.gov/pubmed/27097100  
 
 *Importing data*
 
 ```{r} 
 #load flora
-species <- read.csv("plantsgiving.csv")
-tree <- read.tree("plantsgiving2adj.new")
+species <- read.csv("Plantsgiving/plantsgiving.csv")
+tree <- read.tree("Plantsgiving/plantsgiving2adj.new")
 ```
 
-========
-# Plotting
-========
+==============
+# Tidying data
+==============
 
 Filter original species list to names and family
 
@@ -68,7 +68,7 @@ species2$phylomatsp <- as.character(species2$phylomatsp)
 species2$Plant <- as.character(species2$Plant)
 ```
 
-A very clunky way to replace the tip labels with cleaner text
+Replace the tip labels with cleaner text
 
 ```{r}
 tree2<-tree
@@ -76,10 +76,15 @@ tree2$tip.label<- species2$Plant[match(tree2$tip.label, species2$phylomatsp)]
 tree2$tip.label<-as.character(tree2$tip.label)
 ```
 
+===========
+# Plotting
+===========
+
 ```{r}
+#circular tree
 round<- ggtree(tree2, layout="circular") %<+% species2 + geom_tiplab2(size=3, aes(angle=angle, color=Family)) + theme(legend.position="right")
 round
 
+#save image
 ggsave(round, file="plantsgiving_color_round_family_adj2.pdf", width=30, height=30)
-
 ```
