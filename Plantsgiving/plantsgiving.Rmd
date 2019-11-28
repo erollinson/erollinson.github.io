@@ -26,7 +26,7 @@ autopack <- function(pkg){
 #this chunk actually runs the function we defined above
 #if you need more packages, just add them to the list in c() below
 
-packageslist <- c("ape", "ggplot2", "tidyr", "dplyr")
+packageslist <- c("ape", "ggplot2", "tidyr", "dplyr", "magrittr", "tidyverse")
 autopack(packageslist)
 
 ```
@@ -35,8 +35,8 @@ ggtree needs to be installed from Bioconductor:
 
 ```{r}
 #uncomment these lines if you need to install ggtree
-# source("https://bioconductor.org/biocLite.R") ## installs & loads BiocInstaller
-# biocLite("ggtree") ## installs ggtree from Bioconductor
+source("https://bioconductor.org/biocLite.R") ## installs & loads BiocInstaller
+biocLite("ggtree") ## installs ggtree from Bioconductor
 library("ggtree")
 ```
 
