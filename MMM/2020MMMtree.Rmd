@@ -86,7 +86,7 @@ tree2$tip.label<-as.character(tree2$tip.label)
 
 ```{r}
 #circular tree
-round<- ggtree(tree2, layout="circular") %<+% species2 + geom_tiplab2(size=3, aes(angle=angle, color=Division)) + scale_color_viridis_d(option="A") + theme(legend.position="right")
+round<- ggtree(tree2, layout="circular") %<+% species2 + geom_tiplab2(size=3, aes(angle=angle, color=Division)) + theme(legend.position="right") +ggplot2::xlim(0,45)
 round
 
 #circular tree no color
