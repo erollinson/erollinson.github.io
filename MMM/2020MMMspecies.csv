@@ -1,0 +1,66 @@
+Number,Division,Common Name,Latin Binomial,Seed,Phylum,Class,Order,Family,Latin_Binomial,Genus,Phylomatic
+1,Tiny Terrors,Pygmy Hog,Porcula salvania,1,Chordata,Mammalia,Artiodactyla,Suidae,Porcula_salvania,Porcula,suidae/porcula/Porcula_salvania
+2,Tiny Terrors,Pudu,Pudu mephistophiles,2,Chordata,Mammalia,Artiodactyla,Cervidae,Pudu_mephistophiles,Mapudungun,cervidae/mapudungun/Pudu_mephistophiles
+3,Tiny Terrors,Raccoon Dog,Nyctereutes procyonoides,3,Chordata,Mammalia,Carnivora,Canidae,Nyctereutes_procyonoides,Nyctereutes,canidae/nyctereutes/Nyctereutes_procyonoides
+4,Tiny Terrors,Tree Hyrax,Dendrohyrax dorsalis,4,Chordata,Mammalia,Hyracoidea,Procaviidae,Dendrohyrax_dorsalis,Dendrohyrax,procaviidae/dendrohyrax/Dendrohyrax_dorsalis
+5,Tiny Terrors,Kodkod,Leopardus guigna,5,Chordata,Mammalia,Carnivora,Felidae,Leopardus_guigna,Leopardus,felidae/leopardus/Leopardus_guigna
+6,Tiny Terrors,Island Fox,Urocyon littoralis,6,Chordata,Mammalia,Carnivora,Canidae,Urocyon_littoralis,Urocyon,canidae/urocyon/Urocyon_littoralis
+7,Tiny Terrors,Southern African Hedgehog,Atelerix frontalis,7,Chordata,Mammalia,Eulipotyphla,Erinaceidae,Atelerix_frontalis,Atelerix,erinaceidae/atelerix/Atelerix_frontalis
+8,Tiny Terrors,Finlayson's Squirrel,Callosciurus finlaysonii,8,Chordata,Mammalia,Rodentia,Sciuridae,Callosciurus_finlaysonii,Callosciurus,sciuridae/callosciurus/Callosciurus_finlaysonii
+9,Tiny Terrors,Kowari,Dasyuroides byrnei,9,Chordata,Mammalia,Dasyuromorphia,Dasyuridae,Dasyuroides_byrnei,Dasyuroides,dasyuridae/dasyuroides/Dasyuroides_byrnei
+10,Tiny Terrors,Collared Pika,Ochotona collaris,10,Chordata,Mammalia,Lagomorpha,Ochotonidae,Ochotona_collaris,Ochotona,ochotonidae/ochotona/Ochotona_collaris
+11,Tiny Terrors,Gray-bellied Caenolestid,Caenolestes caniventer,11,Chordata,Mammalia,Paucituberculata,Caenolestidae,Caenolestes_caniventer,Caenolestes,caenolestidae/caenolestes/Caenolestes_caniventer
+12,Tiny Terrors,Least Chipmunk,Neotamias minimus,12,Chordata,Mammalia,Rodentia,Sciuridae,Neotamias_minimus,Neotamias,sciuridae/neotamias/Neotamias_minimus
+13,Tiny Terrors,Bank Vole,Myodes glareolus,13,Chordata,Mammalia,Rodentia,Cricetidae,Myodes_glareolus,Myodes,cricetidae/myodes/Myodes_glareolus
+14,Tiny Terrors,Northern Short-tailed Shrew,Blarina brevicauda,14,Chordata,Mammalia,Eulipotyphla,Soricidae,Blarina_brevicauda,Blarina,soricidae/blarina/Blarina_brevicauda
+15,Tiny Terrors,Seba's Short-tailed Bat,Carollia perspicillata,15,Chordata,Mammalia,Chiroptera,Phyllostomidae,Carollia_perspicillata,Carollia,phyllostomidae/carollia/Carollia_perspicillata
+16,Tiny Terrors,Southern Ningaui,Ningaui yvonneae,16,Chordata,Mammalia,Dasyuromorphia,Dasyuridae,Ningaui_yvonneae,Ningaui,dasyuridae/ningaui/Ningaui_yvonneae
+17,Double Trouble,Gorilla,Gorilla gorilla,1,Chordata,Mammalia,Primates,Hominidae,Gorilla_gorilla,Gorilla,hominidae/gorilla/Gorilla_gorilla
+18,Double Trouble,Speartooth Shark,Glyphis glyphis,2,Chordata,Chondrichthyes,Carcharhiniformes,Carcharinidae,Glyphis_glyphis,Glyphis,carcharinidae/glyphis/Glyphis_glyphis
+19,Double Trouble,Largetooth Sawfish,Pristis pristis,3,Chordata,Chondrichthyes,Pristiformes,Pristidae,Pristis_pristis,Pristis,pristidae/pristis/Pristis_pristis
+20,Double Trouble,Indian Cobra,Naja naja,4,Chordata,Reptilia,Squamata,Elapidae,Naja_naja,Naja,elapidae/naja/Naja_naja
+21,Double Trouble,Harbor Porpoise,Phocoena phocoena,5,Chordata,Mammalia,Artiodactyla,Phocoenidae,Phocoena_phocoena,Phocoena,phocoenidae/phocoena/Phocoena_phocoena
+22,Double Trouble,Sarus Crane,Antigone antigone,6,Chordata,Aves,Gruiformes,Gruidae,Antigone_antigone,Antigone,gruidae/antigone/Antigone_antigone
+23,Double Trouble,Red-Footed Booby,Sula sula,7,Chordata,Aves,Suliformes,Sulidae,Sula_sula,Sula,sulidae/sula/Sula_sula
+24,Double Trouble,Wolverine,Gulo gulo,8,Chordata,Mammalia,Carnivora,Mustelidae,Gulo_gulo,Gulo,mustelidae/gulo/Gulo_gulo
+25,Double Trouble,Lynx,Lynx lynx,9,Chordata,Mammalia,Carnivora,Felidae,Lynx_lynx,Lynx,felidae/lynx/Lynx_lynx
+26,Double Trouble,Green Iguana,Iguana iguana,10,Chordata,Reptilia,Squamata,Iguanidae,Iguana_iguana,Iguana,iguanidae/iguana/Iguana_iguana
+27,Double Trouble,Zokor,Myospalax myospalax,11,Chordata,Mammalia,Rodentia,Spalacidae,Myospalax_myospalax,Myospalax,spalacidae/myospalax/Myospalax_myospalax
+28,Double Trouble,Seahorse,Hippocampus hippocampus,12,Chordata,Actinopterygii,Sygnathiformes,Sygnathidae,Hippocampus_hippocampus,Hippocampus,sygnathidae/hippocampus/Hippocampus_hippocampus
+29,Double Trouble,Long-Legged Bat,Macrophyllum macrophyllum,13,Chordata,Mammalia,Chiroptera,Phyllostomidae,Macrophyllum_macrophyllum,Macrophyllum,phyllostomidae/macrophyllum/Macrophyllum_macrophyllum
+30,Double Trouble,Acorn Barnacle,Balanus balanus,14,Arthropoda,Maxillopoda,Sessilia,Balanidae,Balanus_balanus,Balanus,balanidae/balanus/Balanus_balanus
+31,Double Trouble,Amoeba,Chaos chaos,15,(Protista),Tubulinea,Tubulinida,Amoebidae,Chaos_chaos,Chaos,amoebidae/chaos/Chaos_chaos
+32,Double Trouble,Filarial Nematode,Loa loa,16,Nematoda,Chromadorea,Spirurida,Onchocercidae,Loa_loa,Loa,onchocercidae/loa/Loa_loa
+33,Cats-ish vs Dogs-ish,Sloth Bear,Melursus ursinus,1,Chordata,Mammalia,Carnivora,Ursidae,Melursus_ursinus,Melursus,ursidae/melursus/Melursus_ursinus
+34,Cats-ish vs Dogs-ish,Caspian Seal,Pusa caspica,2,Chordata,Mammalia,Carnivora,Phocidae,Pusa_caspica,Pusa,phocidae/pusa/Pusa_caspica
+35,Cats-ish vs Dogs-ish,Brown Hyena,Hyaena brunnea,3,Chordata,Mammalia,Carnivora,Hyaenidae,Hyaena_brunnea,Hyaena,hyaenidae/hyaena/Hyaena_brunnea
+36,Cats-ish vs Dogs-ish,African Civet,Civettictis civetta,4,Chordata,Mammalia,Carnivora,Viverridae,Civettictis_civetta,Civettictis,viverridae/civettictis/Civettictis_civetta
+37,Cats-ish vs Dogs-ish,European Badger,Meles meles,5,Chordata,Mammalia,Carnivora,Mustelidae,Meles_meles,Meles,mustelidae/meles/Meles_meles
+38,Cats-ish vs Dogs-ish,Fossa,Cryptoprocta ferox,6,Chordata,Mammalia,Carnivora,Eupleridae,Cryptoprocta_ferox,Cryptoprocta,eupleridae/cryptoprocta/Cryptoprocta_ferox
+39,Cats-ish vs Dogs-ish,Tayra,Eira barbara,7,Chordata,Mammalia,Carnivora,Mustelidae,Eira_barbara,Eira,mustelidae/eira/Eira_barbara
+40,Cats-ish vs Dogs-ish,Red Panda,Ailurus fulgens,8,Chordata,Mammalia,Carnivora,Ailuridae,Ailurus_fulgens,Ailurus,ailuridae/ailurus/Ailurus_fulgens
+41,Cats-ish vs Dogs-ish,Spotted Linsang,Prionodon pardicolor,9,Chordata,Mammalia,Carnivora,Prionodontidae,Prionodon_pardicolor,Prionodon,prionodontidae/prionodon/Prionodon_pardicolor
+42,Cats-ish vs Dogs-ish,Falanouc,Eupleres goudotii,10,Chordata,Mammalia,Carnivora,Eupleridae,Eupleres_goudotii,Eupleres,eupleridae/eupleres/Eupleres_goudotii
+43,Cats-ish vs Dogs-ish,Giant Forest Genet,Genetta victoriae,12,Chordata,Mammalia,Carnivora,Viverridae,Genetta_victoriae,Genetta,viverridae/genetta/Genetta_victoriae
+44,Cats-ish vs Dogs-ish,Greater Grison,Galictis vittata,11,Chordata,Mammalia,Carnivora,Mustelidae,Galictis_vittata,Galictis,mustelidae/galictis/Galictis_vittata
+45,Cats-ish vs Dogs-ish,Kinkajou,Potos flavus,13,Chordata,Mammalia,Carnivora,Procyonidae,Potos_flavus,Potos,procyonidae/potos/Potos_flavus
+46,Cats-ish vs Dogs-ish,Solongoi,Mustela altaica,14,Chordata,Mammalia,Carnivora,Mustelidae,Mustela_altaica,Mustela,mustelidae/mustela/Mustela_altaica
+47,Cats-ish vs Dogs-ish,Common Kusimanse,Crossarchus obscurus,15,Chordata,Mammalia,Carnivora,Herpestidae,Crossarchus_obscurus,Crossarchus,herpestidae/crossarchus/Crossarchus_obscurus
+48,Cats-ish vs Dogs-ish,"Grandidier's ""Mongoose""",Galidictis grandidieri,WC,Chordata,Mammalia,Carnivora,Eupleridae,Galidictis_grandidieri,Galidictis,eupleridae/galidictis/Galidictis_grandidieri
+49,Cats-ish vs Dogs-ish,Pygmy Spotted Skunk,Spilogale pygmaea,WC,Chordata,Mammalia,Carnivora,Mephitidae,Spilogale_pygmaea,Spilogale,mephitidae/spilogale/Spilogale_pygmaea
+50,AnthropoSCENE,Australian Feral Camel,Camelus dromedarius,1,Chordata,Mammalia,Artiodactyla,Camelidae,Camelus_dromedarius,Camelus,camelidae/camelus/Camelus_dromedarius
+51,AnthropoSCENE,Florida Panther,Puma concolor couguar,2,Chordata,Mammalia,Carnivora,Felidae,Puma_concolorcouguar,Puma,felidae/puma/Puma_concolor_couguar
+52,AnthropoSCENE,Thylacine,Thylacinus cynocephalus,3,Chordata,Mammalia,Dasyuromorphia,Thylacinidae,Thylacinus_cynocephalus,Thylacinus,thylacinidae/thylacinus/Thylacinus_cynocephalus
+53,AnthropoSCENE,Trumpeter swan,Cygnus buccinator,4,Chordata,Aves,Anseriformes,Anatidae,Cygnus_buccinator,Cygnus,anatidae/cygnus/Cygnus_buccinator
+54,AnthropoSCENE,California Condor,Gymnogyps californianus,5,Chordata,Aves,Cathartiformes,Cathartidae,Gymnogyps_californianus,Gymnogyps,cathartidae/gymnogyps/Gymnogyps_californianus
+55,AnthropoSCENE,Common Cuttlefish,Sepia officinalis,6,Mollusca,Cephalopoda,Sepiida,Sepiidae,Sepia_officinalis,Sepia,sepiidae/sepia/Sepia_officinalis
+56,AnthropoSCENE,Gopher Tortoise,Gopherus polyphemus,7,Chordata,Reptilia,Testudines,Testudinae,Gopherus_polyphemus,Gopherus,testudinae/gopherus/Gopherus_polyphemus
+57,AnthropoSCENE,House Cat,Felis catus,8,Chordata,Mammalia,Carnivora,Felidae,Felis_catus,Felis,felidae/felis/Felis_catus
+58,AnthropoSCENE,Chinchilla,Chinchilla lanigera,9,Chordata,Mammalia,Rodentia,Chinchillidae,Chinchilla_lanigera,Chinchilla,chinchillidae/chinchilla/Chinchilla_lanigera
+59,AnthropoSCENE,Feral Pigeon,Columba livia domestica,10,Chordata,Aves,Columbiformes,Columbidae,Columba_liviadomestica,Columba,columbidae/columba/Columba_livia_domestica
+60,AnthropoSCENE,Bogue,Boops boops,11,Chordata,Actinopterygii,Perciformes,Sparidae,Boops_boops,Boops,sparidae/boops/Boops_boops
+61,AnthropoSCENE,Little Brown Bat,Myotis lucifugus,12,Chordata,Mammalia,Chiroptera,Vespertilionidae,Myotis_lucifugus,Myotis,vespertilionidae/myotis/Myotis_lucifugus
+62,AnthropoSCENE,Honeybee,Apis mellifera,13,Arthropoda,Insecta,Hymenoptera,Apidae,Apis_mellifera,Apis,apidae/apis/Apis_mellifera
+63,AnthropoSCENE,Monarch Butterfly,Danaus plexippus,14,Arthropoda,Insecta,Lepidoptera,Nymphalidae,Danaus_plexippus,Danaus,nymphalidae/danaus/Danaus_plexippus
+64,AnthropoSCENE,Chytrid,Batrachochytrium dendrobatidis,15,Fungi,Chytridiomycetes,Rhizophydiales,Batrachochytrium,Batrachochytrium_dendrobatidis,Batrachochytrium,batrachochytrium/batrachochytrium/Batrachochytrium_dendrobatidis
+65,AnthropoSCENE,Face Mite,Demodex folliculorum,16,Arthropoda,Arachnida,Trombidiformes,Demodicidae,Demodex_folliculorum,Demodex,demodicidae/demodex/Demodex_folliculorum

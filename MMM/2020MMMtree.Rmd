@@ -1,0 +1,103 @@
+---
+title: "2020MMM"
+author: "Emily J. Rollinson"
+date: "2/28/2020"
+output: html_document
+---
+
+============
+# Libraries
+============
+
+The code below checks to see if you already have the package installed. If you have it, it loads it up; if you don't have it, it installs it and then loads it up. 
+
+```{r}
+
+#this chunk of code defines the function that checks for missing packages, installs them, and then loads everything
+#no edits needed to this part
+
+autopack <- function(pkg){
+  new.pkg <- pkg[!(pkg %in% installed.packages()[, "Package"])]
+  if(length(new.pkg))
+    install.packages(new.pkg, dependencies = TRUE)
+  sapply(pkg, require, character.only = TRUE)
+}
+
+#this chunk actually runs the function we defined above
+#if you need more packages, just add them to the list in c() below
+
+packageslist <- c("ape", "ggplot2", "tidyr", "dplyr", "magrittr", "tidyverse")
+autopack(packageslist)
+
+```
+
+ggtree needs to be installed from Bioconductor:
+
+```{r}
+#uncomment these lines if you need to install ggtree
+#source("https://bioconductor.org/biocLite.R") ## installs & loads BiocInstaller
+#biocLite("ggtree") ## installs ggtree from Bioconductor
+if (!requireNamespace("BiocManager", quietly = TRUE))
+    install.packages("BiocManager")
+BiocManager::install(version = "3.10")
+BiocManager::install("ggtree")
+library("ggtree")
+```
+
+==================
+# Building the tree
+==================
+
+Tree was hand-written in Newick format based on published phylogenies of the groups involved, stitched onto a backbone of relationships among kingdoms/phyla.
+
+*Importing data*
+
+```{r} 
+#load flora
+species <- read.csv("MMM/2020MMMspecies.csv")
+tree <- read.tree("MMM/2020mmm.txt")
+```
+
+==============
+# Tidying data
+==============
+
+Filter original species list to names and family
+
+```{r}
+species2 <- species %>%
+  select(Common.Name, Latin.Binomial, Latin_Binomial, Division)
+str(species2)
+species2$Latin_Binomial<- as.character(species2$Latin_Binomial)
+species2$Common.Name <- as.character(species2$Common.Name)
+```
+
+Replace the tip labels with cleaner text
+
+```{r}
+tree2<-tree
+tree2$tip.label<- species2$Common.Name[match(tree2$tip.label, species2$Latin_Binomial)]
+tree2$tip.label<-as.character(tree2$tip.label)
+```
+
+===========
+# Plotting
+===========
+
+```{r}
+#circular tree
+round<- ggtree(tree2, layout="circular") %<+% species2 + geom_tiplab2(size=3, aes(angle=angle, color=Division)) + scale_color_viridis_d(option="A") + theme(legend.position="right")
+round
+
+#circular tree no color
+round<- ggtree(tree2, layout="circular") %<+% species2 + geom_tiplab2(size=6, aes(angle=angle)) + theme(legend.position="right")
+round
+
+
+#this option labels every single branch with the family - needs editing in photoshop
+#round<- ggtree(tree2, layout="circular") %<+% species2 + geom_tiplab2(size=3, aes(angle=angle, color=Family)) + geom_label(aes(x=branch, label=Family)) + scale_color_viridis_d(option="C") + theme(legend.position="right")
+#round
+
+#save image
+ggsave(round, file="plantsgiving_color_round_family_adj2019.pdf", width=30, height=30)
+```
