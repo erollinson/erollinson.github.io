@@ -351,6 +351,8 @@ corpus <- Corpus(VectorSource(cleaned)) %>%
 
 corpus <- sort(rowSums(corpus), decreasing=TRUE)
 corpus <- data.frame(word=names(corpus), freq=corpus, row.names=NULL)
+corpus <- corpus %>%
+  filter(word != "its" & word != "edt" & word != "the" & word != "this" & word != "i€™m" & word !="and") #catching common words that were for whatever reason not removed by stopwords and str_remove above
 
 wordcloud(corpus$word, corpus$freq, max.words=100, colors = palcloud[5:9], random.order = FALSE, scale = c(4, 0.9), rot.per=0, fixed.asp=FALSE)
 
