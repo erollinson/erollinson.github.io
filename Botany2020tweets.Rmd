@@ -77,7 +77,7 @@ Of the `r nrow(dt_tweets)` tweets tagged #Botany2020 between `r min(dt_tweets$cr
 |Number of users who tweeted (no retweets): | `r n_distinct(uniques$screen_name)`|
 
 
-## The 5 most favorited tweets
+## The 5 most liked tweets
 
 ```{r top-fav, echo=FALSE, results='asis', warning=FALSE}
 top_fav <- dt_tweets %>%
@@ -100,7 +100,7 @@ render_tweet <- function(dt, row) {
         "<a href=\"https://twitter.com/", screen_name, "\">", screen_name, "</a>", "&nbsp;|&nbsp;",
         "<a href=\"https://twitter.com/",
         screen_name, "/status/", id, "\"> ", created, "</a> &nbsp;|&nbsp;",
-        n_retweets, " retweets, ",  n_fav, " favorites. </blockquote>",
+        n_retweets, " retweets, ",  n_fav, " likes </blockquote>",
         "\n \n",
         sep = "")
 }
@@ -224,7 +224,7 @@ most_fav$screen_name <- reorder(most_fav$screen_name,
 
 ggplot(most_fav) + geom_bar(aes(x = screen_name, y = n_fav),
                             stat = "identity", fill = pal[4]) +
-  coord_flip() + ylab("Total number of favorites") +
+  coord_flip() + ylab("Total number of likes") +
     theme_bw() +
   theme(axis.text = element_text(size = 11, family = "Open Sans", color="black"),
         legend.text = element_text(size = 12, family="Open Sans"),
@@ -257,11 +257,11 @@ ggplot(most_rt) + geom_bar(aes(x = screen_name, y = n_rt),
         axis.title.y = element_blank())
 ```
 
-### Mean numbers of favorites received
+### Mean numbers of likes received
 
 ```{r, fig.height=10, echo=FALSE, warning=FALSE}
 
-### Mean favorites
+### Mean likes
 
 hi_mean_fav <- impact %>%
   arrange(desc(mean_fav)) %>%
@@ -273,7 +273,7 @@ hi_mean_fav$screen_name <- reorder(hi_mean_fav$screen_name,
 
 ggplot(hi_mean_fav) + geom_bar(aes(x = screen_name, y = mean_fav),
                            stat = "identity", fill = pal[4]) +
-  coord_flip() + ylab("Number of favorites / tweets") +
+  coord_flip() + ylab("Number of likes / tweets") +
   theme_bw() +
   theme(axis.text = element_text(size = 11, family = "Open Sans", color="black"),
         legend.text = element_text(size = 12, family="Open Sans"),
