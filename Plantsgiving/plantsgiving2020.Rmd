@@ -1,0 +1,149 @@
+---
+title: "Plantsgiving"
+author: "Emily Rollinson"
+date: "November 22, 2018"
+output: html_document
+editor_options: 
+  chunk_output_type: console
+---
+
+============
+# Libraries
+============
+
+The code below checks to see if you already have the package installed. If you have it, it loads it up; if you don't have it, it installs it and then loads it up. 
+
+```{r}
+
+#this chunk of code defines the function that checks for missing packages, installs them, and then loads everything
+#no edits needed to this part
+
+autopack <- function(pkg){
+  new.pkg <- pkg[!(pkg %in% installed.packages()[, "Package"])]
+  if(length(new.pkg))
+    install.packages(new.pkg, dependencies = TRUE)
+  sapply(pkg, require, character.only = TRUE)
+}
+
+#this chunk actually runs the function we defined above
+#if you need more packages, just add them to the list in c() below
+
+packageslist <- c("ape", "ggplot2", "tidyr", "dplyr", "magrittr", "tidyverse")
+autopack(packageslist)
+
+```
+
+ggtree needs to be installed from Bioconductor:
+
+```{r}
+#uncomment these lines if you need to install ggtree
+source("https://bioconductor.org/biocLite.R") ## installs & loads BiocInstaller
+#biocLite("ggtree") ## installs ggtree from Bioconductor
+if (!requireNamespace("BiocManager", quietly = TRUE))
+    install.packages("BiocManager")
+BiocManager::install(version = "3.10")
+BiocManager::install("ggtree")
+library("ggtree")
+```
+
+==================
+# Building the tree
+==================
+
+Tree was created with web version of Phylomatic (http://phylodiversity.net/phylomatic/) using the R20120829 megatree. Branch lengths were adjusted with the Bladj function in Phylocom http://phylodiversity.net/phylocom/ using node age estimates from Gastauer and Miera-Neto 2016 Braz J Biol https://www.ncbi.nlm.nih.gov/pubmed/27097100  
+
+To use phylocom, open the phylocom exe, and make sure the following things are in the same folder:
+*a list of slash-delimited species (family/genus/Genus_species), each on its own line, saved as .txt - e.g. mytaxa.txt
+*the newick tree, saved as .ttx - e.g. myphylo.txt
+*a file of ages (one is included in the phylocom download; others are available) just called ages, no file extension
+
+Run the following code in Phylocom:
+
+phylocom bladj -t mytaxa.txt -f myphylo.txt > adjustedtree.txt
+
+Then open and resave the adjusted tree to have a .new file extension.
+
+Edited newick tree to make sure all species names had the genus capitalized, matching the species file (family and stand-alone genus names can be lower; but Genus_species format is required for tip label match).
+*Importing data*
+
+```{r} 
+#load flora
+species <- read.csv("Plantsgiving/plantsgiving2020.csv")
+tree <- read.tree("Plantsgiving/plantsgivingtree2020.new") #this is currently importing the non branch length adjusted tree 
+```
+
+==============
+# Tidying data
+==============
+
+Filter original species list to names and family
+
+```{r}
+species2 <- species %>%
+  select(Common, Family, SpPhylo)
+str(species2)
+species2$SpPhylo <- as.character(species2$SpPhylo)
+species2$Common <- as.character(species2$Common)
+```
+
+Replace the tip labels with cleaner text
+
+```{r}
+tree2<-tree
+tree2$tip.label<- species2$Common[match(tree2$tip.label, species2$SpPhylo)]
+tree2$tip.label<-as.character(tree2$tip.label)
+```
+
+===========
+# Plotting
+===========
+
+```{r}
+#circular tree
+round<- ggtree(tree2, layout="circular") %<+% species2 + geom_tiplab2(size=3, aes(angle=angle, color=Family)) + scale_color_viridis_d(option="viridis") + theme(legend.position="right")
+round
+
+#circular tree no color
+round<- ggtree(tree2, layout="circular") %<+% species2 + geom_tiplab2(size=6, aes(angle=angle)) + theme(legend.position="right")
+round
+
+
+#this option labels every single branch with the family - needs editing in photoshop
+#round<- ggtree(tree2, layout="circular") %<+% species2 + geom_tiplab2(size=3, aes(angle=angle, color=Family)) + geom_label(aes(x=branch, label=Family)) + scale_color_viridis_d(option="C") + theme(legend.position="right")
+#round
+
+#save image
+ggsave(round, file="plantsgiving_color_round_family_adj2019.pdf", width=30, height=30)
+```
+
+
+
+==============
+# Team Effort
+==============
+
+Repeating the process above with a second data file compiling species across participants.
+
+```{r}
+#load flora
+species <- read.csv("Plantsgiving/allspecies2020.csv")
+tree <- read.tree("Plantsgiving/AllSpecies2020.new") #this is currently importing the non branch length adjusted tree
+
+species2 <- species %>%
+  select(Common, Family, SpPhylo)
+str(species2)
+species2$SpPhylo <- as.character(species2$SpPhylo)
+species2$Common <- as.character(species2$Common)
+
+tree2<-tree
+tree2$tip.label<- species2$Common[match(tree2$tip.label, species2$SpPhylo)]
+tree2$tip.label<-as.character(tree2$tip.label)
+
+#circular tree
+round<- ggtree(tree2, layout="circular") %<+% species2 + geom_tiplab2(size=3, aes(angle=angle, color=Family)) + scale_color_viridis_d(option="viridis") + theme(legend.position="right")
+round
+
+#circular tree no color
+round<- ggtree(tree2, layout="circular") %<+% species2 + geom_tiplab2(size=3, aes(angle=angle)) + theme(legend.position="right")
+round
+```

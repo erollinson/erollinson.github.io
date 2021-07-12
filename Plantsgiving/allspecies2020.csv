@@ -1,0 +1,155 @@
+Common,Family,Species,Genus,Epithet,SpPhylo,Phylo
+elder flowers,Adoxaceae,Sambucus nigra,Sambucus,nigra,Sambucus_nigra,adoxaceae/sambucus/Sambucus_nigra
+amaranth,Amaranthaceae,Amaranthus caudatus,Amaranthus,caudatus,Amaranthus_caudatus,amaranthaceae/amaranthus/Amaranthus_caudatus
+beets,Amaranthaceae,Beta vulgaris,Beta,vulgaris,Beta_vulgaris,amaranthaceae/beta/Beta_vulgaris
+quinoa,Amaranthaceae,Chenopodium quinoa,Chenopodium,quinoa,Chenopodium_quinoa,amaranthaceae/chenopodium/Chenopodium_quinoa
+spinach,Amaranthaceae,Spinacia oleracea,Spinacia,oleracea,Spinacia_oleracea,amaranthaceae/spinacia/Spinacia_oleracea
+onion,Amaryllidaceae,Allium cepa,Allium,cepa,Allium_cepa,amaryllidaceae/allium/Allium_cepa
+garlic,Amaryllidaceae,Allium sativum,Allium,sativum,Allium_sativum,amaryllidaceae/allium/Allium_sativum
+chives,Amaryllidaceae,Allium schoenoprasum,Allium,schoenoprasum,Allium_schoenoprasum,amaryllidaceae/allium/Allium_schoenoprasum
+cashew,Anacardiaceae,Anacardium occidentale,Anacardium,occidentale,Anacardium_occidentale,anacardiaceae/anacardium/Anacardium_occidentale
+sumac,Anacardiaceae,Rhus glabra,Rhus,glabra,Rhus_glabra,anacardiaceae/rhus/Rhus_glabra
+marula,Anacardiaceae,Sclerocarya birrea,Sclerocarya,birrea,Sclerocarya_birrea,anacardiaceae/sclerocarya/Sclerocarya_birrea
+pawpaw,Annonaceae,Asimina triloba,Asimina,triloba,Asimina_triloba,annonaceae/asimina/Asimina_triloba
+angelica,Apiaceae,Angelica archangelica,Angelica,archangelica,Angelica_archangelica,apiaceae/angelica/Angelica_archangelica
+celery,Apiaceae,Apium graveolens,Apium,graveolens,Apium_graveolens,apiaceae/apium/Apium_graveolens
+coriander,Apiaceae,Coriandrum sativum,Coriandrum,sativum,Coriandrum_sativum,apiaceae/coriandrum/Coriandrum_sativum
+cumin,Apiaceae,Cuminum cyminum,Cuminum,cyminum,Cuminum_cyminum,apiaceae/cuminum/Cuminum_cyminum
+carrot,Apiaceae,Daucus carota,Daucus,carota,Daucus_carota,apiaceae/daucus/Daucus_carota
+asafoetida,Apiaceae,Ferula assafoetida,Ferula,assafoetida,Ferula_assafoetida,apiaceae/ferula/Ferula_assafoetida
+fennel,Apiaceae,Foeniculum vulgare,Foeniculum,vulgare,Foeniculum_vulgare,apiaceae/foeniculum/Foeniculum_vulgare
+sweet cicely,Apiaceae,Myrrhis odorata,Myrrhis,odorata,Myrrhis_odorata,apiaceae/myrrhis/Myrrhis_odorata
+parsnip,Apiaceae,Pastinaca sativa,Pastinaca,sativa,Pastinaca_sativa,apiaceae/pastinaca/Pastinaca_sativa
+parsley,Apiaceae,Petroselinum crispum,Petroselinum,crispum,Petroselinum_crispum,apiaceae/petroselinum/Petroselinum_crispum
+anise,Apiaceae,Pimpinella anisum,Pimpinella,anisum,Pimpinella_anisum,apiaceae/pimpinella/Pimpinella_anisum
+coconut,Arecaceae,Cocos nucifera,Cocos,nucifera,Cocos_nucifera,arecaceae/cocos/Cocos_nucifera
+palm,Arecaceae,Elaeis guineensis,Elaeis,guineensis,Elaeis_guineensis,arecaceae/elaeis/Elaeis_guineensis
+asparagus,Asparagaceae,Asparagus officinalis,Asparagus,officinalis,Asparagus_officinalis,asparagaceae/asparagus/Asparagus_officinalis
+mugwort,Asteraceae,Artemesia vulgaris,Artemesia,vulgaris,Artemesia_vulgaris,asteraceae/artemesia/Artemesia_vulgaris
+tarragon,Asteraceae,Artemisia dracunculus,Artemisia,dracunculus,Artemisia_dracunculus,asteraceae/artemisia/Artemisia_dracunculus
+sweet chamomile,Asteraceae,Chamaemelum nobile,Chamaemelum,nobile,Chamaemelum_nobile,asteraceae/chamaemelum/Chamaemelum_nobile
+radicchio,Asteraceae,Cichorium intybus,Cichorium,intybus,Cichorium_intybus,asteraceae/cichorium/Cichorium_intybus
+creeping thistle,Asteraceae,Cirsium arvense,Cirsium,arvense,Cirsium_arvense,asteraceae/cirsium/Cirsium_arvense
+sunflower,Asteraceae,Helianthus annuus,Helianthus,annuus,Helianthus_annuus,asteraceae/helianthus/Helianthus_annuus
+lettuce,Asteraceae,Lactuca sativa,Lactuca,sativa,Lactuca_sativa,asteraceae/lactuca/Lactuca_sativa
+tansy,Asteraceae,Tanacetum vulgare,Tanacetum,vulgare,Tanacetum_vulgare,asteraceae/tanacetum/Tanacetum_vulgare
+downy birch,Betulaceae,Betula pubescens,Betula,pubescens,Betula_pubescens,betulaceae/betula/Betula_pubescens
+hazelnuts,Betulaceae,Corylus avellana,Corylus,avellana,Corylus_avellana,betulaceae/corylus/Corylus_avellana
+annatto,Bixaceae,Bixa orellana,Bixa,orellana,Bixa_orellana,bixaceae/bixa/Bixa_orellana
+horseradish,Brassicaceae,Armoracia rusticana,Armoracia,rusticana,Armoracia_rusticana,brassicaceae/armoracia/Armoracia_rusticana
+mustard,Brassicaceae,Brassica juncea,Brassica,juncea,Brassica_juncea,brassicaceae/brassica/Brassica_juncea
+canola,Brassicaceae,Brassica napus,Brassica,napus,Brassica_napus,brassicaceae/brassica/Brassica_napus
+cabbage,Brassicaceae,Brassica oleracea,Brassica,oleracea,Brassica_oleracea,brassicaceae/brassica/Brassica_oleracea
+turnip,Brassicaceae,Brassica rapa,Brassica,rapa,Brassica_rapa,brassicaceae/brassica/Brassica_rapa
+arugula,Brassicaceae,Eruca vesicaria,Eruca,vesicaria,Eruca_vesicaria,brassicaceae/eruca/Eruca_vesicaria
+watercress,Brassicaceae,Nasturtium officinale,Nasturtium,officinale,Nasturtium_officinale,brassicaceae/nasturtium/Nasturtium_officinale
+radish,Brassicaceae,Raphanus raphanistrum,Raphanus,raphanistrum,Raphanus_raphanistrum,brassicaceae/raphanus/Raphanus_raphanistrum
+pineapple,Bromeliaceae,Ananas comosus,Ananas,comosus,Ananas_comosus,bromeliaceae/ananas/Ananas_comosus
+hops,Cannabaceae,Humulus lupulus,Humulus,lupulus,Humulus_lupulus,cannabaceae/humulus/Humulus_lupulus
+sweet potato,Convolvulaceae,Ipomoaea batatas,Ipomoaea,batatas,Ipomoaea_batatas,convolvulaceae/ipomoaea/Ipomoaea_batatas
+squash,Cucurbitaceae,Cucurbita moschata,Cucurbita,moschata,Cucurbita_moschata,cucurbitaceae/cucurbita/Cucurbita_moschata
+pumpkin,Cucurbitaceae,Cucurbita pepo,Cucurbita,pepo,Cucurbita_pepo,cucurbitaceae/cucurbita/Cucurbita_pepo
+juniper,Cupressaceae,Juniperus communis,Juniperus,communis,Juniperus_communis,cupressaceae/juniperus/Juniperus_communis
+heather flowers,Ericaceae,Calluna vulgaris,Calluna,vulgaris,Calluna_vulgaris,ericaceae/calluna/Calluna_vulgaris
+blueberries,Ericaceae,Vaccinium corymbosum,Vaccinium,corymbosum,Vaccinium_corymbosum,ericaceae/vaccinium/Vaccinium_corymbosum
+cranberry,Ericaceae,Vaccinium macrocarpon,Vaccinium,macrocarpon,Vaccinium_macrocarpon,ericaceae/vaccinium/Vaccinium_macrocarpon
+peanuts,Fabaceae,Arachis hypogaea,Arachis,hypogaea,Arachis_hypogaea,fabaceae/arachis/Arachis_hypogaea
+locust,Fabaceae,Ceratonia siliqua,Ceratonia,siliqua,Ceratonia_siliqua,fabaceae/ceratonia/Ceratonia_siliqua
+chickpeas,Fabaceae,Cicer arietinum,Cicer,arietinum,Cicer_arietinum,fabaceae/cicer/Cicer_arietinum
+soy,Fabaceae,Glycine max,Glycine,max,Glycine_max,fabaceae/glycine/Glycine_max
+licorice,Fabaceae,Glycyrrhiza glabra,Glycyrrhiza,glabra,Glycyrrhiza_glabra,fabaceae/glycyrrhiza/Glycyrrhiza_glabra
+liquorice,Fabaceae,Glycyrrhiza glabra,Glycyrrhiza,glabra,Glycyrrhiza_glabra,fabaceae/glycyrrhiza/Glycyrrhiza_glabra
+lentil,Fabaceae,Lens culinaris,Lens,culinaris,Lens_culinaris,fabaceae/lens/Lens_culinaris
+green beans,Fabaceae,Phaseolus vulgaris,Phaseolus,vulgaris,Phaseolus_vulgaris,fabaceae/phaseolus/Phaseolus_vulgaris
+peas,Fabaceae,Pisum sativum,Pisum,sativum,Pisum_sativum,fabaceae/pisum/Pisum_sativum
+tamarind,Fabaceae,Tamarindus indica,Tamarindus,indica,Tamarindus_indica,fabaceae/tamarindus/Tamarindus_indica
+red clover,Fabaceae,Trifolium pratense,Trifolium,pratense,Trifolium_pratense,fabaceae/trifolium/Trifolium_pratense
+white clover,Fabaceae,Trifolium repens,Trifolium,repens,Trifolium_repens,fabaceae/trifolium/Trifolium_repens
+fenugreek,Fabaceae,Trigonella foenum-graecum,Trigonella,foenum-graecum,Trigonella_foenum-graecum,fabaceae/trigonella/Trigonella_foenum-graecum
+gorse,Fabaceae,Ulex europaeus,Ulex,europaeus,Ulex_europaeus,fabaceae/ulex/Ulex_europaeus
+chestnuts,Fagaceae,Castanea sativa,Castanea,sativa,Castanea_sativa,fagaceae/castanea/Castanea_sativa
+gentian,Gentianaceae,Gentiana lutea,Gentiana,lutea,Gentiana_lutea,gentianaceae/gentiana/Gentiana_lutea
+saffron,Iridaceae,Crocus sativus,Crocus,sativus,Crocus_sativus,iridaceae/crocus/Crocus_sativus
+orris root,Iridaceae,Iris pallida,Iris,pallida,Iris_pallida,iridaceae/iris/Iris_pallida
+pecans,Juglandaceae,Carya illinoinensis,Carya,illinoinensis,Carya_illinoinensis,juglandaceae/carya/Carya_illinoinensis
+walnut,Juglandaceae,Juglans regia,Juglans,regia,Juglans_regia,juglandaceae/juglans/Juglans_regia
+lemon balm,Lamiaceae,Melissa officinalis,Melissa,officinalis,Melissa_officinalis,lamiaceae/melissa/Melissa_officinalis
+water mint,Lamiaceae,Mentha aquatica,Mentha,aquatica,Mentha_aquatica,lamiaceae/mentha/Mentha_aquatica
+peppermint,Lamiaceae,Mentha piperita,Mentha,piperita,Mentha_piperita,lamiaceae/mentha/Mentha_piperita
+spearmint,Lamiaceae,Mentha spicata,Mentha,spicata,Mentha_spicata,lamiaceae/mentha/Mentha_spicata
+apple mint,Lamiaceae,Mentha villosa,Mentha,villosa,Mentha_villosa,lamiaceae/mentha/Mentha_villosa
+basil,Lamiaceae,Ocimum basilicum,Ocimum,basilicum,Ocimum_basilicum,lamiaceae/ocimum/Ocimum_basilicum
+Marjoram,Lamiaceae,Origanum majorama,Origanum,majorama,Origanum_majorama,lamiaceae/origanum/Origanum_majorama
+oregano,Lamiaceae,Origanum vulgare,Origanum,vulgare,Origanum_vulgare,lamiaceae/origanum/Origanum_vulgare
+rosemary,Lamiaceae,Rosmarinus officinalis,Rosmarinus,officinalis,Rosmarinus_officinalis,lamiaceae/rosmarinus/Rosmarinus_officinalis
+sage,Lamiaceae,Salvia officinalis,Salvia,officinalis,Salvia_officinalis,lamiaceae/salvia/Salvia_officinalis
+savory,Lamiaceae,Satureja hortensis,Satureja,hortensis,Satureja_hortensis,lamiaceae/satureja/Satureja_hortensis
+wood sage,Lamiaceae,Teucrium scorodonia,Teucrium,scorodonia,Teucrium_scorodonia,lamiaceae/teucrium/Teucrium_scorodonia
+wild thyme,Lamiaceae,Thymus polytrichus,Thymus,polytrichus,Thymus_polytrichus,lamiaceae/thymus/Thymus_polytrichus
+thyme,Lamiaceae,Thymus vulgaris,Thymus,vulgaris,Thymus_vulgaris,lamiaceae/thymus/Thymus_vulgaris
+Korintje cinnamon,Lauraceae,Cinnamomum burmannii,Cinnamomum,burmannii,Cinnamomum_burmannii,lauraceae/cinnamomum/Cinnamomum_burmannii
+cassia,Lauraceae,Cinnamomum cassia,Cinnamomum,cassia,Cinnamomum_cassia,lauraceae/cinnamomum/Cinnamomum_cassia
+Vietnamese cinnamon,Lauraceae,Cinnamomum loureiroi,Cinnamomum,loureiroi,Cinnamomum_loureiroi,lauraceae/cinnamomum/Cinnamomum_loureiroi
+cinnamon,Lauraceae,Cinnamomum verum,Cinnamomum,verum,Cinnamomum_verum,lauraceae/cinnamomum/Cinnamomum_verum
+bay leaf,Lauraceae,Laurus nobilis,Laurus,nobilis,Laurus_nobilis,lauraceae/laurus/Laurus_nobilis
+avocado,Lauraceae,Persea americana,Persea,americana,Persea_americana,lauraceae/persea/Persea_americana
+flax,Linaceae,Linum usitatissimum,Linum,usitatissimum,Linum_usitatissimum,linaceae/linum/Linum_usitatissimum
+pomegranate,Lythraceae,Punica granatum,Punica,granatum,Punica_granatum,lythraceae/punica/Punica_granatum
+acerola cherry,Malpighiaceae,Malpighia emarginata,Malpighia,emarginata,Malpighia_emarginata,malpighiaceae/malpighgia/Malpighia_emarginata
+cottonseed oil,Malvaceae,Gossypium hirsutum,Gossypium,hirsutum,Gossypium_hirsutum,malvaceae/gossypium/Gossypium_hirsutum
+chocolate,Malvaceae,Theobroma cacao,Theobroma,cacao,Theobroma_cacao,malvaceae/theobroma/Theobroma_cacao
+figs,Moraceae,Ficus sp,Ficus,sp,Ficus_sp,moraceae/ficus/Ficus_sp
+plantains,Musaceae,Musa paradisiaca,Musa,paradisiaca,Musa_paradisiaca,musaceae/musa/Musa_paradisiaca
+bog myrtle,Myricaceae,Myrica gale,Myrica,gale,Myrica_gale,myricaceae/myrica/Myrica_gale
+nutmeg,Myristicaceae,Myristica fragrans,Myristica,fragrans,Myristica_fragrans,myristicaceae/myristica/Myristica_fragrans
+allspice,Myrtaceae,Pimenta dioica,Pimenta,dioica,Pimenta_dioica,myrtaceae/pimenta/Pimenta_dioica
+cloves,Myrtaceae,Syzygium aromaticum,Syzygium,aromaticum,Syzygium_aromaticum,myrtaceae/syzygium/Syzygium_aromaticum
+olives,Oleaceae,Olea europaea,Olea,europaea,Olea_europaea,oleaceae/olea/Olea_europaea
+vanilla,Orchidaceae,Vanilla planifolia,Vanilla,planifolia,Vanilla_planifolia,orchidaceae/vanilla/Vanilla_planifolia
+poppy,Papaveraceae,Papaver somniferum,Papaver,somniferum,Papaver_somniferum,papaveraceae/papaver/Papaver_somniferum
+passion fruit,Passifloraceae,Passiflora edulis,Passiflora,edulis,Passiflora_edulis,passifloraceae/passiflora/Passiflora_edulis
+sesame,Pedaliaceae,Sesamum indicum,Sesamum,indicum,Sesamum_indicum,pedaliaceae/sesamum/Sesamum_indicum
+peppercorns,Piperaceae,Piper nigrum,Piper,nigrum,Piper_nigrum,piperaceae/piper/Piper_nigrum
+oats,Poaceae,Avena sativa,Avena,sativa,Avena_sativa,poaceae/avena/Avena_sativa
+barley,Poaceae,Hordeum vulgare,Hordeum,vulgare,Hordeum_vulgare,poaceae/hordeum/Hordeum_vulgare
+rice,Poaceae,Oryza sativa,Oryza,sativa,Oryza_sativa,poaceae/oryza/Oryza_sativa
+millet,Poaceae,Pennisetum glaucum,Pennisetum,glaucum,Pennisetum_glaucum,poaceae/pennisetum/Pennisetum_glaucum
+sugar,Poaceae,Saccharum officinarum,Saccharum,officinarum,Saccharum_officinarum,poaceae/saccharum/Saccharum_officinarum
+rye,Poaceae,Secale cereale,Secale,cereale,Secale_cereale,poaceae/secale/Secale_cereale
+sorghum,Poaceae,Sorghum bicolor,Sorghum,bicolor,Sorghum_bicolor,poaceae/sorghum/Sorghum_bicolor
+wheat,Poaceae,Triticum aestivum,Triticum,aestivum,Triticum_aestivum,poaceae/triticum/Triticum_aestivum
+bulgur,Poaceae,Triticum durum,Triticum,durum,Triticum_durum,poaceae/triticum/Triticum_durum
+spelt,Poaceae,Triticum spelta,Triticum,spelta,Triticum_spelta,poaceae/triticum/Triticum_spelta
+corn,Poaceae,Zea mays,Zea,mays,Zea_mays,poaceae/zea/Zea_mays
+northern wild rice,Poaceae,Zizania palustris,Zizania,palustris,Zizania_palustris,poaceae/zizania/Zizania_palustris
+buckwheat,Polygonaceae,Fagopyrum esculentum,Fagopyrum,esculentum,Fagopyrum_esculentum,polygonaceae/fagopyrum/Fagopyrum_esculentum
+nigella,Ranunculaceae,Nigella sativa,Nigella,sativa,Nigella_sativa,ranunculaceae/nigella/Nigella_sativa
+aronia,Rosaceae,Aronia melanocarpa,Aronia,melanocarpa,Aronia_melanocarpa,rosaceae/aronia/Aronia_melanocarpa
+hawthorn,Rosaceae,Crataegus monogyna,Crataegus,monogyna,Crataegus_monogyna,rosaceae/crataegus/Crataegus_monogyna
+meadowsweet,Rosaceae,Filipendula ulmaria,Filipendula,ulmaria,Filipendula_ulmaria,rosaceae/filipendula/Filipendula_ulmaria
+apple,Rosaceae,Malus domestica,Malus,domestica,Malus_domestica,rosaceae/malus/Malus_domestica
+sweet cherry,Rosaceae,Prunus avium,Prunus,avium,Prunus_avium,rosaceae/prunus/Prunus_avium
+sour cherry,Rosaceae,Prunus cerasus,Prunus,cerasus,Prunus_cerasus,rosaceae/prunus/Prunus_cerasus
+almond,Rosaceae,Prunus dulcis,Prunus,dulcis,Prunus_dulcis,rosaceae/prunus/Prunus_dulcis
+peach,Rosaceae,Prunus persica,Prunus,persica,Prunus_persica,rosaceae/prunus/Prunus_persica
+pear,Rosaceae,Pyrus communis,Pyrus,communis,Pyrus_communis,rosaceae/pyrus/Pyrus_communis
+raspberries,Rosaceae,Rubus idaeus,Rubus,idaeus,Rubus_idaeus,rosaceae/rubus/Rubus_idaeus
+blackberries,Rosaceae,Rubus lacinatus,Rubus,lacinatus,Rubus_lacinatus,rosaceae/rubus/Rubus_lacinatus
+cinchona,Rubiaceae,Cinchona officinalis,Cinchona,officinalis,Cinchona_officinalis,rubiaceae/cinchona/Cinchona_officinalis
+coffee,Rubiaceae,Coffea arabica,Coffea,arabica,Coffea_arabica,rubiaceae/coffea/Coffea_arabica
+lady's bedstraw,Rubiaceae,Galium verum,Galium,verum,Galium_verum,rubiaceae/galium/Galium_verum
+lime,Rutaceae,Citrus latifolia,Citrus,latifolia,Citrus_latifolia,rutaceae/citrus/Citrus_latifolia
+lemon,Rutaceae,Citrus limon,Citrus,limon,Citrus_limon,rutaceae/citrus/Citrus_limon
+tangerine,Rutaceae,Citrus reticula,Citrus,reticula,Citrus_reticula,rutaceae/citrus/Citrus_reticula
+mandarin orange,Rutaceae,Citrus reticulata,Citrus,reticulata,Citrus_reticulata,rutaceae/citrus/Citrus_reticulata
+orange,Rutaceae,Citrus sinensis,Citrus,sinensis,Citrus_sinensis,rutaceae/citrus/Citrus_sinensis
+maple,Sapindaceae,Acer saccharum,Acer,saccharum,Acer_saccharum,sapindaceae/acer/Acer_saccharum
+star anise,Schisandraceae,Illicium verum,Illicium,verum,Illicium_verum,schisandraceae/illicium/Illicium_verum
+bell pepper,Solanaceae,Capsicum annuum,Capsicum,annuum,Capsicum_annuum,solanaceae/capsicum/Capsicum_annuum
+tomato,Solanaceae,Solanum lycopersicum,Solanum,lycopersicum,Solanum_lycopersicum,solanaceae/solanum/Solanum_lycopersicum
+potato,Solanaceae,Solanum tuberosum,Solanum,tuberosum,Solanum_tuberosum,solanaceae/solanum/Solanum_tuberosum
+tea,Theaceae,Camelia sinensis,Camelia,sinensis,Camelia_sinensis,theaceae/camelia/Camelia_sinensis
+grapes,Vitaceae,Vitis vinifera,Vitis,vinifera,Vitis_vinifera,vitaceae/vitis/Vitis_vinifera
+turmeric,Zingiberaceae,Curcuma longa,Curcuma,longa,Curcuma_longa,zingiberaceae/curcuma/Curcuma_longa
+cardamom,Zingiberaceae,Elettaria cardamomum,Elettaria,cardamomum,Elettaria_cardamomum,zingiberaceae/elettaria/Elettaria_cardamomum
+ginger,Zingiberaceae,Zingiber officinale,Zingiber,officinale,Zingiber_officinale,zingiberaceae/zingiber/Zingiber_officinale
