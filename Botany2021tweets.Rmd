@@ -19,11 +19,12 @@ library(ggplot2)
 library(knitr)
 library(tidyr)
 library(RColorBrewer)
-#library(devtools)
+#library(devtools) #uncomment these two lines if tweetrmd needs to be installed
 #devtools::install_github("gadenbuie/tweetrmd")
 library(tweetrmd)
 library(htmltools)
 library(purrr)
+library(stringr)
 
 #The comments below show how to use rtweet to download Twitter data. You will need to create an app at https://dev.twitter.com/ to get Twitter API OAuth values that fill into the spaces indicated below. This code needs to run to generate the csv used in creating this document, but should be commented out to knit the final product.
 
@@ -33,7 +34,7 @@ library(tidyverse)
 library(lubridate)
 library(tidytext)
 
-# 
+
 # #pass your keys to API
 # appname <- "YourAppName"
 # key <- "YourKey"
@@ -47,10 +48,15 @@ library(tidytext)
 #   consumer_secret = secret,
 #   access_token = access_token,
 #   access_secret = access_secret)
-# 
-# tweets<-search_tweets(q = "#Botany2021", n=10000, retryonratelimit = TRUE)
-# save_as_csv(tweets, "Botany2021Tweets_7_11.csv")
 
+# save tweets to csv - uncomment to search & save tweets; comment out to knit HTML document
+
+# there is a limit to how many tweets can be returned, and also how far back in time the Twitter API will search - to save tweets for a long event, I recommend running this search and saving new files regularly, and compiling them all at the end - the compiled csv can then be reimported below
+
+tweets<-search_tweets(q = "#Botany2021", n=10000, retryonratelimit = TRUE)
+save_as_csv(tweets, "Botany2021Tweets_7_12.csv")
+
+#import csv of tweets 
 
 dt_tweets <- read.csv("Botany2021Tweets_7_11.csv", stringsAsFactors = FALSE)
 dt_tweets$created_at <- as.Date(dt_tweets$created_at)
@@ -66,7 +72,7 @@ The code generating this document was originally developed by [Francois Michonne
 
 I originally adapted this code for the 2015 Ecological Society of America meeting (#ESA100) in Baltimore, MD, and have since reproduced it for a series of ESA and Botany meetings. I  modified it in 2020 to use the rtweet package instead of twitteR to aggregate tweets, updated the code used to generate the wordcloud, and modified the formatting of the plots. In 2021, I updated the code to embed top tweets using [tweetrmd](https://github.com/gadenbuie/tweetrmd). 
  
-Tweets using the hashtag #Botany2021 were aggregated from Twitter using the R package [rtweet](https://cran.r-project.org/web/packages/rtweet/index.html) and the Twitter API. The summary statistics are static as of 8:00 AM EDT Aug 01 2020 (additional tweets, retweets, and likes after that point are not included).
+Tweets using the hashtag #Botany2021 were aggregated from Twitter using the R package [rtweet](https://cran.r-project.org/web/packages/rtweet/index.html) and the Twitter API. The summary statistics are static as of 8:00 AM EDT Aug 01 2020 (additional tweets, retweets, and likes after that point are not included in the summary).
 
 This document was generated using RMarkdown, and the source is [available on GitHub](https://github.com/erollinson/erollinson.github.io).
 
@@ -83,32 +89,6 @@ Of the `r nrow(dt_tweets)` tweets tagged #Botany2021 between `r min(dt_tweets$cr
 |Number of users who tweeted (including retweeting): | `r n_distinct(dt_tweets$screen_name)`|
 |Number of users who tweeted (no retweets): | `r n_distinct(uniques$screen_name)`|
 
-
-## The 5 most liked tweets
-
-```{r top-fav, echo=FALSE, results='asis', warning=FALSE}
-top_fav <- dt_tweets %>%
-  filter(!is_retweet) %>%
-  arrange(desc(favorite_count)) %>%
-  slice(1:5)
-b<-as.data.frame(top_fav)
-
-htmltools::tagList(lapply(b$status_url, tweet_embed, plain=FALSE))
-
-```
-
-
-## The 5 most retweeted tweets
-
-```{r top-rt, echo=FALSE, results='asis', warning=FALSE}
-top_rt <- dt_tweets %>%
-  filter(!is_retweet) %>%
-  arrange(desc(retweet_count)) %>%
-  slice(1:5)
-c<-as.data.frame(top_rt)
-
-htmltools::tagList(lapply(c$status_url, tweet_embed, plain=FALSE))
-```
 
 ## Top tweeters
 
@@ -180,6 +160,80 @@ ggplot(top_orig_users) + geom_bar(aes(x = screenName, y = Original), stat = "ide
 
 ```
 
+## The 5 most liked tweets
+
+```{r top-fav, echo=FALSE, results='asis', warning=FALSE}
+top_fav <- dt_tweets %>%
+  filter(!is_retweet) %>%
+  arrange(desc(favorite_count)) %>%
+  slice(1:5)
+likes<-as.data.frame(top_fav)
+
+htmltools::tagList(lapply(likes$status_url, tweet_embed, plain=FALSE, dnt=TRUE))
+
+```
+
+
+## The 5 most retweeted tweets
+
+```{r top-rt, echo=FALSE, results='asis', warning=FALSE}
+top_rt <- dt_tweets %>%
+  filter(!is_retweet) %>%
+  arrange(desc(retweet_count)) %>%
+  slice(1:5)
+rts<-as.data.frame(top_rt)
+
+htmltools::tagList(lapply(rts$status_url, tweet_embed, plain=FALSE, dnt=TRUE))
+
+```
+
+## Word cloud
+
+The top 100 words among the original tweets, excluding retweets, hashtags, mentions, URLs, and common English words ("the', "&", etc.).
+
+
+```{r word-cloud, echo=FALSE, message=FALSE, warning=FALSE}
+library(wordcloud)
+library(tm)
+library(stringr)
+library(ghibli)
+library(qdapRegex)
+
+palcloud <-brewer.pal(9, "YlGnBu")
+
+cleaned <- dt_tweets %>%
+  filter(!is_retweet) %>%
+  .$text %>%
+  str_c() %>%
+  str_remove("\\n") %>%
+  rm_twitter_url() %>%
+  rm_url() %>%
+  str_remove_all("#\\S+") %>%
+  str_remove_all("@\\S+") %>%
+  removeWords(stopwords("english")) %>%
+  removeNumbers() %>%
+  stripWhitespace() %>%
+  removePunctuation() %>%
+  removeWords(c("amp")) %>%
+  str_remove("uff") %>%
+  str_remove("â") %>%
+  str_remove("use") %>%
+  str_remove("its") %>%
+  str_remove("edt")
+
+#stopwords() removes common english words; remaining str_remove() lines clean up some remaining junk and common words  
+corpus <- Corpus(VectorSource(cleaned)) %>%
+  TermDocumentMatrix() %>%
+  as.matrix()
+
+corpus <- sort(rowSums(corpus), decreasing=TRUE)
+corpus <- data.frame(word=names(corpus), freq=corpus, row.names=NULL)
+corpus <- corpus %>%
+  filter(word != "its" & word != "edt" & word != "the" & word != "this" & word != "i€™m" & word !="and") #catching common words that were for whatever reason not removed by stopwords and str_remove above
+
+wordcloud(corpus$word, corpus$freq, max.words=100, colors = palcloud[5:9], random.order = FALSE, scale = c(4, 0.9), rot.per=0, fixed.asp=FALSE)
+
+```
 
 ## Most favorited/retweeted users
 
@@ -293,53 +347,6 @@ ggplot(hi_mean_rt) + geom_bar(aes(x = screen_name, y = mean_rt),
 
 ```
 
-## Word cloud
-
-The top 100 words among the original tweets, excluding retweets, hashtags, mentions, URLs, and common English words ("the', "&", etc.).
-
-
-```{r word-cloud, echo=FALSE, message=FALSE, warning=FALSE}
-library(wordcloud)
-library(tm)
-library(stringr)
-library(ghibli)
-library(qdapRegex)
-
-palcloud <-brewer.pal(9, "YlGnBu")
-
-cleaned <- dt_tweets %>%
-  filter(!is_retweet) %>%
-  .$text %>%
-  str_c() %>%
-  str_remove("\\n") %>%
-  rm_twitter_url() %>%
-  rm_url() %>%
-  str_remove_all("#\\S+") %>%
-  str_remove_all("@\\S+") %>%
-  removeWords(stopwords("english")) %>%
-  removeNumbers() %>%
-  stripWhitespace() %>%
-  removePunctuation() %>%
-  removeWords(c("amp")) %>%
-  str_remove("uff") %>%
-  str_remove("â") %>%
-  str_remove("use") %>%
-  str_remove("its") %>%
-  str_remove("edt")
-
-#stopwords() removes common english words; remaining str_remove() lines clean up some remaining junk and common words  
-corpus <- Corpus(VectorSource(cleaned)) %>%
-  TermDocumentMatrix() %>%
-  as.matrix()
-
-corpus <- sort(rowSums(corpus), decreasing=TRUE)
-corpus <- data.frame(word=names(corpus), freq=corpus, row.names=NULL)
-corpus <- corpus %>%
-  filter(word != "its" & word != "edt" & word != "the" & word != "this" & word != "i€™m" & word !="and") #catching common words that were for whatever reason not removed by stopwords and str_remove above
-
-wordcloud(corpus$word, corpus$freq, max.words=100, colors = palcloud[5:9], random.order = FALSE, scale = c(4, 0.9), rot.per=0, fixed.asp=FALSE)
-
-```
 
 -----
 

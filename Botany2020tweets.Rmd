@@ -17,6 +17,7 @@ library(ggplot2)
 library(knitr)
 library(tidyr)
 library(RColorBrewer)
+library(stringr)
 
 #The comments below show how to use rtweet to download Twitter data. You will need to create an app at https://dev.twitter.com/ to get Twitter API OAuth values that fill into the spaces indicated below.
 
@@ -85,10 +86,11 @@ top_fav <- dt_tweets %>%
   arrange(desc(favorite_count)) %>%
   slice(1:5)
 b<-as.data.frame(top_fav)
+b$idlink <-str_sub(b$status_id, 2, nchar(b$status_id))
 
 render_tweet <- function(dt, row) {
     screen_name <- dt[i, "screen_name"]
-    id <- format(dt[i, "user_id"], scientific = FALSE)
+    id <- format(dt[i, "idlink"], scientific = FALSE)
     txt <- dt[i, "text"]
     created <- format(dt[i, "created_at"], "%Y-%m-%d")
     n_fav <- dt[i, "favorite_count"]
@@ -120,6 +122,7 @@ top_rt <- dt_tweets %>%
   arrange(desc(retweet_count)) %>%
   slice(1:5)
 c<-as.data.frame(top_rt)
+c$idlink <-str_sub(c$status_id, 2, nchar(c$status_id))
 
 for (i in seq_len(nrow(b))) {
     render_tweet(c, i)
