@@ -72,7 +72,7 @@ The code generating this document was originally developed by [Francois Michonne
 
 I originally adapted this code for the 2015 Ecological Society of America meeting (#ESA100) in Baltimore, MD, and have since reproduced it for a series of ESA and Botany meetings. I  modified it in 2020 to use the rtweet package instead of twitteR to aggregate tweets, updated the code used to generate the wordcloud, and modified the formatting of the plots. In 2021, I updated the code to embed top tweets using [tweetrmd](https://github.com/gadenbuie/tweetrmd). 
  
-Tweets using the hashtag #Botany2021 were aggregated from Twitter using the R package [rtweet](https://cran.r-project.org/web/packages/rtweet/index.html) and the Twitter API. The summary statistics are static as of 8:00 AM EDT Aug 01 2020 (additional tweets, retweets, and likes after that point are not included in the summary).
+Tweets using the hashtag #Botany2021 were aggregated from Twitter using the R package [rtweet](https://cran.r-project.org/web/packages/rtweet/index.html) and the Twitter API. The summary statistics are static as of *end time here* (additional tweets, retweets, and likes after that point are not included in the summary).
 
 This document was generated using RMarkdown, and the source is [available on GitHub](https://github.com/erollinson/erollinson.github.io).
 
