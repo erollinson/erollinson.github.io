@@ -1,0 +1,73 @@
+---
+title: "Template Code for Scraping Tweets with rtweet"
+author: "Emily J. Rollinson"
+date: "July 15 2020"
+output: html_document
+---
+```{r, echo=FALSE}
+#you will need to create an app at https://dev.twitter.com/ to get Twitter API OAuth values
+
+#load libraries
+library(rtweet)
+library(tidyverse)
+library(lubridate)
+library(tidytext)
+
+#pass your keys to API 
+
+# appname <- "YourAppName"
+# key <- "YourKey"
+# secret <- "YourSecretKey"
+# access_token <- "YourAccessToken"
+# access_secret <- "YourSecretAccessToken"
+
+twitter_token <-create_token(
+  app = appname,
+  consumer_key = key,
+  consumer_secret = secret,
+  access_token = access_token,
+  access_secret = access_secret)
+
+# hashtag <- "#YourHashtag"
+# filename <- "yourfilename.csv"
+
+tweets<-search_tweets(q = hashtag,
+                      n=10000, retryonratelimit = TRUE)
+save_as_csv(tweets, filename)
+```
+
+use rbind() to combine repeated scrapes into one master list
+
+```{r}
+#add more as they are saved - uncomment and edit as needed
+# l1<-read.csv("file1.csv")
+# l2<-read.csv("file2.csv")
+# l3<-read.csv("file3.csv")
+# l4<-read.csv("file4.csv")
+# l5<-read.csv("file5.csv")
+# l6<-read.csv("file6.csv")
+# etc.
+
+#combine, add more as they are saved
+alltweets <- rbind(l1, l2, l3, l4, l5, l6)
+
+cleaned <- alltweets %>%
+  distinct(status_id, .keep_all=TRUE)
+cleancopy <- cleaned
+
+cleancopy$created_at <- as.POSIXct(cleancopy$created_at, format="%Y-%m-%d %H:%M:%S", tz="GMT")
+cleancopy$created_at <- with_tz(cleancopy$created_at, "America/New_York")
+
+
+#to get a specific time span for plotting
+# startdate <- "YYYY-MM-DD HH:MM:SS"
+# enddate <- "YYYY-MM-DD HH:MM:SS"
+
+confweek <- cleancopy %>%
+  filter(created_at > as.POSIXct(startdate, tz="America/New_York"), created_at < as.POSIXct("enddate", tz="America/New_York"))
+
+# combinedfile <- "overallfilename.csv"
+
+write.csv(confweek, combinedfile)
+```
+
