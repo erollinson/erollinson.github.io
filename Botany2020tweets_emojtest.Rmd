@@ -6,6 +6,8 @@ output:
     toc: yes
   pdf_document:
     toc: yes
+editor_options: 
+  chunk_output_type: console
 ---  
 
 ```{r, echo=FALSE, results='hide', message=FALSE, warning=FALSE}
@@ -20,8 +22,9 @@ library(RColorBrewer)
 library(stringr)
 #devtools::install_github("dill/emoGG")
 #library(emoGG)
-devtools::install_github("coolbutuseless/ggpattern")
+#devtools::install_github("coolbutuseless/ggpattern")
 library(ggpattern)
+library(magick)
 
 #The comments below show how to use rtweet to download Twitter data. You will need to create an app at https://dev.twitter.com/ to get Twitter API OAuth values that fill into the spaces indicated below.
 
@@ -56,6 +59,89 @@ uniques <- dt_tweets %>%
   filter(is_retweet=="FALSE")
 
 ```
+
+Emoji figure test
+
+```{r}
+
+#this one works sort of
+
+
+flags <- c(rep("C:/Users/erollinson/Documents/GitHub Projects/erollinson.github.io/ramenbar.jpg",7))
+
+ggplot(mpg, aes(class)) +
+  geom_bar_pattern(
+    aes(
+      pattern_filename = class
+    ),
+    pattern         = 'image',
+    pattern_type    = 'none',
+    fill            = 'white',
+    colour          = 'white',
+    pattern_scale   = -2,
+    pattern_filter  = 'point',
+    pattern_gravity = 'west'
+  ) +
+  theme_classic(18) +
+  labs(
+    title = "ggpattern::geom_bar_pattern() + coord_flip()",
+    subtitle = "pattern = 'image'"
+  ) +
+  theme(legend.position = 'none') +
+  scale_pattern_filename_discrete(choices = flags) +
+  coord_flip() +
+  scale_pattern_discrete(guide = guide_legend(nrow = 1))
+
+
+
+
+
+
+
+
+#try it on tweet graphs
+
+top_users <- dt_tweets %>% group_by(screen_name) %>%
+  summarize(total_tweets = n(),
+            Retweets = sum(is_retweet),
+            Original = sum(!is_retweet),
+            .groups="drop_last") %>%
+  arrange(desc(total_tweets)) %>%
+  slice(1:50) %>%
+  gather(type, n_tweets, -screen_name, -total_tweets)
+
+top_users$screen_name <- reorder(top_users$screen_name,
+                                top_users$total_tweets,
+                                function(x) sum(x))
+
+imagefill <- c(rep("C:/Users/erollinson/Documents/GitHub Projects/erollinson.github.io/coffeebar.png",nrow(top_users)/2))
+
+
+ggplot(filter(top_users, type=="Original")) + 
+  geom_bar_pattern(aes(x = screen_name, y = n_tweets, pattern_filename=n_tweets),
+    pattern         = 'image',
+    pattern_type    = 'none',
+    fill            = 'white',
+    colour          = 'white',
+    pattern_scale   = -2,
+    pattern_filter  = 'point',
+    pattern_gravity = 'west',
+    position = position_stack(reverse = TRUE), 
+                             stat = "identity") +
+  ylab("Number of tweets") +
+  scale_pattern_filename_discrete(choices = imagefill) +
+  coord_flip() +
+  theme_bw() +
+  labs(title="Most #Botany2020 Tweets (including retweets)", subtitle = "Mon - Fri, Top 50 Users") +
+  theme(axis.text = element_text(size = 11, family = "Open Sans", color="black"),
+        legend.text = element_text(size = 12, family="Open Sans"),
+        legend.title = element_blank(),
+        axis.title.x = element_text(size = 12, family = "Open Sans"),
+        axis.title.y = element_blank(),
+        plot.title= element_text(size=14, family="Open Sans", color="black"),
+        plot.subtitle = element_text(size=12, family="Open Sans", color="black"))
+```
+
 
 ## About this document
 This document was produced by [Emily J. Rollinson](http://rollinsonecology.com) ([\@ejrollinson](https://twitter.com/ejrollinson) on Twitter). 
