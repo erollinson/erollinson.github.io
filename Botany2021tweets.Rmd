@@ -58,7 +58,7 @@ library(tidytext)
 
 #import csv of tweets 
 
-dt_tweets <- read.csv("Botany2021Tweets_7_11.csv", stringsAsFactors = FALSE)
+dt_tweets <- read.csv("Botany2021_7_21.csv", stringsAsFactors = FALSE)
 dt_tweets$created_at <- as.Date(dt_tweets$created_at)
 uniques <- dt_tweets %>%
   filter(is_retweet=="FALSE")
