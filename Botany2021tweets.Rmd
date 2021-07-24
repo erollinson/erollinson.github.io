@@ -354,7 +354,7 @@ Quite a few cats attended #Botany2021 - [click here for the cat parade](https://
 ## Data Tables
 Data tables for the figures above.
 
-### Number of favorites received by users
+### Top tweeters, excluding retweets
 
 ```{r echo = FALSE, warning = FALSE}
 table1 <- top_orig_users %>%
@@ -363,7 +363,7 @@ table1 <- top_orig_users %>%
 paged_table(table1, options = list(rows.print=10))
 ```
 
-### Number of retweets received by users
+### Top tweeters, including retweets
 
 ```{r echo = FALSE, warning = FALSE}
 table2 <- top_users %>%
@@ -372,7 +372,14 @@ table2 <- top_users %>%
 paged_table(table2, options = list(rows.print=10))
 ```
 
-### Mean numbers of likes received
+
+### Corpus (Word cloud)
+```{r echo = FALSE, warning = FALSE}
+paged_table(corpus, options = list(rows.print=10))
+```
+
+
+### Number of favorites received by users
 
 ```{r echo = FALSE, warning = FALSE}
 table3 <- most_fav %>%
@@ -382,7 +389,7 @@ paged_table(table3, options = list(rows.print=10))
 ```
 
 
-### Mean numbers of retweets received
+### Number of retweets received by users
 
 ```{r echo = FALSE, warning = FALSE}
 table4 <- most_rt %>%
@@ -391,22 +398,24 @@ table4 <- most_rt %>%
 paged_table(table4, options = list(rows.print=10))
 ```
 
-### Mean favorites
+### Mean numbers of likes received
 
 ```{r echo = FALSE, warning = FALSE}
 table5 <- hi_mean_fav %>%
   select(screen_name, n_tweets, mean_fav) %>%
   arrange(desc(mean_fav))
+table5$mean_fav <- as.integer(table5$mean_fav)
 paged_table(table5, options = list(rows.print=10))
 ```
 
 
-### Mean retweets
+### Mean numbers of retweets received
 
 ```{r echo = FALSE, warning = FALSE}
 table6 <- hi_mean_rt %>%
   select(screen_name, n_tweets, mean_rt) %>%
   arrange(desc(mean_rt))
+table6$mean_rt <- as.integer(table6$mean_rt)
 paged_table(table6, options = list(rows.print=10))
 ```
 
