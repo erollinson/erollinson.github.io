@@ -40,6 +40,10 @@ use rbind() to combine repeated scrapes into one master list
 
 ```{r}
 #add more as they are saved - uncomment and edit as needed
+#check length and date range of files to see if merging files is necessary first - depending on range of dates of interest and number of tweets on the hashtag, a single scrape may contain all the tweets of interest
+#it's best to avoid merging multiple scrapes if possible, to avoid the need to ensure that the most recent/up-to-date fave/RT counts out of duplicate records are the ones kept by distinct() below. 
+#However, always a good idea to scrape and save regularly because of the limits of API access, just in case, and determine later whether a merge is necessary
+
 # l1<-read.csv("file1.csv")
 # l2<-read.csv("file2.csv")
 # l3<-read.csv("file3.csv")
@@ -52,8 +56,11 @@ use rbind() to combine repeated scrapes into one master list
 alltweets <- rbind(l1, l2, l3, l4, l5, l6)
 
 cleaned <- alltweets %>%
+  arrange(status_id, desc(retweet_count)) %>% #this sorts by # retweets so that if the same tweet is included in multiple concatenated files above from repeated scrapes, the one with the most RTs is kept
   distinct(status_id, .keep_all=TRUE)
 cleancopy <- cleaned
+
+#may be better to revise the above to explicitly label each scraped file with the date of the scrape and then keep the most recent version, but this works well enough
 
 cleancopy$created_at <- as.POSIXct(cleancopy$created_at, format="%Y-%m-%d %H:%M:%S", tz="GMT")
 cleancopy$created_at <- with_tz(cleancopy$created_at, "America/New_York")
@@ -64,7 +71,7 @@ cleancopy$created_at <- with_tz(cleancopy$created_at, "America/New_York")
 # enddate <- "YYYY-MM-DD HH:MM:SS"
 
 confweek <- cleancopy %>%
-  filter(created_at > as.POSIXct(startdate, tz="America/New_York"), created_at < as.POSIXct("enddate", tz="America/New_York"))
+  filter(created_at > as.POSIXct(startdate, tz="America/New_York"), created_at < as.POSIXct(enddate, tz="America/New_York"))
 
 # combinedfile <- "overallfilename.csv"
 

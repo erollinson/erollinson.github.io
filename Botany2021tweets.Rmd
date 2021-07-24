@@ -25,6 +25,7 @@ library(tweetrmd)
 library(htmltools)
 library(purrr)
 library(stringr)
+library(rmarkdown)
 
 #The comments below show how to use rtweet to download Twitter data. You will need to create an app at https://dev.twitter.com/ to get Twitter API OAuth values that fill into the spaces indicated below. This code needs to run to generate the csv used in creating this document, but should be commented out to knit the final product.
 
@@ -51,14 +52,14 @@ library(tidytext)
 
 # save tweets to csv - uncomment to search & save tweets; comment out to knit HTML document
 
-# there is a limit to how many tweets can be returned, and also how far back in time the Twitter API will search - to save tweets for a long event, I recommend running this search and saving new files regularly, and compiling them all at the end - the compiled csv can then be reimported below
+# there is a limit to how many tweets can be returned, and also how far back in time the Twitter API will search - to save tweets for a long event, I recommend running this search and saving new files regularly, and compiling them all at the end - the compiled csv can then be reimported below - see tweetscrape_blank.Rmd in same GitHub project
 
 # tweets<-search_tweets(q = "#Botany2021", n=10000, retryonratelimit = TRUE)
 # save_as_csv(tweets, "Botany2021Tweets_7_12.csv")
 
 #import csv of tweets 
 
-dt_tweets <- read.csv("Botany2021_7_21.csv", stringsAsFactors = FALSE)
+dt_tweets <- read.csv("Botany2021FullWeek.csv", stringsAsFactors = FALSE)
 dt_tweets$created_at <- as.Date(dt_tweets$created_at)
 uniques <- dt_tweets %>%
   filter(is_retweet=="FALSE")
@@ -70,13 +71,13 @@ This document was produced by [Emily J. Rollinson](http://rollinsonecology.com) 
 
 The code generating this document was originally developed by [Francois Michonneau](https://github.com/fmichonneau) ([\@fmic_](https://twitter.com/fmic_) on Twitter) for the 2015 Evolution meeting and can be found [here](https://github.com/fmichonneau/evol2015-tweets). 
 
-I originally adapted this code for the 2015 Ecological Society of America meeting (#ESA100) in Baltimore, MD, and have since reproduced it for a series of ESA and Botany meetings. I  modified it in 2020 to use the rtweet package instead of twitteR to aggregate tweets, updated the code used to generate the wordcloud, and modified the formatting of the plots. In 2021, I updated the code to embed top tweets using [tweetrmd](https://github.com/gadenbuie/tweetrmd). 
+I originally adapted this code for the 2015 Ecological Society of America meeting (#ESA100) in Baltimore, MD, and have since reproduced it for [a series of ESA and Botany meetings](https://erollinson.github.io/). I  modified it in 2020 to use the rtweet package instead of twitteR to aggregate tweets, updated the code used to generate the wordcloud, and modified the formatting of the plots. In 2021, I updated the code to embed top tweets using [tweetrmd](https://github.com/gadenbuie/tweetrmd). 
  
-Tweets using the hashtag #Botany2021 were aggregated from Twitter using the R package [rtweet](https://cran.r-project.org/web/packages/rtweet/index.html) and the Twitter API. The summary statistics are static as of *end time here* (additional tweets, retweets, and likes after that point are not included in the summary).
+Tweets using the hashtag #Botany2021 were aggregated from Twitter using the R package [rtweet](https://cran.r-project.org/web/packages/rtweet/index.html) and the Twitter API. The summary statistics are static as of 09:00 AM EDT 7/24/2021 (additional tweets, retweets, and likes after that point are not included in the summary, although embedded tweets are "live" and up-to-date).
 
 This document was generated using RMarkdown, and the source is [available on GitHub](https://github.com/erollinson/erollinson.github.io).
 
-This document (and associated code) is released under a CC0 licence.
+This document (and associated code) is released under a CC0 license.
 
 
 ## Basic summary
@@ -91,6 +92,38 @@ Of the `r nrow(dt_tweets)` tweets tagged #Botany2021 between `r min(dt_tweets$cr
 
 
 ## Top tweeters
+
+Only for original tweets (retweets excluded)
+
+```{r, top-users-orig, echo=FALSE, fig.height=10, warning=FALSE}
+top_orig_users <- dt_tweets %>% group_by(screen_name) %>%
+  summarize(total_tweets = n(),
+            Retweet = sum(is_retweet),
+            Original = sum(!is_retweet),
+            .groups="drop_last") %>%
+  arrange(desc(Original)) %>%
+  slice(1:50)
+
+top_orig_users$screenName <- reorder(top_orig_users$screen_name,
+                                     top_orig_users$Original,
+                                     function(x) sum(x))
+
+pal <- brewer.pal(9, "YlGnBu")
+
+ggplot(top_orig_users) + geom_bar(aes(x = screenName, y = Original), stat = "identity", fill=pal[7]) +
+  ylab("Number of tweets") +
+  coord_flip() +
+    theme_bw() +
+    labs(title="Most #Botany2021 Tweets (excluding retweets)", subtitle = "Sun - Fri, Top 50 Users") +
+  theme(axis.text = element_text(size = 11, family = "Open Sans", color="black"),
+        legend.text = element_text(size = 12, family="Open Sans"),
+        legend.title = element_blank(),
+        axis.title.x = element_text(size = 12, family = "Open Sans"),
+        axis.title.y = element_blank(),
+        plot.title= element_text(size=14, family="Open Sans", color="black"),
+        plot.subtitle = element_text(size=12, family="Open Sans", color="black"))
+
+```
 
 All generated tweets (including retweets)
 
@@ -118,7 +151,7 @@ ggplot(top_users) +
   coord_flip() +
   scale_fill_manual(values = pal[c(7, 4)]) +
   theme_bw() +
-  labs(title="Most #Botany2021 Tweets (including retweets)", subtitle = "Mon - Fri, Top 50 Users") +
+  labs(title="Most #Botany2021 Tweets (including retweets)", subtitle = "Sun - Fri, Top 50 Users") +
   theme(axis.text = element_text(size = 11, family = "Open Sans", color="black"),
         legend.text = element_text(size = 12, family="Open Sans"),
         legend.title = element_blank(),
@@ -126,38 +159,6 @@ ggplot(top_users) +
         axis.title.y = element_blank(),
         plot.title= element_text(size=14, family="Open Sans", color="black"),
         plot.subtitle = element_text(size=12, family="Open Sans", color="black"))
-```
-
-Only for original tweets (retweets excluded)
-
-```{r, top-users-orig, echo=FALSE, fig.height=10, warning=FALSE}
-top_orig_users <- dt_tweets %>% group_by(screen_name) %>%
-  summarize(total_tweets = n(),
-            Retweet = sum(is_retweet),
-            Original = sum(!is_retweet),
-            .groups="drop_last") %>%
-  arrange(desc(Original)) %>%
-  slice(1:50)
-
-top_orig_users$screenName <- reorder(top_orig_users$screen_name,
-                                     top_orig_users$Original,
-                                     function(x) sum(x))
-
-pal <- brewer.pal(9, "YlGnBu")
-
-ggplot(top_orig_users) + geom_bar(aes(x = screenName, y = Original), stat = "identity", fill=pal[7]) +
-  ylab("Number of tweets") +
-  coord_flip() +
-    theme_bw() +
-    labs(title="Most #Botany2021 Tweets (excluding retweets)", subtitle = "Mon - Fri, Top 50 Users") +
-  theme(axis.text = element_text(size = 11, family = "Open Sans", color="black"),
-        legend.text = element_text(size = 12, family="Open Sans"),
-        legend.title = element_blank(),
-        axis.title.x = element_text(size = 12, family = "Open Sans"),
-        axis.title.y = element_blank(),
-        plot.title= element_text(size=14, family="Open Sans", color="black"),
-        plot.subtitle = element_text(size=12, family="Open Sans", color="black"))
-
 ```
 
 ## The 5 most liked tweets
@@ -345,6 +346,68 @@ ggplot(hi_mean_rt) + geom_bar(aes(x = screen_name, y = mean_rt),
         axis.title.y = element_blank())
 
 
+```
+
+## 🐈
+Quite a few cats attended #Botany2021 - [click here for the cat parade](https://erollinson.github.io/Botany2021Cats)
+
+## Data Tables
+Data tables for the figures above.
+
+### Number of favorites received by users
+
+```{r echo = FALSE, warning = FALSE}
+table1 <- top_orig_users %>%
+  select(screen_name, Original) %>%
+  arrange(desc(Original))
+paged_table(table1, options = list(rows.print=10))
+```
+
+### Number of retweets received by users
+
+```{r echo = FALSE, warning = FALSE}
+table2 <- top_users %>%
+  spread(type,n_tweets) %>%
+  arrange(desc(total_tweets))
+paged_table(table2, options = list(rows.print=10))
+```
+
+### Mean numbers of likes received
+
+```{r echo = FALSE, warning = FALSE}
+table3 <- most_fav %>%
+  select(screen_name, n_tweets, n_fav) %>%
+  arrange(desc(n_fav))
+paged_table(table3, options = list(rows.print=10))
+```
+
+
+### Mean numbers of retweets received
+
+```{r echo = FALSE, warning = FALSE}
+table4 <- most_rt %>%
+  select(screen_name, n_tweets, n_rt) %>%
+  arrange(desc(n_rt))
+paged_table(table4, options = list(rows.print=10))
+```
+
+### Mean favorites
+
+```{r echo = FALSE, warning = FALSE}
+table5 <- hi_mean_fav %>%
+  select(screen_name, n_tweets, mean_fav) %>%
+  arrange(desc(mean_fav))
+paged_table(table5, options = list(rows.print=10))
+```
+
+
+### Mean retweets
+
+```{r echo = FALSE, warning = FALSE}
+table6 <- hi_mean_rt %>%
+  select(screen_name, n_tweets, mean_rt) %>%
+  arrange(desc(mean_rt))
+paged_table(table6, options = list(rows.print=10))
 ```
 
 
