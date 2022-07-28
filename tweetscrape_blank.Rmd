@@ -5,7 +5,7 @@ date: "July 15 2020"
 output: html_document
 ---
 ```{r, echo=FALSE}
-#you will need to create an app at https://dev.twitter.com/ to get Twitter API OAuth values
+#The comments below show how to use rtweet to download Twitter data. You will need to create an app at https://dev.twitter.com/ to get Twitter API OAuth values that fill into the spaces indicated below. This code needs to run to generate the csv used in creating this document, but should be commented out to knit the final product. Please note that this works with rtweet 0.7.0 as of 7/28/2022, but the same code fails  with rtweet > 1.0.0 - the data format produced by search_tweets seems to have changed. It's also possibly a Twitter API/OAuth change - I don't currently have the time to diagnose. 
 
 #load libraries
 library(rtweet)
