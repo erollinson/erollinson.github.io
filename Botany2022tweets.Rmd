@@ -55,7 +55,7 @@ library(tidytext)
 # there is a limit to how many tweets can be returned, and also how far back in time the Twitter API will search - to save tweets for a long event, I recommend running this search and saving new files regularly, and compiling them all at the end - the compiled csv can then be reimported below - see tweetscrape_blank.Rmd in same GitHub project.
 
 # tweets<-search_tweets(q = "#Botany2022", n=10000, retryonratelimit = TRUE)
-# save_as_csv(tweets, "Botany2022Tweets_7_28.csv")
+# save_as_csv(tweets, "Botany2022FullWeek.csv")
 
 #import csv of tweets 
 
