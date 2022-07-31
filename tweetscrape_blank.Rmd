@@ -1,11 +1,17 @@
 ---
 title: "Template Code for Scraping Tweets with rtweet"
 author: "Emily J. Rollinson"
-date: "July 15 2020"
+date: "July 31 2022"
 output: html_document
 ---
+# rtweet 0.7.0 method
+
+## Download tweets
+
 ```{r, echo=FALSE}
-#The comments below show how to use rtweet to download Twitter data. You will need to create an app at https://dev.twitter.com/ to get Twitter API OAuth values that fill into the spaces indicated below. This code needs to run to generate the csv used in creating this document, but should be commented out to knit the final product. Please note that this works with rtweet 0.7.0 as of 7/28/2022, but the same code fails  with rtweet > 1.0.0 - the data format produced by search_tweets seems to have changed. It's also possibly a Twitter API/OAuth change - I don't currently have the time to diagnose. 
+#The comments below show how to use rtweet to download Twitter data. You will need to create an app at https://dev.twitter.com/ to get Twitter API OAuth values that fill into the spaces indicated below. This code needs to run to generate the csv used in creating this document, but should be commented out to knit the final product.
+
+#Please note that this code works with rtweet 0.7.0 as of 7/28/2022, but the same code fails with rtweet > 1.0.0 - the data format produced by search_tweets, has changed dramatically as of 1.0.0 (https://ropensci.org/blog/2022/07/21/rtweet-1-0-0/), so the entirety of the code below needs to be rewritten to accommodate that. Notably, this also includes the loss of the ability to save the downloaded tweets as a csv.
 
 #load libraries
 library(rtweet)
@@ -36,7 +42,7 @@ tweets<-search_tweets(q = hashtag,
 save_as_csv(tweets, filename)
 ```
 
-use rbind() to combine repeated scrapes into one master list
+## Use rbind() to combine repeated scrapes into one master list
 
 ```{r}
 #add more as they are saved - uncomment and edit as needed
@@ -78,3 +84,51 @@ confweek <- cleancopy %>%
 write.csv(confweek, combinedfile)
 ```
 
+# rtweet > 1.0.0 method (in progress)
+
+rtweet 1.0.0 and later made [many breaking changes] (https://ropensci.org/blog/2022/07/21/rtweet-1-0-0/) that make the approach above nonfunctional. 
+
+This section is a draft approach to getting tweets using this updated library, but is not yet complete. It's also possible all of this will change again with the release of Twitter API v2 - more breaking changes seem to be expected ~November 2022. It also seems that future versions of rtweet are intented to provide some functions to help extract the nested data being returned by this version. 
+
+## Setting up authentication
+
+In this version of rtweet, create_token() is deprecated. Instead, authentication should occur via browser - the first time an rtweet function runs, it should open a browser window to allow authentication via your personal Twitter account. However, the browser popup may not happen if you already have an authentication token stored (e.g., from running create_token()). 
+
+This is likely stored in "C:\Users\YourUsername\AppData\Roaming\R\config\R\rtweet" if it needs to be located to delete and restart. This can (I think?) be accessed with tools:R_user_dir("rtweet", "config"). For previous token issues use auth_sitrep(), which will find prior token and move them to this location. auth_list() shows stored credentials. 
+
+```{r}
+#Options for authentication - choose whichever ONE makes sense. More info at https://docs.ropensci.org/rtweet/articles/auth.html
+
+#auth_setup_default() #this uses authentication that comes with rtweet; for one-off uses of the package, this should be fine
+
+#rtweet_user() # will open browser window to authenticate access to twitter API via your personal Twitter account; you will need to be logged into that account in the browser already. This approach avoids limits on number of requests and rate limits.
+
+#rtweet_app() #For very regular/heavy use of the package, this is the best option. This requires registering your account as a developer with Twitter, and then entering your authentication tokens in the window that pops up when you run this line.
+
+```
+
+## Getting data
+
+```{r}
+#Replace the string below with your search term of choice (demonstrated here with #rstats) and the number of tweets desired. Remember, this can only access the past ~6-10 days of data, and a limited number of tweets. 
+
+tweets <- search_tweets("#rstats", n = 100, retryonratelimit = TRUE)
+
+#This produces an object with 43 columns (instead of the 91 returned by rtweet 0.7.0). Many of these columns contain nested lists (which was also not true for rtweet 0.7.0). This type of object cannot be saved to a csv. The desired columns would need to be extracted to a new data frame before saving as a csv is possible. The downloaded object can instead be saved as an RDS for later processing:
+
+library(readr)
+write_rds(tweets, "savedtweets.rds")
+imported <- read_rds("savedtweets.rds")
+
+```
+
+## Extracting desired columns from downloaded tweets
+
+```{r}
+#necessary information for the current conference tweets summary page: created_at, is_retweet, screen_name, retweet_screen_name, followers_count, retweet_followers_count, mentions_screen_name, favorite_count, retweet_count, status_url
+
+users <- users_data(tweets) #contains screen_name and followers_count
+
+#a lot of necessary information is hidden within entities; unnest_longer() or hoist() may be the way to go here
+
+```
