@@ -12,8 +12,11 @@ editor_options:
 
 ```{r, echo=FALSE, results='hide', message=FALSE, warning=FALSE}
 
+#library(remotes) #run once to import fonts; code below assumes Open Sans installed locally
+#remotes::install_version("Rttf2pt1", version = "1.3.8") #run once to import fonts; code below assumes Open Sans installed locally
 library(extrafont)
-#extrafont::loadfonts(device="win") #run once to import fonts; code below assumes Open Sans installed locally
+#font_import() #run once to import fonts; code below assumes Open Sans installed locally
+#extrafont::loadfonts(device="win") #run once to import fonts; code below assumes Open Sans installed locally #deprecated
 library(dplyr)
 library(ggplot2)
 library(knitr)
@@ -26,6 +29,8 @@ library(htmltools)
 library(purrr)
 library(stringr)
 library(rmarkdown)
+
+pal <- brewer.pal(9, "YlGnBu") #define colors for plots below
 
 #The comments below show how to use rtweet to download Twitter data. You will need to create an app at https://dev.twitter.com/ to get Twitter API OAuth values that fill into the spaces indicated below. This code needs to run to generate the csv used in creating this document, but should be commented out to knit the final product. Please note that this works with rtweet 0.7.0 as of 7/28/2022, but the same code fails  with rtweet > 1.0.0 - the data format produced by search_tweets seems to have changed. It's also possibly a Twitter API/OAuth change - I don't currently have the time to diagnose.
 
@@ -66,7 +71,7 @@ uniques <- dt_tweets %>%
 
 ```
 
-## About this document
+## 1. About this document
 This document was produced by [Emily J. Rollinson](http://rollinsonecology.com) ([\@ejrollinson](https://twitter.com/ejrollinson) on Twitter). 
 
 The code generating this document was originally developed by [Francois Michonneau](https://github.com/fmichonneau) ([\@fmic_](https://twitter.com/fmic_) on Twitter) for the 2015 Evolution meeting and can be found [here](https://github.com/fmichonneau/evol2015-tweets). 
@@ -80,7 +85,7 @@ This document was generated using RMarkdown, and the source is [available on Git
 This document (and associated code) is released under a CC0 license.
 
 
-## Basic summary
+## 2. Basic summary
 
 Of the `r nrow(dt_tweets)` tweets tagged #Botany2022 between `r min(dt_tweets$created_at)` and `r max(dt_tweets$created_at)`:
 
@@ -90,10 +95,149 @@ Of the `r nrow(dt_tweets)` tweets tagged #Botany2022 between `r min(dt_tweets$cr
 |Number of users who tweeted (including retweeting): | `r n_distinct(dt_tweets$screen_name)`|
 |Number of users who tweeted (no retweets): | `r n_distinct(uniques$screen_name)`|
 
+## 3. Building a Botany Twitter community
 
-## Top tweeters
+The figures in this section were made following [this suggestion](https://twitter.com/AzKlymiuk/status/1553464116831928320) from [Az Klymiuk](https://twitter.com/AzKlymiuk). Thank you!
 
-Only for original tweets (retweets excluded)
+### Number of users retweeted
+
+```{r, fig.height=10, echo=FALSE, warning=FALSE, fig.alt = "Bar plot showing the number of different accounts retweeted by each user, within tweets using the #Botany2022 hashtag between Sunday July 24 and Wednesday July 27, 2022. Each bar shows the number of accounts that a particular user retweeted within this hashtag, for the 50 users that retweeted the most other accounts. For instance, SarraceniaMason retweeted tweets using the #Botany2022 hashtag from 120 other accounts. The values in this figure are also included in the plain text tables lower on this page."}
+#Suggestions -  "Next year it would be cool to see rankings built around building community on twitter.  I.e., who are the BigName accounts RT-ing smaller accounts to help them build connections? Who are the accounts deliberately seeking out underrepresented folx, newbies, students, etc?"  - Az Klymiuk
+
+retweeters <- dt_tweets %>% 
+  filter(is_retweet ==TRUE) %>%
+  group_by(screen_name) %>%
+  summarize(users_rtd = n_distinct(retweet_screen_name),
+            .groups="drop_last") %>%
+  arrange(desc(users_rtd)) %>%
+  slice(1:50)
+
+ggplot(retweeters) + 
+  geom_bar(aes(x = reorder(screen_name, users_rtd), y = users_rtd), position = position_stack(reverse = TRUE), stat = "identity", fill = pal[7]) +
+  ylab("Number of accounts retweeted by user") +
+  coord_flip() +
+  theme_bw() +
+  labs(title="Number of other accounts retweeted", subtitle = "June 24 - 27, Top 50 Users") +
+  theme(axis.text = element_text(size = 11, family = "Open Sans", color="black"),
+        legend.text = element_text(size = 12, family="Open Sans"),
+        legend.title = element_blank(),
+        axis.title.x = element_text(size = 12, family = "Open Sans"),
+        axis.title.y = element_blank(),
+        plot.title= element_text(size=14, family="Open Sans", color="black"),
+        plot.subtitle = element_text(size=12, family="Open Sans", color="black"))
+
+```
+
+<!-- ### Number of followers -->
+
+```{r, fig.height=10, echo=FALSE, warning=FALSE, include = FALSE, fig.alt = "Histogram showing distribution of follower counts for all accounts that tweeted at least once using the #Botany2022 hashtag between Sunday July 24 and Wednesday July 27, 2022. The median number of followers is approximately 650; the minimum is 4, and the maximum is 55k. The values in this figure are also included in the plain text tables lower on this page."}
+
+followers <- dt_tweets %>%
+  group_by(screen_name) %>%
+  filter(!is_retweet) %>%
+  arrange(desc(followers_count)) %>%
+  filter(row_number() == 1)
+
+smallaccts <- followers %>%
+  filter(followers_count <250)
+
+smalltweets <- dt_tweets %>%
+  filter(followers_count < 250 & !is_retweet)
+
+ggplot(followers, aes(followers_count)) +
+  geom_histogram(fill = pal[7], bins = 50) +
+  scale_x_log10() + xlab("Number of followers") +
+  ylab("Number of users") +
+  theme_bw() +
+  labs(title="Number of Followers", subtitle = "June 24 - 27, All accounts using #Botany2022") +
+  theme(axis.text = element_text(size = 11, family = "Open Sans", color="black"),
+        legend.text = element_text(size = 12, family="Open Sans"),
+        legend.title = element_blank(),
+        axis.title.x = element_text(size = 12, family = "Open Sans"),
+        axis.title.y = element_text(size = 12, family = "Open Sans"),
+        plot.title= element_text(size=14, family="Open Sans", color="black"),
+        plot.subtitle = element_text(size=12, family="Open Sans", color="black"))
+
+```
+
+### Number of retweets of smaller accounts 
+'Smaller' accounts is defined here as accounts with fewer than 250 followers. (This is approximately 25% of accounts using the hashtag.) Such smaller accounts collectively tweeted `r nrow(smalltweets)` of the `r sum(!dt_tweets$is_retweet)` original tweets using the #Botany2022 hashtag.
+
+```{r, fig.height=10, echo=FALSE, warning=FALSE, fig.alt = "Bar plot showing the number of times users retweeted tweets from smaller accounts using the #Botany2022 hashtag between Sunday July 24 and Wednesday July 27, 2022. 'Smaller' accounts is defined here as accounts with fewer than 250 followers; this is roughly one quarter of all accounts using the hashtag during the conference. The values in this figure are also included in the plain text tables lower on this page. The figure includes all accounts that retweeted something from mmore than 1 'smaller' account."}
+  
+small <- dt_tweets %>% 
+  group_by(screen_name) %>%
+  filter(is_retweet & retweet_followers_count < 250) %>%
+  summarize(rts_ct = sum(is_retweet)) %>%
+  arrange(desc(rts_ct))
+
+smallplot <- small %>%
+  filter(rts_ct >1)
+
+  
+ggplot(smallplot) + 
+  geom_bar(aes(x = reorder(screen_name, rts_ct), y = rts_ct), position = position_stack(reverse = TRUE), stat = "identity", fill = pal[7]) +
+  ylab("Number of accounts retweeted by user") +
+  coord_flip() +
+  theme_bw() +
+  labs(title="Number of Smaller Accounts Retweeted", subtitle = "June 24 - 27, all users that retweeted >1 account with <250 followers") +
+  theme(axis.text = element_text(size = 11, family = "Open Sans", color="black"),
+        legend.text = element_text(size = 12, family="Open Sans"),
+        legend.title = element_blank(),
+        axis.title.x = element_text(size = 12, family = "Open Sans"),
+        axis.title.y = element_blank(),
+        plot.title= element_text(size=14, family="Open Sans", color="black"),
+        plot.subtitle = element_text(size=12, family="Open Sans", color="black"))
+```
+
+### Number of small accounts tagged
+
+```{r, fig.height=10, echo=FALSE, warning=FALSE, fig.alt = "Bar plot showing the number of times users tagged smaller accounts (within tweets and accounts using the #Botany2022 hashtag between Sunday July 24 and Wednesday July 27, 2022). 'Smaller' accounts is defined here as accounts with fewer than 250 followers; this is roughly one quarter of all accounts using the hashtag during the conference. The values in this figure are also included in the plain text tables lower on this page."}
+  
+tagged <- dt_tweets %>% 
+  group_by(screen_name) %>%
+  filter(!is_retweet) %>%
+  separate_rows(mentions_screen_name, sep = " ") %>%
+  summarize(users_tagged = n_distinct(mentions_screen_name)) %>%
+  arrange(desc(users_tagged))
+
+tags <- dt_tweets %>% 
+  group_by(screen_name) %>%
+  filter(!is_retweet & mentions_screen_name != "") %>%
+  separate_rows(mentions_screen_name, sep = " ") %>%
+  select(screen_name, mentions_screen_name, status_url)
+
+followers2 <- followers %>% select(screen_name, followers_count)
+
+tags_follows <- left_join(tags, followers2, by = c("mentions_screen_name" = "screen_name")) %>%
+  drop_na(followers_count) #this functionally omits any tags of accounts that did not ever use the #Botany2022 hashtag, since they are not within this dataset to find a follower count
+
+small_tags <- tags_follows %>%
+  filter(followers_count < 250) %>%
+  group_by(screen_name) %>%
+  summarize(ntags = n())
+
+ggplot(small_tags) + 
+  geom_bar(aes(x = reorder(screen_name, ntags), y = ntags), position = position_stack(reverse = TRUE), stat = "identity", fill = pal[7]) +
+  ylab("Number of mentions of an account with <250 followers") +
+  coord_flip() +
+  theme_bw() +
+  labs(title="Number of mentions of a small account", subtitle = "June 24 - 27, all users that mentioned at least 1 small account") +
+  scale_y_continuous(breaks = seq(from = 1, to = max(small_tags$ntags, by = 1))) +
+  theme(axis.text = element_text(size = 11, family = "Open Sans", color="black"),
+        legend.text = element_text(size = 12, family="Open Sans"),
+        legend.title = element_blank(),
+        axis.title.x = element_text(size = 12, family = "Open Sans"),
+        axis.title.y = element_blank(),
+        plot.title= element_text(size=14, family="Open Sans", color="black"),
+        plot.subtitle = element_text(size=12, family="Open Sans", color="black"))
+
+```
+
+
+## 4. Number of tweets
+
+### Only for original tweets (retweets excluded)
 
 ```{r, top-users-orig, echo=FALSE, fig.height=10, warning=FALSE, fig.alt = "Bar plot showing number of tweets, excluding retweets, using the #Botany2022 hashtag between Sunday July 24 and Wednesday July 27, 2022. Each bar shows the number of tweets by a particular user, for the most prolific 50 users. The top 5 users are @SarraceniaMason (56 tweets), @MartineBotany (51 tweets), @ejrollinson (45 tweets), @M_Gostel (40 tweets), and @mossMatters (38 tweets). The values in this figure are also included in the plain text tables lower on this page."}
 top_orig_users <- dt_tweets %>% group_by(screen_name) %>%
@@ -108,13 +252,11 @@ top_orig_users$screenName <- reorder(top_orig_users$screen_name,
                                      top_orig_users$Original,
                                      function(x) sum(x))
 
-pal <- brewer.pal(9, "YlGnBu")
-
 ggplot(top_orig_users) + geom_bar(aes(x = screenName, y = Original), stat = "identity", fill=pal[7]) +
   ylab("Number of tweets") +
   coord_flip() +
     theme_bw() +
-    labs(title="Most #Botany2022 Tweets (excluding retweets)", subtitle = "Sun - Wed, Top 50 Users") +
+    labs(title="Most #Botany2022 Tweets (excluding retweets)", subtitle = "June 24 - 27, Top 50 Users") +
   theme(axis.text = element_text(size = 11, family = "Open Sans", color="black"),
         legend.text = element_text(size = 12, family="Open Sans"),
         legend.title = element_blank(),
@@ -125,7 +267,7 @@ ggplot(top_orig_users) + geom_bar(aes(x = screenName, y = Original), stat = "ide
 
 ```
 
-All generated tweets (including retweets)
+### All generated tweets (including retweets)
 
 ```{r top-users-all, echo=FALSE, fig.height=10, warning=FALSE, fig.alt = "Bar plot showing number of tweets, including retweets, using the #Botany2022 hashtag between Sunday July 24 and Wednesday July 27, 2022. Each bar shows the number of tweets by a particular user, for the most prolific 50 users. The top 5 users are @SarraceniaMason (359 tweets), @MartineBotany (181 tweets), @Bethbo_beth (145 tweets), @angelajmcd (126 tweets), and @kheyduk (103 tweets). The values in this figure are also included in the plain text tables lower on this page."}
 top_users <- dt_tweets %>% group_by(screen_name) %>%
@@ -151,7 +293,7 @@ ggplot(top_users) +
   coord_flip() +
   scale_fill_manual(values = pal[c(7, 4)]) +
   theme_bw() +
-  labs(title="Most #Botany2022 Tweets (including retweets)", subtitle = "Sun - Wed, Top 50 Users") +
+  labs(title="Most #Botany2022 Tweets (including retweets)", subtitle = "June 24 - 27, Top 50 Users") +
   theme(axis.text = element_text(size = 11, family = "Open Sans", color="black"),
         legend.text = element_text(size = 12, family="Open Sans"),
         legend.title = element_blank(),
@@ -161,7 +303,7 @@ ggplot(top_users) +
         plot.subtitle = element_text(size=12, family="Open Sans", color="black"))
 ```
 
-## The 5 most liked tweets
+## 5. The 5 most liked tweets
 
 ```{r top-fav, echo=FALSE, results='asis', warning=FALSE}
 top_fav <- dt_tweets %>%
@@ -180,7 +322,7 @@ include_tweet(likelist[5])
 ```
 
 
-## The 5 most retweeted tweets
+## 6. The 5 most retweeted tweets
 
 ```{r top-rt, echo=FALSE, results='asis', warning=FALSE}
 top_rt <- dt_tweets %>%
@@ -198,7 +340,7 @@ include_tweet(rtslist[5])
 
 ```
 
-## Word cloud
+## 7. Word cloud
 
 The top 100 words among the original tweets, excluding retweets, hashtags, mentions, URLs, and common English words ("the', "&", etc.).
 
@@ -358,25 +500,34 @@ wordcloud(corpus$word, corpus$freq, max.words=100, colors = palcloud[5:9], rando
 
 <!-- ``` -->
 
-## Data Tables
+## 8. Data Tables
 Data tables for the figures above.
+
+### Most accounts retweeted
+
+```{r echo = FALSE, warning = FALSE}
+table1 <- retweeters %>%
+  select(screen_name, users_rtd) %>%
+  arrange(desc(users_rtd))
+paged_table(table1, options = list(rows.print=10))
+```
 
 ### Top tweeters, excluding retweets
 
 ```{r echo = FALSE, warning = FALSE}
-table1 <- top_orig_users %>%
+table2 <- top_orig_users %>%
   select(screen_name, Original) %>%
   arrange(desc(Original))
-paged_table(table1, options = list(rows.print=10))
+paged_table(table2, options = list(rows.print=10))
 ```
 
 ### Top tweeters, including retweets
 
 ```{r echo = FALSE, warning = FALSE}
-table2 <- top_users %>%
+table3 <- top_users %>%
   spread(type,n_tweets) %>%
   arrange(desc(total_tweets))
-paged_table(table2, options = list(rows.print=10))
+paged_table(table3, options = list(rows.print=10))
 ```
 
 
@@ -385,6 +536,29 @@ paged_table(table2, options = list(rows.print=10))
 paged_table(corpus, options = list(rows.print=10))
 ```
 
+<!-- ### Number of followers -->
+```{r echo = FALSE, warning = FALSE, include = FALSE}
+table4 <- followers %>%
+  select(screen_name, followers_count) %>%
+  arrange(desc(followers_count))
+paged_table(table4, options = list(rows.print=10))
+```
+
+### Number of retweets of small accounts
+```{r echo = FALSE, warning = FALSE}
+table5 <- small %>%
+  select(screen_name, rts_ct) %>%
+  arrange(desc(rts_ct))
+paged_table(table5, options = list(rows.print=10))
+```
+
+### Number of tags of small accounts
+```{r echo = FALSE, warning = FALSE}
+table6 <- small_tags %>%
+  select(screen_name, ntags) %>%
+  arrange(desc(ntags))
+paged_table(table6, options = list(rows.print=10))
+```
 
 <!-- ### Number of favorites received by users -->
 
