@@ -112,8 +112,9 @@ The figures in this section were made following [this suggestion](https://twitte
 
 ### Number of users retweeted
 
+This figure summarizes breadth of retweeting among users of the #Botany2022 hashtag during the conference - how many different users did a given account retweet?
+
 ```{r, fig.height=10, echo=FALSE, warning=FALSE, fig.alt = "Bar plot showing the number of different accounts retweeted by each user, within tweets using the #Botany2022 hashtag between Sunday July 24 and Wednesday July 27, 2022. Each bar shows the number of accounts that a particular user retweeted within this hashtag, for the 50 users that retweeted the most other accounts. For instance, SarraceniaMason retweeted tweets using the #Botany2022 hashtag from 120 other accounts. The values in this figure are also included in the plain text tables lower on this page."}
-#Suggestions -  "Next year it would be cool to see rankings built around building community on twitter.  I.e., who are the BigName accounts RT-ing smaller accounts to help them build connections? Who are the accounts deliberately seeking out underrepresented folx, newbies, students, etc?"  - Az Klymiuk
 
 retweeters <- dt_tweets %>% 
   filter(is_retweet ==TRUE) %>%
@@ -172,7 +173,7 @@ ggplot(followers, aes(followers_count)) +
 ```
 
 ### Number of retweets of smaller accounts 
-'Smaller' accounts is defined here as accounts with fewer than 250 followers. (This is approximately 25% of accounts using the hashtag.) Such smaller accounts collectively tweeted `r nrow(smalltweets)` of the `r sum(!dt_tweets$is_retweet)` original tweets using the #Botany2022 hashtag.
+'Smaller' accounts is defined here as accounts with fewer than 250 followers. (This is approximately 25% of accounts using the hashtag.) Such smaller accounts collectively tweeted `r nrow(smalltweets)` of the `r sum(!dt_tweets$is_retweet)` original tweets using the #Botany2022 hashtag. The counts here are number of tweets, rather than number of accounts - each RT of a tweet from a small account is tallied here. 
 
 ```{r, fig.height=10, echo=FALSE, warning=FALSE, fig.alt = "Bar plot showing the number of times users retweeted tweets from smaller accounts using the #Botany2022 hashtag between Sunday July 24 and Wednesday July 27, 2022. 'Smaller' accounts is defined here as accounts with fewer than 250 followers; this is roughly one quarter of all accounts using the hashtag during the conference. The values in this figure are also included in the plain text tables lower on this page. The figure includes all accounts that retweeted something from mmore than 1 'smaller' account."}
   
@@ -185,13 +186,12 @@ small <- dt_tweets %>%
 smallplot <- small %>%
   filter(rts_ct >1)
 
-  
 ggplot(smallplot) + 
   geom_bar(aes(x = reorder(screen_name, rts_ct), y = rts_ct), position = position_stack(reverse = TRUE), stat = "identity", fill = pal[7]) +
-  ylab("Number of accounts retweeted by user") +
+  ylab("Number of retweets of small accounts") +
   coord_flip() +
   theme_bw() +
-  labs(title="Number of Smaller Accounts Retweeted", subtitle = "June 24 - 27, all users that retweeted >1 account with <250 followers") +
+  labs(title="Number of retweets of small accounts", subtitle = "June 24 - 27, all users that retweeted an account with <250 followers more than once") +
   theme(axis.text = element_text(size = 11, family = "Open Sans", color="black"),
         legend.text = element_text(size = 12, family="Open Sans"),
         legend.title = element_blank(),
@@ -511,7 +511,7 @@ wordcloud(corpus$word, corpus$freq, max.words=100, colors = palcloud[5:9], rando
 
 <!-- ``` -->
 
-## 8. Data Tables
+## 8. Data tables
 Data tables for the figures above.
 
 ### Most accounts retweeted
