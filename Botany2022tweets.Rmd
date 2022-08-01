@@ -16,7 +16,7 @@ editor_options:
 #library(remotes) #Uncomment these lines if fonts need to be imported; these lines don't need to run every time the document is knit after that. Code below assumes Open Sans installed locally and is available to be imported.
 #remotes::install_version("Rttf2pt1", version = "1.3.8") #uncomment these lines if fonts need to be imported
 
-#library(extrafont) 
+library(extrafont) 
 #font_import() #uncomment these lines if fonts need to be imported
 #extrafont::loadfonts(device="win") #uncomment these lines if fonts need to be imported
 
@@ -114,7 +114,7 @@ The figures in this section were made following [this suggestion](https://twitte
 
 This figure summarizes breadth of retweeting among users of the #Botany2022 hashtag during the conference - how many different users did a given account retweet?
 
-```{r, fig.height=10, echo=FALSE, warning=FALSE, fig.alt = "Bar plot showing the number of different accounts retweeted by each user, within tweets using the #Botany2022 hashtag between Sunday July 24 and Wednesday July 27, 2022. Each bar shows the number of accounts that a particular user retweeted within this hashtag, for the 50 users that retweeted the most other accounts. For instance, SarraceniaMason retweeted tweets using the #Botany2022 hashtag from 120 other accounts. The values in this figure are also included in the plain text tables lower on this page."}
+```{r, fig.height=10, echo=FALSE, warning=FALSE, fig.alt = "Bar plot showing the number of different accounts retweeted by each user, within tweets using the #Botany2022 hashtag between Sunday July 24 and Wednesday July 27, 2022. Each bar shows the number of accounts that a particular user retweeted within this hashtag, for the 50 users that retweeted the most other accounts. For instance, SarraceniaMason retweeted tweets using the #Botany2022 hashtag from 120 other accounts. Top 5 - @SarraceniaMason (120), @Bethbo_beth (85), @MartineBotany (69), @angelajmcd (67), @AnnaScharnagl (58). The values in this figure are also included in the plain text tables lower on this page."}
 
 retweeters <- dt_tweets %>% 
   filter(is_retweet ==TRUE) %>%
@@ -175,7 +175,7 @@ ggplot(followers, aes(followers_count)) +
 ### Number of retweets of smaller accounts 
 'Smaller' accounts is defined here as accounts with fewer than 250 followers. (This is approximately 25% of accounts using the hashtag.) Such smaller accounts collectively tweeted `r nrow(smalltweets)` of the `r sum(!dt_tweets$is_retweet)` original tweets using the #Botany2022 hashtag. The counts here are number of tweets, rather than number of accounts - each RT of a tweet from a small account is tallied here. 
 
-```{r, fig.height=10, echo=FALSE, warning=FALSE, fig.alt = "Bar plot showing the number of times users retweeted tweets from smaller accounts using the #Botany2022 hashtag between Sunday July 24 and Wednesday July 27, 2022. 'Smaller' accounts is defined here as accounts with fewer than 250 followers; this is roughly one quarter of all accounts using the hashtag during the conference. The values in this figure are also included in the plain text tables lower on this page. The figure includes all accounts that retweeted something from mmore than 1 'smaller' account."}
+```{r, fig.height=10, echo=FALSE, warning=FALSE, fig.alt = "Bar plot showing the number of times users retweeted tweets from smaller accounts using the #Botany2022 hashtag between Sunday July 24 and Wednesday July 27, 2022. 'Smaller' accounts is defined here as accounts with fewer than 250 followers; this is roughly one quarter of all accounts using the hashtag during the conference. The values in this figure are also included in the plain text tables lower on this page. The figure includes all accounts that retweeted something from more than 1 'smaller' account. Top 5 - @SarraceniaMason (25), @Bethbo_beth (16), @kheyduk (12), @angelajmcd (12),, and @imenarv (11)"}
   
 small <- dt_tweets %>% 
   group_by(screen_name) %>%
@@ -191,7 +191,7 @@ ggplot(smallplot) +
   ylab("Number of retweets of small accounts") +
   coord_flip() +
   theme_bw() +
-  labs(title="Number of retweets of small accounts", subtitle = "June 24 - 27, all users that retweeted an account with <250 followers more than once") +
+  labs(title="Number of retweets of small accounts", subtitle = str_wrap("June 24 - 27, all users that retweeted an account with <250 followers more than once", 60)) +
   theme(axis.text = element_text(size = 11, family = "Open Sans", color="black"),
         legend.text = element_text(size = 12, family="Open Sans"),
         legend.title = element_blank(),
@@ -203,7 +203,7 @@ ggplot(smallplot) +
 
 ### Number of small accounts tagged
 
-```{r, fig.height=10, echo=FALSE, warning=FALSE, fig.alt = "Bar plot showing the number of times users tagged smaller accounts (within tweets and accounts using the #Botany2022 hashtag between Sunday July 24 and Wednesday July 27, 2022). 'Smaller' accounts is defined here as accounts with fewer than 250 followers; this is roughly one quarter of all accounts using the hashtag during the conference. The values in this figure are also included in the plain text tables lower on this page."}
+```{r, fig.height=10, echo=FALSE, warning=FALSE, fig.alt = "Bar plot showing the number of times users tagged smaller accounts (within tweets and accounts using the #Botany2022 hashtag between Sunday July 24 and Wednesday July 27, 2022). 'Smaller' accounts is defined here as accounts with fewer than 250 followers; this is roughly one quarter of all accounts using the hashtag during the conference. The values in this figure are also included in the plain text tables lower on this page. Top 5 - @mossMatters (9), @imenarv (6), @JillWegrzyn (6), @vuruputoor (5), @MartineBotany (4)."}
   
 tagged <- dt_tweets %>% 
   group_by(screen_name) %>%
@@ -226,14 +226,15 @@ tags_follows <- left_join(tags, followers2, by = c("mentions_screen_name" = "scr
 small_tags <- tags_follows %>%
   filter(followers_count < 250) %>%
   group_by(screen_name) %>%
-  summarize(ntags = n())
+  summarize(ntags = n()) %>%
+  arrange(desc(ntags))
 
 ggplot(small_tags) + 
   geom_bar(aes(x = reorder(screen_name, ntags), y = ntags), position = position_stack(reverse = TRUE), stat = "identity", fill = pal[7]) +
-  ylab("Number of mentions of an account with <250 followers") +
+  ylab(str_wrap("Number of mentions of an account with <250 followers", 60)) +
   coord_flip() +
   theme_bw() +
-  labs(title="Number of mentions of a small account", subtitle = "June 24 - 27, all users that mentioned at least 1 small account") +
+  labs(title="Number of mentions of a small account", subtitle = str_wrap("June 24 - 27, all users that mentioned at least one small account", 80)) +
   scale_y_continuous(breaks = seq(from = 1, to = max(small_tags$ntags, by = 1))) +
   theme(axis.text = element_text(size = 11, family = "Open Sans", color="black"),
         legend.text = element_text(size = 12, family="Open Sans"),
