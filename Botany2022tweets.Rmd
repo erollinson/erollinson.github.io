@@ -524,6 +524,22 @@ table1 <- retweeters %>%
 paged_table(table1, options = list(rows.print=10))
 ```
 
+### Number of retweets of small accounts
+```{r echo = FALSE, warning = FALSE}
+table5 <- small %>%
+  select(screen_name, rts_ct) %>%
+  arrange(desc(rts_ct))
+paged_table(table5, options = list(rows.print=10))
+```
+
+### Number of mentions of small accounts
+```{r echo = FALSE, warning = FALSE}
+table6 <- small_tags %>%
+  select(screen_name, ntags) %>%
+  arrange(desc(ntags))
+paged_table(table6, options = list(rows.print=10))
+```
+
 ### Top tweeters, excluding retweets
 
 ```{r echo = FALSE, warning = FALSE}
@@ -556,21 +572,6 @@ table4 <- followers %>%
 paged_table(table4, options = list(rows.print=10))
 ```
 
-### Number of retweets of small accounts
-```{r echo = FALSE, warning = FALSE}
-table5 <- small %>%
-  select(screen_name, rts_ct) %>%
-  arrange(desc(rts_ct))
-paged_table(table5, options = list(rows.print=10))
-```
-
-### Number of tags of small accounts
-```{r echo = FALSE, warning = FALSE}
-table6 <- small_tags %>%
-  select(screen_name, ntags) %>%
-  arrange(desc(ntags))
-paged_table(table6, options = list(rows.print=10))
-```
 
 <!-- ### Number of favorites received by users -->
 
