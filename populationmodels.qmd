@@ -1,9 +1,9 @@
 ---
 title: "Population Models"
-format: html
+format:
+  html:
+      toc: true
 editor: visual
-html:
-  toc: true
 filters:
   - webr
 ---
