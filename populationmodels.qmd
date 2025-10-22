@@ -4,7 +4,6 @@ format: html
 editor: visual
 html:
   toc: true
-  toc-depth: 2
 filters:
   - webr
 ---
