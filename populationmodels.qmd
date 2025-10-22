@@ -29,6 +29,11 @@ Now, change the time frame of our model. Currently, it shows a prediction for te
 Click **Run** again, and examine the new plot.
 
 ```{webr-r}
+#| label: editor-line-numbers
+#| editor-code-line-numbers: 2,5,8
+#| label: editor-fixed-growth
+#| editor-max-height: 250
+ 
 #Enter your starting population size here
 N0 = 
 
@@ -52,6 +57,11 @@ Now we will update our code so we can look at multiple population trajectories, 
 After you examine the figures, change the values of [g1]{style="font-family:monospace"} through [g4]{style="font-family:monospace"}, and re-run the code. Repeat this as many times as you want to experiment with different growth rates.
 
 ```{webr-r}
+#| label: editor-line-numbers
+#| editor-code-line-numbers: 5,6,7,8
+#| label: editor-fixed-growth
+#| editor-max-height: 250
+
 #Our starting population size will be 100 every time
 N0 = 100
 
@@ -83,6 +93,11 @@ After you observe the histogram, change the amount of stochasticity, by increasi
 Click **Run** again to see how this affects our growth rates.
 
 ```{webr-r}
+#| label: editor-line-numbers
+#| editor-code-line-numbers: 2
+#| label: editor-fixed-growth
+#| editor-max-height: 250
+
 #Set your stochasticity level here
 sdval = 0.1
 
@@ -99,6 +114,9 @@ his code will run a model to predict population growth over 20 years, starting w
 You do not need to edit the code below. Click Run, and examine the two figures that are produced.
 
 ```{webr-r}
+#| label: editor-fixed-growth
+#| editor-max-height: 250
+
 #This is the starting population size
 N0 = 100
 
@@ -133,6 +151,9 @@ fig1 <- plot(1:times, N, type = "o", las = 1, main="No Stochasticity", xlab="Tim
 In this exercise, we will run our stochastic model ten times in a row, and plot all of the predictions in the same figure. Once again, our initial population size is [100]{style="font-family:monospace"}, the average growth rate is [λ=1.2]{style="font-family:monospace"}, and we are making a prediction for 20 years in the future. You don't need to edit the code for this exercise: just click **Run**.
 
 ```{webr-r}
+#| label: editor-fixed-growth
+#| editor-max-height: 250
+
 #Set the number of simulations here
 nSims = 10
 
@@ -166,6 +187,9 @@ abline(h = 100, lty = 2)
 In this exercise, we will use data on population sizes of an endangered plant over time to determine the average rate of change (**λ**) in that population. We will need this **λ** to run our model. You don't need to edit the code below: just click **Run**.
 
 ```{webr-r}
+#| label: editor-fixed-growth
+#| editor-max-height: 250
+
 #Enter our data on our population
 year <- seq(1991, 2020, by=1)
 size <- c(49, 71, 66, 56, 72, 77, 37, 32, 26, 22, 31, 28, 41, 36, 37, 44, 34, 47, 45, 41, 32, 40, 120, 96, 93, 67, 84, 90, 37, 34)
@@ -191,6 +215,11 @@ In this exercise, we will run a single replicate of a stochastic model to predic
 Once you have added those numbers, click **Run**. Examine the graph.
 
 ```{webr-r}
+#| label: editor-line-numbers
+#| editor-code-line-numbers: 2,5
+#| label: editor-fixed-growth
+#| editor-max-height: 250
+
 #Specify the time frame for prediction here
 time = 
 
@@ -225,6 +254,9 @@ axis(side = 1, at = seq(1,20, by=2))
 Now we will run five replicate simulations of our stochastic model, to see five possible trajectories of our population over the next 20 years. You do not need to edit the code below: just click **Run**. Examine the graph.
 
 ```{webr-r}
+#| label: editor-fixed-growth
+#| editor-max-height: 250
+
 #Enter our data on our population
 year <- seq(1991, 2020, by=1)
 size <- c(49, 71, 66, 56, 72, 77, 37, 32, 26, 22, 31, 28, 41, 36, 37, 44, 34, 47, 45, 41, 32, 40, 120, 96, 93, 67, 84, 90, 37, 34)
@@ -261,6 +293,11 @@ abline(h=34, lty=1)
 In this section, we will run 1000 replications of our predictive model, over a 100 year time frame, and count up how many of those replicates show the population size shrinking to zero. Enter our number of simulations [nSims = 1000]{style="font-family:monospace"} and our time frame [Time = 100]{style="font-family:monospace"} below, then click **Run**. This will give you a value between 0 and 1, where 0 is 0% risk of extinction, and 1 is 100% risk.
 
 ```{webr-r}
+#| label: editor-line-numbers
+#| editor-code-line-numbers: 2,5
+#| label: editor-fixed-growth
+#| editor-max-height: 250
+
 #Set the number of simulations here
 nSims =
 
@@ -302,9 +339,14 @@ data.frame(risk)
 
 ## Exercise 4.1: Predicting population growth with a carrying capacity
 
-Set our starting population size [N0 = 10]{style="font-family:monospace"}, our growth rate [r = 0.2]{style="font-family:monospace"}, the carrying capacity [K = 500]{style="font-family:monospace"}, and the time frame of the model (time) to 50 years. Then click **Run** and examine the graph.
+Set our starting population size [N0 = 10]{style="font-family:monospace"}, our growth rate [r = 0.2]{style="font-family:monospace"}, the carrying capacity [K = 500]{style="font-family:monospace"}, and the time frame of the model [t = 50]{style="font-family:monospace"} years. Then click **Run** and examine the graph.
 
 ```{webr-r}
+#| label: editor-line-numbers
+#| editor-code-line-numbers: 2,5,8,11
+#| label: editor-fixed-growth
+#| editor-max-height: 250
+
 #Set the starting population size here
 N0=
 
@@ -331,6 +373,11 @@ plot(0:time, N, type="o", pch=19, cex=0.5, las=1, xlab="Time")
 Now we will run a model with a growth rate of [r = 0.2]{style="font-family:monospace"} and a carrying capacity of [K = 200]{style="font-family:monospace"}, and see how the population trajectories change depending on the starting size. Choose five possible starting values, and enter them as [Val1]{style="font-family:monospace"} through [Val5]{style="font-family:monospace"} below. Choose some that are lower than 200, and some that are higher. After you enter your values, click **Run**.
 
 ```{webr-r}
+#| label: editor-line-numbers
+#| editor-code-line-numbers: 2-6
+#| label: editor-fixed-growth
+#| editor-max-height: 250
+
 #Enter your starting population values here:
 Val1 = 
 Val2 = 
@@ -363,6 +410,11 @@ legend("topright", legend=N0, title="N0", lty=1:5, col=1:5, cex=1)
 Let's try to predict the size of the population next year, based on abundance values for each of our six teasel life stages. Set the initial abundances to [seed1 = 1000]{style="font-family:monospace"}, [seed2 = 1500]{style="font-family:monospace"}, [ros1 = 200]{style="font-family:monospace"}, [ros2 = 300]{style="font-family:monospace"}, [ros3 = 600]{style="font-family:monospace"}, and [flowering = 25]{style="font-family:monospace"}. Once those values are entered, click **Run**. Examine the table of results.
 
 ```{webr-r}
+#| label: editor-line-numbers
+#| editor-code-line-numbers: 2-7
+#| label: editor-fixed-growth
+#| editor-max-height: 250
+
 #Add the initial abundances here
 seed1 =
 seed2 =
@@ -401,6 +453,9 @@ Year1
 You don't need to edit this code. Click **Run** to see a graph (and table) of how the stage abundances change over a four year period.
 
 ```{webr-r}
+#| label: editor-fixed-growth
+#| editor-max-height: 250
+
 #Add the initial abundances here
 seed1 = 1000
 seed2 = 1500
