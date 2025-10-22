@@ -107,9 +107,9 @@ rs = rnorm(1000, mean = 0, sd = sdval)
 hist(exp(rs), xlab = "lambda", main = "Histogram of lambdas")
 ```
 
-## Exercise 2.2: Comparing model predictions with or without stochasticity T
+## Exercise 2.2: Comparing model predictions with or without stochasticity
 
-his code will run a model to predict population growth over 20 years, starting with a population size of 100 and a growth rate of [λ = 1.2]{style="font-family:monospace"}. It will run this model both without stochasticity (**λ** always equals 1.2) and with stochasticity (**λ** will vary around an average of 1.2).
+This code will run a model to predict population growth over 20 years, starting with a population size of 100 and a growth rate of [λ = 1.2]{style="font-family:monospace"}. It will run this model both without stochasticity (**λ** always equals 1.2) and with stochasticity (**λ** will vary around an average of 1.2).
 
 You do not need to edit the code below. Click Run, and examine the two figures that are produced.
 
