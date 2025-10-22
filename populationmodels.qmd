@@ -2,7 +2,7 @@
 title: "Population Models"
 format:
   html:
-      toc: true
+    toc: true
 editor: visual
 filters:
   - webr
@@ -455,3 +455,7 @@ legend("topleft", legend=c("seed1", "seed2", "ros1", "ros2", "ros3", "flowering"
 
 fourYears
 ```
+
+# References
+
+Materials in this exercise are collected for use in BIOL423/523 Plant Ecology at ESU, and modified from published demos by [Dai Shizuka](https://rstudio-pubs-static.s3.amazonaws.com/252603_9c6a71110dc74cc7832f154449235f7f.html) and [Kevin Shoemaker](https://kevintshoemaker.github.io/NRES-470/LECTURE7.html).
