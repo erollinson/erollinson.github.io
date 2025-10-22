@@ -6,25 +6,25 @@ filters:
   - webr
 ---
 
-## 1: Exponential Population Models
+# 1: Exponential Population Models
 
 As you work through these lab exercises, you will run the R code provided below, to produce graphs that you will interpret. The blank areas below are the spaces where your results will appear once you run the code.
 
 In some exercises, you will be instructed to add or edit values in this code. To do this, just click in the box containing code, and type whatever the instructions tell you to type.
 
-If you ever make a change that causes the code not to work, just refresh the web page, and everything will be reset – so try whatever you want! 
+If you ever make a change that causes the code not to work, just refresh the web page, and everything will be reset – so try whatever you want!
 
 ## Exercise 1.1: Predicting Population Growth
 
-Set our starting population size (N0) to 100, and our rate of population growth λ (lambda) to 1.5 by typing those values in the box below, in the spaces provided on the first two lines.
+Set our starting population size **N~0~** to 100, and our rate of population growth **λ** (lambda) to 1.5 by typing those values in the box below, in the spaces provided on the first two lines.
 
-Need a hint? Click in the box below, on the second line, which says N0 =. It will let you type in the box. After N0 =, type 100. Then look on the fourth line, which says lambda =. At the end of that line, type 1.5.
+Need a hint? Click in the box below, on the second line, which says [N0 =]{style="font-family:monospace"}. It will let you type in the box. After [N0 =]{style="font-family:monospace"}, type [100]{style="font-family:monospace"}. Then look on the fourth line, which says [lambda =]{style="font-family:monospace"}. At the end of that line, type [1.5]{style="font-family:monospace"}.
 
-Click Run, and examine the plot that is provided.
+Click **Run**, and examine the plot that is provided.
 
-Now, change the time frame of our model. Currently, it shows a prediction for ten years in the future (t = 0:10). Let's predict 20 years in the future, by changing that line to t = 0:20.
+Now, change the time frame of our model. Currently, it shows a prediction for ten years in the future: [t = 0:10]{style="font-family:monospace"}. Let's predict 20 years in the future, by changing that line to [t = 0:20]{style="font-family:monospace"}.
 
-Click Run again, and examine the new plot.
+Click **Run** again, and examine the new plot.
 
 ```{webr-r}
 #Enter your starting population size here
@@ -43,3 +43,413 @@ N = N0 * lambda^t
 plot(t, N, type = "o", pch = 19, las = 1)
 ```
 
+## Exercise 1.2: Trying different growth rates
+
+Now we will update our code so we can look at multiple population trajectories, following different growth rates, on the same graph. You don't have to edit anything yet: just click **Run**.
+
+After you examine the figures, change the values of [g1]{style="font-family:monospace"} through [g4]{style="font-family:monospace"}, and re-run the code. Repeat this as many times as you want to experiment with different growth rates.
+
+```{webr-r}
+#Our starting population size will be 100 every time
+N0 = 100
+
+#You can edit the values of g1 through g4 to try different growth rates
+g1 = 0.6
+g2 = 0.8
+g3 = 1.0
+g4 = 1.2
+
+#This code makes your plot - you do not need to edit anything down here
+lambda = c(g1, g2, g3, g4)
+t = 0:10
+N = sapply(lambda, function(lambda) N0 * lambda^t)
+library(RColorBrewer)
+colors = brewer.pal(4, "Set1")
+matplot(t, N, type = "b", pch = 15:18, col = colors, cex=1.8)
+legend("topleft", legend = c("g1", "g2", "g3", "g4"), 
+    title = "lambda", pch = 15:18, col = colors, cex = 2)
+```
+
+# 2: Stochasticity
+
+## Exercise 2.1: How does stochasticity affect growth rates?
+
+Before you change anything in this code, click **Run** to generate a histogram of growth rates that we might observe in our stochastic model.
+
+After you observe the histogram, change the amount of stochasticity, by increasing or decreasing the value after [sdval =]{style="font-family:monospace"}.
+
+Click **Run** again to see how this affects our growth rates.
+
+```{webr-r}
+#Set your stochasticity level here
+sdval = 0.1
+
+#The remaining code runs your model and does not need to be changed
+set.seed(2)
+rs = rnorm(1000, mean = 0, sd = sdval)
+hist(exp(rs), xlab = "lambda", main = "Histogram of lambdas")
+```
+
+## Exercise 2.2: Comparing model predictions with or without stochasticity T
+
+his code will run a model to predict population growth over 20 years, starting with a population size of 100 and a growth rate of [λ = 1.2]{style="font-family:monospace"}. It will run this model both without stochasticity (**λ** always equals 1.2) and with stochasticity (**λ** will vary around an average of 1.2).
+
+You do not need to edit the code below. Click Run, and examine the two figures that are produced.
+
+```{webr-r}
+#This is the starting population size
+N0 = 100
+
+#This is the number of time steps into the future we want to predict
+times = 20
+
+#This will make a prediction with stochasticity. This code does not need to be edited.
+set.seed(2)
+Nb = vector(length = times)  #empty vector to store pop. sizes
+Nb[1] = N0  #initial population size should be the first N
+lambda = rlnorm(times - 1, meanlog = 0, sdlog = 0.1)
+for (t in 2:times) {
+    Nb[t] = Nb[t - 1] * lambda[t - 1]
+}
+fig2 <- plot(1:times, Nb, type = "o", las = 1, main="With Stochasticity", xlab="Time", ylab="Population Size")
+
+#This will make a prediction with no stochasticity. This code does not need to be edited
+N = vector(length = times)
+N[1] = N0
+lambda = 1.2
+
+for (t in 2:times) {
+    N[t] = N[t - 1] * lambda
+}
+
+fig1 <- plot(1:times, N, type = "o", las = 1, main="No Stochasticity", xlab="Time", ylab="Population Size")
+
+```
+
+## Exercise 2.3: Replicates of a stochastic model
+
+In this exercise, we will run our stochastic model ten times in a row, and plot all of the predictions in the same figure. Once again, our initial population size is [100]{style="font-family:monospace"}, the average growth rate is [λ=1.2]{style="font-family:monospace"}, and we are making a prediction for 20 years in the future. You don't need to edit the code for this exercise: just click **Run**.
+
+```{webr-r}
+#Set the number of simulations here
+nSims = 10
+
+#Set your starting population size here
+startval = 100
+
+# multiple simulations
+set.seed(2)
+times = 20
+sims = nSims
+outmat = sapply(1:sims, function(x) {
+    times = 20
+    N0 = startval
+    N = vector(length = times)
+    N[1] = N0
+    lambda = rlnorm(times - 1, meanlog = 0, sdlog = 0.1)
+    for (t in 2:times) {
+        N[t] = N[t - 1] * lambda[t - 1]
+    }
+    N
+})
+matplot(1:times, outmat, type = "l", las = 1, ylab = "Population Size", 
+    xlab = "Years")
+abline(h = 100, lty = 2)
+```
+
+# 3: Population Viability Analysis
+
+## Exercise 3.1: Calculating average population growth rate from observed population sizes
+
+In this exercise, we will use data on population sizes of an endangered plant over time to determine the average rate of change (**λ**) in that population. We will need this **λ** to run our model. You don't need to edit the code below: just click **Run**.
+
+```{webr-r}
+#Enter our data on our population
+year <- seq(1991, 2020, by=1)
+size <- c(49, 71, 66, 56, 72, 77, 37, 32, 26, 22, 31, 28, 41, 36, 37, 44, 34, 47, 45, 41, 32, 40, 120, 96, 93, 67, 84, 90, 37, 34)
+popdata <- data.frame(year, size)
+
+plot(size ~ year, data = popdata, type = "o", las = 1, xlab="Year", ylab="Population Size", main="Change in Population Size in an Endangered Plant")
+
+#Determine annual lambdas
+counts = popdata$size
+l = counts[-1]/counts[-length(counts)]
+hist(l, breaks = 20, main = "Histogram of lambdas")
+
+Mean <- mean(l)
+SD <- sd(l)
+table <- data.frame(Mean, SD)
+table
+```
+
+## Exercise 3.2: Predicting change in the population over the next 20 years
+
+In this exercise, we will run a single replicate of a stochastic model to predict how this population will change over the next 20 years. To set up this model, edit the first two sections of the code below to set [time = 20]{style="font-family:monospace"} and the starting population size [N0 = 34]{style="font-family:monospace"}. This size is based on our current population size, most recently observed in our dataset (34 individuals in 2020).
+
+Once you have added those numbers, click **Run**. Examine the graph.
+
+```{webr-r}
+#Specify the time frame for prediction here
+time = 
+
+#Specify the starting population size here
+N0 = 
+
+#Enter our data on our population
+year <- seq(1991, 2020, by=1)
+size <- c(49, 71, 66, 56, 72, 77, 37, 32, 26, 22, 31, 28, 41, 36, 37, 44, 34, 47, 45, 41, 32, 40, 120, 96, 93, 67, 84, 90, 37, 34)
+popdata <- data.frame(year, size)
+
+#Determine the annual lambdas
+counts = popdata$size
+l = counts[-1]/counts[-length(counts)]
+
+
+#Run our predictive model
+set.seed(2)
+N = vector(length = time)
+N[1] = N0
+sim.l = rlnorm(time, meanlog = mean(log(l)), sdlog = sd(log(l)))
+for (t in 2:time) {
+    N[t] = N[t - 1] * sim.l[t - 1]
+}
+par(mar = c(4, 4, 1, 4))
+plot(1:(time), N, type = "o", las = 1, xaxt = "n", , xlab="Year", ylab="Population Size", main="Predicted Population Size Over The Next 20 Years")
+axis(side = 1, at = seq(1,20, by=2))
+```
+
+## Exercise 3.3: Repeated simulations of change over 20 years
+
+Now we will run five replicate simulations of our stochastic model, to see five possible trajectories of our population over the next 20 years. You do not need to edit the code below: just click **Run**. Examine the graph.
+
+```{webr-r}
+#Enter our data on our population
+year <- seq(1991, 2020, by=1)
+size <- c(49, 71, 66, 56, 72, 77, 37, 32, 26, 22, 31, 28, 41, 36, 37, 44, 34, 47, 45, 41, 32, 40, 120, 96, 93, 67, 84, 90, 37, 34)
+popdata <- data.frame(year, size)
+
+#Determine the annual lambdas
+counts = popdata$size
+l = counts[-1]/counts[-length(counts)]
+
+
+#Run our predictive model
+set.seed(2)
+sims = 5
+outmat = sapply(1:sims, function(x) {
+    time = 20
+    N0 = 34
+    N = vector(length = time)
+    N[1] = N0
+    sim.l = rlnorm(time, meanlog = mean(log(l)), sdlog = sd(log(l)))
+    for (t in 2:time) {
+        N[t] = N[t - 1] * sim.l[t - 1]
+    }
+    N
+})
+par(mar = c(4, 4, 1, 4))
+matplot(1:20, outmat, type = "l", las = 1, lty = 5, ylim = c(0, 
+    200), ylab = "Population Size", xaxt = "n", xlab = "Year", main="Predicted Population Trajectories over the Next 20 Years")
+axis(side = 1, at = seq(1,20, by=2))
+abline(h=34, lty=1)
+```
+
+## Exercise 3.4: Predicting extinction risk
+
+In this section, we will run 1000 replications of our predictive model, over a 100 year time frame, and count up how many of those replicates show the population size shrinking to zero. Enter our number of simulations [nSims = 1000]{style="font-family:monospace"} and our time frame [Time = 100]{style="font-family:monospace"} below, then click **Run**. This will give you a value between 0 and 1, where 0 is 0% risk of extinction, and 1 is 100% risk.
+
+```{webr-r}
+#Set the number of simulations here
+nSims =
+
+#Set the time frame here
+Time =
+
+#Enter our data on our population
+year <- seq(1991, 2020, by=1)
+size <- c(49, 71, 66, 56, 72, 77, 37, 32, 26, 22, 31, 28, 41, 36, 37, 44, 34, 47, 45, 41, 32, 40, 120, 96, 93, 67, 84, 90, 37, 34)
+popdata <- data.frame(year, size)
+
+#Determine the annual lambdas
+counts = popdata$size
+l = counts[-1]/counts[-length(counts)]
+
+
+#Run our predictive model
+set.seed(2)
+sims = nSims
+outmat = sapply(1:sims, function(x) {
+    time = Time + 1
+    N0 = 34
+    N = vector(length = time)
+    N[1] = N0
+    sim.l = rlnorm(time, meanlog = mean(log(l)), sdlog = sd(log(l)))
+    for (t in 2:time) {
+        N[t] = N[t - 1] * sim.l[t - 1]
+    }
+    N
+})
+
+#Which simulations have at least one value of zero?
+minpop = apply(outmat, 2, function(x) min(x) < 1)
+risk <- sum(minpop + 0)/sims
+data.frame(risk)
+```
+
+# 4: Density-dependent (logistic) models
+
+## Exercise 4.1: Predicting population growth with a carrying capacity
+
+Set our starting population size [N0 = 10]{style="font-family:monospace"}, our growth rate [r = 0.2]{style="font-family:monospace"}, the carrying capacity [K = 500]{style="font-family:monospace"}, and the time frame of the model (time) to 50 years. Then click **Run** and examine the graph.
+
+```{webr-r}
+#Set the starting population size here
+N0=
+
+#Set the growth rate here
+r=
+
+#Set the carrying capacity here 
+K=
+
+#Set the time frame here
+time=
+
+#This code makes your graph and does not need to be changed
+N=numeric(time+1)
+N[1]=N0
+for(i in 2:(time+1)){
+  N[i]=N[i-1]*r*(1-N[i-1]/K) + N[i-1]
+}
+plot(0:time, N, type="o", pch=19, cex=0.5, las=1, xlab="Time")
+```
+
+## Exercise 4.2: Different starting population sizes
+
+Now we will run a model with a growth rate of [r = 0.2]{style="font-family:monospace"} and a carrying capacity of [K = 200]{style="font-family:monospace"}, and see how the population trajectories change depending on the starting size. Choose five possible starting values, and enter them as [Val1]{style="font-family:monospace"} through [Val5]{style="font-family:monospace"} below. Choose some that are lower than 200, and some that are higher. After you enter your values, click **Run**.
+
+```{webr-r}
+#Enter your starting population values here:
+Val1 = 
+Val2 = 
+Val3 = 
+Val4 = 
+Val5 = 
+
+#This code runs the model and does not need to be edited:
+N0=c(Val1, Val2, Val3, Val4, Val5)
+outmat=sapply(1:length(N0), function(x){
+  r=0.2
+  K=200
+  time=50
+  N=vector(length=time+1)
+  N[1]=N0[x]
+  for(i in 2:(time+1)){
+    N[i]=N[i-1]*r*(1-N[i-1]/K) + N[i-1]
+  }
+  N
+})
+matplot(outmat, type="l", col=1:5, las=1)
+legend("topright", legend=N0, title="N0", lty=1:5, col=1:5, cex=1)
+
+```
+
+# 5: Stage-structured models
+
+## Exercise 5.1: Predicting population growth in a stage-structured model
+
+Let's try to predict the size of the population next year, based on abundance values for each of our six teasel life stages. Set the initial abundances to [seed1 = 1000]{style="font-family:monospace"}, [seed2 = 1500]{style="font-family:monospace"}, [ros1 = 200]{style="font-family:monospace"}, [ros2 = 300]{style="font-family:monospace"}, [ros3 = 600]{style="font-family:monospace"}, and [flowering = 25]{style="font-family:monospace"}. Once those values are entered, click **Run**. Examine the table of results.
+
+```{webr-r}
+#Add the initial abundances here
+seed1 =
+seed2 =
+ros1 =
+ros2 =
+ros3 =
+flowering =
+
+#This organizes the initial abundances
+initial_abundance <- matrix(c(seed1, seed2, ros1, ros2, ros3, flowering), ncol=1)
+rownames(initial_abundance) <- c("seed1", "seed2", "ros1", "ros2", "ros3", "flowering")
+colnames(initial_abundance) <- "Abundance After One Year"
+#This defines all the transition rates, and does not need to be edited
+teasel_matrix <- matrix(
+  c(
+    0, 0, 0, 0, 0, 322.38,
+    0.966, 0, 0, 0, 0, 0,
+    0.013, 0.01, 0.125, 0, 0, 3.448,
+    0.007, 0, 0.125, 0.238, 0,30.170,
+    0.008, 0, 0, 0.245, 0.167, 0.862,
+    0, 0, 0, .023, 0.750, 0
+  )
+  ,nrow=6, ncol=6, byrow=T
+)
+
+colnames(teasel_matrix) <- c("seed1", "seed2", "ros1", "ros2", "ros3", "flowering")
+rownames(teasel_matrix) <- c("seed1", "seed2", "ros1", "ros2", "ros3", "flowering")
+
+#This predicted the size of the population one year in the future, and does not need to be edited
+Year1 <- teasel_matrix %*% initial_abundance
+Year1
+```
+
+## Exercise 5.2: Graphing change in the abundance of stages over time
+
+You don't need to edit this code. Click **Run** to see a graph (and table) of how the stage abundances change over a four year period.
+
+```{webr-r}
+#Add the initial abundances here
+seed1 = 1000
+seed2 = 1500
+ros1 = 200
+ros2 = 300
+ros3 = 600
+flowering = 25
+
+#This organizes the initial abundances
+initial_abundance <- matrix(c(seed1, seed2, ros1, ros2, ros3, flowering), ncol=1)
+rownames(initial_abundance) <- c("seed1", "seed2", "ros1", "ros2", "ros3", "flowering")
+colnames(initial_abundance) <- "Abundance After One Year"
+#This defines all the transition rates, and does not need to be edited
+teasel_matrix <- matrix(
+  c(
+    0, 0, 0, 0, 0, 322.38,
+    0.966, 0, 0, 0, 0, 0,
+    0.013, 0.01, 0.125, 0, 0, 3.448,
+    0.007, 0, 0.125, 0.238, 0,30.170,
+    0.008, 0, 0, 0.245, 0.167, 0.862,
+    0, 0, 0, .023, 0.750, 0
+  )
+  ,nrow=6, ncol=6, byrow=T
+)
+
+colnames(teasel_matrix) <- c("seed1", "seed2", "ros1", "ros2", "ros3", "flowering")
+rownames(teasel_matrix) <- c("seed1", "seed2", "ros1", "ros2", "ros3", "flowering")
+
+
+########
+# Use a for loop to project the population dynamics for the next 10 years!
+
+nYears <- 4
+fourYears <- matrix(0,nrow=6,ncol=nYears+1)
+rownames(fourYears) <- rownames(initial_abundance)
+colnames(fourYears) <- seq(0,4)
+fourYears[,1] <- initial_abundance
+
+
+##########
+# run the for loop!
+
+for(t in 2:(nYears+1)){
+  fourYears[,t] <-  teasel_matrix %*% fourYears[,t-1]
+}
+
+library(RColorBrewer)
+colors=brewer.pal(6, "Dark2")
+matplot(t(fourYears), type="o", col=colors, lty=1, pch=15:20, cex=1.2, lwd=2, ylab = "Population Size", xlab="Year", main="Population growth over four years")
+
+legend("topleft", legend=c("seed1", "seed2", "ros1", "ros2", "ros3", "flowering"), title="Stage", pch=15:20, col=colors, cex=1.5)
+
+fourYears
+```
