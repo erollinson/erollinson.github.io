@@ -1,0 +1,45 @@
+---
+title: "Population Models"
+format: html
+editor: visual
+filters:
+  - webr
+---
+
+## 1: Exponential Population Models
+
+As you work through these lab exercises, you will run the R code provided below, to produce graphs that you will interpret. The blank areas below are the spaces where your results will appear once you run the code.
+
+In some exercises, you will be instructed to add or edit values in this code. To do this, just click in the box containing code, and type whatever the instructions tell you to type.
+
+If you ever make a change that causes the code not to work, just refresh the web page, and everything will be reset – so try whatever you want! 
+
+## Exercise 1.1: Predicting Population Growth
+
+Set our starting population size (N0) to 100, and our rate of population growth λ (lambda) to 1.5 by typing those values in the box below, in the spaces provided on the first two lines.
+
+Need a hint? Click in the box below, on the second line, which says N0 =. It will let you type in the box. After N0 =, type 100. Then look on the fourth line, which says lambda =. At the end of that line, type 1.5.
+
+Click Run, and examine the plot that is provided.
+
+Now, change the time frame of our model. Currently, it shows a prediction for ten years in the future (t = 0:10). Let's predict 20 years in the future, by changing that line to t = 0:20.
+
+Click Run again, and examine the new plot.
+
+```{webr-r}
+#Enter your starting population size here
+N0 = 
+
+#Enter your growth rate lambda here
+lambda = 
+
+#This sets the number of time steps you are predicting
+t = 0:10
+
+#This runs your population model and does not need to be changed
+N = N0 * lambda^t
+
+#This draws your plot and does not need to be changed
+plot(t, N, type = "o", pch = 19, las = 1)
+```
+
