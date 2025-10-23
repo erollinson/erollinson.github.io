@@ -17,7 +17,7 @@ In some exercises, you will be instructed to add or edit values in this code. To
 
 If you ever make a change that causes the code not to work, just refresh the web page, and everything will be reset – so try whatever you want!
 
-## Exercise 1.1: Predicting Population Growth
+## Exercise 1.1: Predicting population growth
 
 Set our starting population size **N~0~** to 100, and our rate of population growth **λ** (lambda) to 1.5 by typing those values in the box below, in the spaces provided on the first two lines.
 
