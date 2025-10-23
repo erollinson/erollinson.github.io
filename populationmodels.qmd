@@ -3,7 +3,7 @@ title: "Population Models"
 format:
   html:
     toc: true
-    theme: morph
+    theme: cerulean
 editor: visual
 filters:
   - webr
