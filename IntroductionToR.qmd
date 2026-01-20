@@ -1,0 +1,49 @@
+---
+title: "Introduction to R"
+format:
+  html:
+    toc: true
+    theme: cerulean
+editor: visual
+filters:
+  - webr
+---
+
+# 1: What is R?
+
+R is a statistical programming language that is very commonly used for data management and analyses throughout the sciences. Here, you will be able to practice using R within the exercise boxes in this online tutorial.
+
+In your own analyses, you would have a choice of how to use R:
+
+-   Download the current version of R and write code within the R software environment directly
+
+-   Download both R and an Integrated Development Environment (IDE) for R, which provides additional tools in the interface for working with your code documents. (Think of this, roughly, as the difference between writing a text file in Notepad and using a word processor like Microsoft Word.) RStudio is a very commonly used (and free) IDE for R, but others are also available.
+
+-   Use a cloud-based IDE for R, which allows you access to equivalent tools without needing to download anything.
+
+For this class, we will be using Posit Cloud. This is a cloud-based platform through which you can access RStudio without needing to download or install anything. For this class, using Posit Cloud allows us to share files with each other, so I can access your code without you needing to save or submit any files, and we can co-edit your work. It does have some limitations on processing speed, and it is a paid services with costs escalating depending on usage time per month. So, in your own analyses after this class, you may prefer to download R and RStudio to avoid such limitations.
+
+## What can R do?
+
+R is almost infinitely customizable. By default, it can perform a wide range of mathematical operations and statistical calculations on data tables. Thousands of user-written *packages* of additional specialized R functions are publicly available, and give you extra tools to carry out various tasks more efficiently. Between *base R* and these packages, we can use R for summarizing data, statistically analyzing data, and data visualization, including very specialized methods used in particular fields (phylogenetic analysis, map-making, etc.) If a task involves data, there is probably a way to do it in R.
+
+# 2: Basic Calculations in R
+
+To use R, you have to write and execute *commands*. You can give R one command at a time to run directly, or you can write a *script* that contains a series of commands.
+
+We will start getting practice with writing and executing commands by using R to perform some basic arithmetic and data summaries.
+
+## Arithmetic in R
+
+In the box below, there is a command to add two numbers in R. Before you change anything in this code, click **Run** to see how it returns the output of this code.
+
+After you observe the output, replace the numbers with two other values of your choice and hit **Run** again to see the new answer.
+
+```{webr-r}
+#| label: editor-line-numbers
+#| editor-code-line-numbers: 2
+#| label: editor-fixed-growth
+#| editor-max-height: 250
+
+25 + 35
+```
