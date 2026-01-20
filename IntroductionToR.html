@@ -335,7 +335,7 @@ globalThis.qwebrCustomizedWebROptions = {
 };
 
 // Store cell data
-globalThis.qwebrCellDetails = [{"code":"25 + 35","id":1,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-code-line-numbers":"2","editor-font-scale":"1","editor-max-height":"250","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"editor-fixed-growth","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}}];
+globalThis.qwebrCellDetails = [{"code":"25 + 35","id":1,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-code-line-numbers":"2","editor-font-scale":"1","editor-max-height":"250","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"editor-fixed-growth","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"25 + 35\n10 + 8\n374 + 1902","id":2,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-code-line-numbers":"2","editor-font-scale":"1","editor-max-height":"250","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"editor-fixed-growth","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"#arithmetic examples\n5 + 10 #addition\n25 - 7 #subtraction\n10 + 8 #multiplication\n100 / 5 #division\n10 ^ 3 #exponents","id":3,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-code-line-numbers":"2","editor-font-scale":"1","editor-max-height":"250","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"editor-fixed-growth","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"5+10\n25-7\n10+8\n100/5\n10^3\n\n5  +  10\n25  -  7\n10  +  8\n100  /  5\n10  ^  3","id":4,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-code-line-numbers":"2","editor-font-scale":"1","editor-max-height":"250","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"editor-fixed-growth","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"(1 + 2 + 3 + 4 + 5) / 5 #to calculate a mean, add up all the values and divide by the sample size","id":5,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-code-line-numbers":"2","editor-font-scale":"1","editor-max-height":"250","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"editor-fixed-growth","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"data <- c(1, 2, 3, 4, 5)","id":6,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-code-line-numbers":"2","editor-font-scale":"1","editor-max-height":"250","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"editor-fixed-growth","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"data <- c(1, 2, 3, 4, 5) #create the object\ndata #call the object","id":7,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-code-line-numbers":"2","editor-font-scale":"1","editor-max-height":"250","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"editor-fixed-growth","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"data <- c(1, 2, 3, 4, 5) #create the object\nsum(data)/length(data)","id":8,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-code-line-numbers":"2","editor-font-scale":"1","editor-max-height":"250","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"editor-fixed-growth","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"data <- c(1, 2, 3, 4, 5) #create the object\nmean(data)","id":9,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-code-line-numbers":"2","editor-font-scale":"1","editor-max-height":"250","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"editor-fixed-growth","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}}];
 
 </script>
 <script type="module">
@@ -1606,7 +1606,12 @@ globalThis.qwebrExecuteCode = async function (
   </ul></li>
   <li><a href="#basic-calculations-in-r" id="toc-basic-calculations-in-r" class="nav-link" data-scroll-target="#basic-calculations-in-r">2: Basic Calculations in R</a>
   <ul class="collapse">
-  <li><a href="#arithmetic-in-r" id="toc-arithmetic-in-r" class="nav-link" data-scroll-target="#arithmetic-in-r">Arithmetic in R</a></li>
+  <li><a href="#arithmetic-commands-and-comments" id="toc-arithmetic-commands-and-comments" class="nav-link" data-scroll-target="#arithmetic-commands-and-comments">Arithmetic Commands and Comments</a></li>
+  <li><a href="#formatting-commands" id="toc-formatting-commands" class="nav-link" data-scroll-target="#formatting-commands">Formatting Commands</a></li>
+  </ul></li>
+  <li><a href="#summarizing-data-in-r" id="toc-summarizing-data-in-r" class="nav-link" data-scroll-target="#summarizing-data-in-r">3: Summarizing Data in R</a>
+  <ul class="collapse">
+  <li><a href="#objects" id="toc-objects" class="nav-link" data-scroll-target="#objects">Objects</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -1935,12 +1940,60 @@ globalThis.qwebrCreateMonacoEditorInstance = function (cellData) {
 <h1>2: Basic Calculations in R</h1>
 <p>To use R, you have to write and execute <em>commands</em>. You can give R one command at a time to run directly, or you can write a <em>script</em> that contains a series of commands.</p>
 <p>We will start getting practice with writing and executing commands by using R to perform some basic arithmetic and data summaries.</p>
-<section id="arithmetic-in-r" class="level2">
-<h2 class="anchored" data-anchor-id="arithmetic-in-r">Arithmetic in R</h2>
-<p>In the box below, there is a command to add two numbers in R. Before you change anything in this code, click <strong>Run</strong> to see how it returns the output of this code.</p>
-<p>After you observe the output, replace the numbers with two other values of your choice and hit <strong>Run</strong> again to see the new answer.</p>
+<section id="arithmetic-commands-and-comments" class="level2">
+<h2 class="anchored" data-anchor-id="arithmetic-commands-and-comments">Arithmetic Commands and Comments</h2>
+<p>In the box below, there is a command to add two numbers in R. Before you change anything in this code, click <strong>Run Code</strong> to see how it returns the output of this code.</p>
+<p>After you observe the output, replace the numbers with two other values of your choice and hit <strong>Run Code</strong> again to see the new answer.</p>
 <div id="qwebr-insertion-location-1"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+<p>Notice that the command is preceded by <strong>1</strong>, and the answer is preceded by <strong>[1]</strong>. These are line numbers and not part of the code or answer.</p>
+<p>With multiple lines in the command, this becomes clearer (hit <strong>Run Code</strong> below):</p>
+<div id="qwebr-insertion-location-2"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+<p>Now we can see that the three lines of code are numbered (<strong>1 - 3</strong>), but each answer is still preceded by *<strong>[1]</strong>. That’s because each is a separate answer from a separate command, so each is Row 1 of a given result.</p>
+<p>Other basic arithmetic is formatted similarly with the appropriate symbol. In the box below, there is one example each of addition, subtraction, multiplication, division, and exponents. You will also see that there are <strong>comments</strong> in the box in addition to the commands. Comments allow you to write text adjacent to your code, without R trying to interpret the text as code. To indicate what text is a comment, it has to be preceded by the <strong>#</strong> symbol. Comments can be on their own lines or after a command on the same line.</p>
+<p>Click <strong>Run Code</strong> below to see the result. Then, try adding your own comment to the box and run the code again. Finally, try removing the <strong>#</strong> from a comment and run the code again to see what happens when a comment is not marked.</p>
+<div id="qwebr-insertion-location-3"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+<p>You can hit the <strong>Start Over</strong> button (↻) in the box to reset the edited code to the original example. (That won’t be an option once we are working in Posit Cloud, but we will have another strategy for setting up your work in a way that always lets you get back to the original starting point. Don’t worry, you can’t break anything permanently!)</p>
+</section>
+<section id="formatting-commands" class="level2">
+<h2 class="anchored" data-anchor-id="formatting-commands">Formatting Commands</h2>
+<p>As you work more with R, you will find that it is very strict about formatting in some respects, and very loose or inconsistent in others. This is the nature of working with an open-source language, especially when working with packages written by many authors that might have different styles.</p>
+<p>R is, generally, flexible about the use of spaces around operators like the arithmetic symbols we have practiced with. Above, we had a space between each number and its mathematical operator. Below are the same commands with more or fewer spaces. Run this code to confirm that you get the same result. Try to change the spacing and run again.</p>
+<div id="qwebr-insertion-location-4"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+<p>In other cases, we will find a command will fail without the correct formatting - for instance, many functions are case sensitive. If you are experiencing an unexpected error in your R code, one of the first things you should check is whether there is a formatting issue. (This will be frustrating, but is just part of working with R! It becomes second nature after some practice.)</p>
+<p>Either way, it is good practice to develop a consistent code <em>style</em> that works best with your habits of how you read, write, and edit code. Where R gives you flexibility, try to make the same choice consistently (do you use a space or not? when do you use a line break?). We’ll keep practicing this throughout the semester - it’s not the main priority right now, but it is a good time to start developing good habits.</p>
+<p>We will demonstrate an example of case-sensitive commands in the next section.</p>
+</section>
+</section>
+<section id="summarizing-data-in-r" class="level1">
+<h1>3: Summarizing Data in R</h1>
+<p>It’s rare that we want to do arithmetic calculations in R by typing values directly into a command. Instead, we almost always want to write commands that reference <strong>data frames</strong> - tables of data that have been loaded into R to work with. In this class, we will sometimes use sample datasets that are directly accessible within R, but we will mostly import datasets of interest - after all, that is what you will need to do to work with your own data!</p>
+<p>We will discuss how this works in Posit Cloud another time. Fo now, we will use a sample dataset that we can access directly within the R language, to practice some <em>summary statistics</em>. This means any value that is calculated to summarize a whole group of numbers - means, medians, minima and maxima, ranges, standard deviations, etc.</p>
+<p>There are <em>functions</em> within R that can accomplish these tasks. Functions call on code that someone else has already written to carry out a certain task. For instance, if I want to calculate the mean of five numbers, I could manually code the necessary arithmetic:</p>
+<div id="qwebr-insertion-location-5"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+<p>… but that would get tedious very quickly. You don’t want to have to type all your data in as a command every time! We will have other, better options once we are working in Posit Cloud. Below, we’ll see another approach (but still not the approach we will generally use - we will get to that soon.)</p>
+<section id="objects" class="level2">
+<h2 class="anchored" data-anchor-id="objects">Objects</h2>
+<p>I could instead enter my data once, and save it as a named <strong>object</strong> in R. Objects are a fundamental unit of information in R; we can save information or commands to objects to be used again later.</p>
+<div id="qwebr-insertion-location-6"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+<p>This code saves a list of numbers to an object named <em>“data”</em>. <span style="font-family:monospace">c()</span> is a function that is used to group a series of values into a list (think of it as <em>c</em> for <em>column</em>.) This is also our first encounter with <strong>functions</strong> and <strong>arguments</strong> - we will work with this format a lot. Each function has a name and a set of parentheses - you call a specific function with its name, and then give the function whatever additional information it needs within the parentheses. Different functions require different input. We’ll come back to all of that shortly.</p>
+<p>If I run the code above as-is, you will see that it shows no output, because the command does not request any output - it just requests that the information is saved, which is done silently (no immediate feedback from the code). You can see the saved object by simply using the name of the object as a command:</p>
+<div id="qwebr-insertion-location-7"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+<p>And now we can see that it returns the list of numbers we saved.</p>
+<p>Now that we have an object saved, we could write a command manually to calculate the mean. We know that a mean is the sum of all values in a list divided by the numbers in that list, so one option would be to use the <span style="font-family:monospace">sum()</span> and <span style="font-family:monospace">length() =</span> functions, which add up and count the values in a list, respectively.</p>
+<div id="qwebr-insertion-location-8"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+<p>But, there is also a function specifically for calculating a mean:</p>
+<div id="qwebr-insertion-location-9"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+<p>In the code above, try changing the capitalization of <span style="font-family:monospace">mean</span> to <span style="font-family:monospace">Mean</span>, and run the code again. You’ll see that you get an error. As hinted earlier, the names of functions are case-sensitive. When you follow examples in writing your own code, make sure you are using the same capitalization.</p>
+<p>What we’ve also seen here is that there are multiple ways to solve the same problem in R - there was not a single correct way to write a command to calculate the mean of our values. This will frequently be true in our work in R. You may find that my approach differs to the approach you find in other examples on the internet, or that your code differs from another person in the class while still producing the same result. That’s okay! Some approaches are more efficient than others (in terms of either your own time to write it or the time needed for the computer to execute the command), but we don’t need to worry about maximizing the efficiency of our code at this stage.</p>
 </section>
 </section>
 
