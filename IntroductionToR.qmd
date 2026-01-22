@@ -112,7 +112,7 @@ log(1)      #logarithm
 sqrt(25)    #square root
 ```
 
-::: {.callout-warning collapse="TRUE"}
+::: {.callout-warning collapse="true"}
 ## Oops, how do I reset the code?
 
 You can hit the **Start Over** button (↻) in the box to reset the edited code to the original example.
@@ -153,12 +153,12 @@ Try to change the spacing and run again.
 
 While we saw flexible formatting in this example, in other cases a command will *fail* without the correct formatting. For instance, many functions are case sensitive (as we will see soon), and symbols are usually not flexible (e.g., you can't swap single and double quotation marks).
 
-:::{.callout-note collapse="TRUE"}
+:::{.callout-note collapse="true"}
 ## Troubleshooting tips 
 As we progress, you will encounter various common coding errors, many related to formatting issues. If you are experiencing an unexpected error in your R code, one of the first things you should check is whether there is a formatting issue. This will be frustrating, but is just part of working with R! It becomes second nature after some practice. It is a good idea to keep a list of such issues to use as a troubleshooting reference in future code.
 :::
 
-::: {.callout-note collapse="TRUE"}
+:::{.callout-note collapse="true"}
 ## Code style 
 Even where R gives formatting flexibility, it is good practice to develop and use a consistent code *style* that works best with your habits of how you read, write, and edit code. Where R gives you flexibility, try to make the same choice consistently (do you use a space or not? when do you use a line break?). We'll keep practicing this throughout the semester - it's not the main priority right now, but it is a good time to start developing good habits.
 :::
