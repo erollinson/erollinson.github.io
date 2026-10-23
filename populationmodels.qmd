@@ -4,12 +4,13 @@ format:
   html:
     toc: true
     theme: cerulean
+    webr:
+      render-df: gt-interactive
 editor: visual
 engine: knitr
 filters:
   - webr
-webr:
-  render-df: gt-interactive
+
 ---
 
 # 1: Exponential Population Models
