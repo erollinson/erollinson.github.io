@@ -4,8 +4,7 @@ format:
   html:
     toc: true
     theme: cerulean
-    webr:
-      render-df: gt-interactive
+    df-print: kable
 editor: visual
 engine: knitr
 filters:
@@ -211,6 +210,7 @@ Mean <- mean(l)
 SD <- sd(l)
 table <- data.frame(Mean, SD)
 print(table, row.names = FALSE)
+table
 ```
 
 ## Exercise 3.2: Predicting change in the population over the next 20 years
