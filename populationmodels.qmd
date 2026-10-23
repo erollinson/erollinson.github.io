@@ -4,12 +4,10 @@ format:
   html:
     toc: true
     theme: cerulean
-df-print: tibble
 editor: visual
 engine: knitr
 filters:
   - webr
-
 ---
 
 # 1: Exponential Population Models
@@ -186,7 +184,7 @@ abline(h = 100, lty = 2)
 
 # 3: Population Viability Analysis
 
-f## Exercise 3.1: Calculating average population growth rate from observed population sizes
+## Exercise 3.1: Calculating average population growth rate from observed population sizes
 
 In this exercise, we will use data on population sizes of an endangered plant over time to determine the average rate of change (**λ**) in that population. We will need this **λ** to run our model. You don't need to edit the code below: just click **Run**.
 
@@ -208,9 +206,9 @@ hist(l, breaks = 20, main = "Histogram of lambdas")
 
 Mean <- mean(l)
 SD <- sd(l)
-table <- data.frame(Mean, SD)
+table <- t(data.frame(Mean, SD))
+colnames(table)[1] <- "Value"
 table
-print.table(table, row.names = FALSE)
 ```
 
 ## Exercise 3.2: Predicting change in the population over the next 20 years
@@ -337,7 +335,8 @@ outmat = sapply(1:sims, function(x) {
 #Which simulations have at least one value of zero?
 minpop = apply(outmat, 2, function(x) min(x) < 1)
 risk <- sum(minpop + 0)/sims
-data.frame(risk)
+risk <- data.frame(risk)
+print(risk, row.names = FALSE)
 ```
 
 # 4: Density-dependent (logistic) models
