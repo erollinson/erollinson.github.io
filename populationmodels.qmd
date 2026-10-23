@@ -4,7 +4,7 @@ format:
   html:
     toc: true
     theme: cerulean
-    df-print: kable
+    df-print: tibble
 editor: visual
 engine: knitr
 filters:
@@ -186,7 +186,7 @@ abline(h = 100, lty = 2)
 
 # 3: Population Viability Analysis
 
-## Exercise 3.1: Calculating average population growth rate from observed population sizes
+f## Exercise 3.1: Calculating average population growth rate from observed population sizes
 
 In this exercise, we will use data on population sizes of an endangered plant over time to determine the average rate of change (**λ**) in that population. We will need this **λ** to run our model. You don't need to edit the code below: just click **Run**.
 
@@ -209,7 +209,6 @@ hist(l, breaks = 20, main = "Histogram of lambdas")
 Mean <- mean(l)
 SD <- sd(l)
 table <- data.frame(Mean, SD)
-print(table, row.names = FALSE)
 table
 ```
 
