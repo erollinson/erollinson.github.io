@@ -4,6 +4,7 @@ format:
   html:
     toc: true
     theme: cerulean
+    code-line-numbers: false
 editor: visual
 filters:
   - webr
