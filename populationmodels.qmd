@@ -150,7 +150,7 @@ fig1 <- plot(1:times, N, type = "o", las = 1, main="No Stochasticity", xlab="Tim
 
 ## Exercise 2.3: Replicates of a stochastic model
 
-In this exercise, we will run our stochastic model ten times in a row, and plot all of the predictions in the same figure. Once again, our initial population size is [100]{style="font-family:monospace"}, the average growth rate is [λ=1.2]{style="font-family:monospace"}, and we are making a prediction for 20 years in the future. You don't need to edit the code for this exercise: just click **Run**.
+In this exercise, we will run our stochastic model ten times in a row, and plot all of the predictions in the same figure. Once again, our initial population size is [100]{style="font-family:monospace"}, the average growth rate is [λ=1.2]{style="font-family:monospace"}, and we are making a prediction for 20 years in the future. First, just click **Run** without editing the code. Then, edit the code to increase the number of simulations nSims [nSims]{style="font-family:monospace"} and **Run** the code again.
 
 ```{webr-r}
 #| label: editor-fixed-growth
